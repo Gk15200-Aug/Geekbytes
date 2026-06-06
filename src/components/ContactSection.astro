@@ -7,9 +7,9 @@ import { siteConfig } from '../data/site';
   <div class="max-w-container mx-auto px-4">
     <!-- Section Header -->
     <div class="mb-12">
-      <p class="section-label mb-4">CONTACT US</p>
-      <h2 id="contact-heading" class="section-heading">Let's Build Something Great.</h2>
-      <p class="text-brand-white/60 mt-4 max-w-2xl">
+      <p data-i18n="contact.label" class="section-label mb-4">CONTACT US</p>
+      <h2 id="contact-heading" data-i18n="contact.heading" class="section-heading">Let's Build Something Great.</h2>
+      <p data-i18n="contact.subtext" class="text-brand-white/60 mt-4 max-w-2xl">
         Ready to start your next project? Reach out to us and let's discuss how we can help your business grow with technology.
       </p>
     </div>
@@ -26,7 +26,7 @@ import { siteConfig } from '../data/site';
             </svg>
           </div>
           <div>
-            <p class="text-brand-white font-medium">Email Us</p>
+            <p data-i18n="contact.email_label" class="text-brand-white font-medium">Email Us</p>
             <p class="text-brand-white/60 text-sm">{siteConfig.email}</p>
           </div>
         </div>
@@ -40,7 +40,7 @@ import { siteConfig } from '../data/site';
             </svg>
           </div>
           <div>
-            <p class="text-brand-white font-medium">Location</p>
+            <p data-i18n="contact.location_label" class="text-brand-white font-medium">Location</p>
             <p class="text-brand-white/60 text-sm">{siteConfig.location}</p>
           </div>
         </div>
@@ -68,52 +68,62 @@ import { siteConfig } from '../data/site';
           <input type="hidden" name="_captcha" value="false" />
           <input type="hidden" name="_template" value="table" />
           <input type="text" name="_honey" style="display:none" />
+
           <!-- Full Name -->
           <div>
-            <label for="full-name" class="block text-brand-white text-sm font-medium mb-2">Full Name</label>
+            <label for="full-name" data-i18n="contact.form.name" class="block text-brand-white text-sm font-medium mb-2">Full Name</label>
             <input
               type="text"
               id="full-name"
               name="full-name"
               required
               placeholder="John Doe"
+              data-i18n-placeholder="contact.name_placeholder"
               class="bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-brand-white placeholder:text-brand-white/30 focus:outline-none focus:ring-2 focus:ring-brand-accent focus:border-transparent w-full"
             />
           </div>
 
           <!-- Email Address -->
           <div>
-            <label for="email" class="block text-brand-white text-sm font-medium mb-2">Email Address</label>
+            <label for="email" data-i18n="contact.form.email" class="block text-brand-white text-sm font-medium mb-2">Email Address</label>
             <input
               type="email"
               id="email"
               name="email"
               required
               placeholder="john@example.com"
+              data-i18n-placeholder="contact.email_placeholder"
               class="bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-brand-white placeholder:text-brand-white/30 focus:outline-none focus:ring-2 focus:ring-brand-accent focus:border-transparent w-full"
             />
           </div>
 
           <!-- Phone Number -->
           <div>
-            <label for="phone" class="block text-brand-white text-sm font-medium mb-2">Phone Number <span class="text-brand-white/40">(Optional)</span></label>
+            <label for="phone" class="block text-brand-white text-sm font-medium mb-2">
+              <span data-i18n="contact.form.phone">Phone Number</span>
+              <span data-i18n="contact.form.phone_optional" class="text-brand-white/40"> (Optional)</span>
+            </label>
             <input
               type="tel"
               id="phone"
               name="phone"
               placeholder="+1 (555) 000-0000"
+              data-i18n-placeholder="contact.phone_placeholder"
               class="bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-brand-white placeholder:text-brand-white/30 focus:outline-none focus:ring-2 focus:ring-brand-accent focus:border-transparent w-full"
             />
           </div>
 
           <!-- Service Interest -->
           <div>
-            <label class="block text-brand-white text-sm font-medium mb-3">Service Interest</label>
+            <label data-i18n="contact.form.service" class="block text-brand-white text-sm font-medium mb-3">Service Interest</label>
             <div class="grid grid-cols-2 gap-3">
               {serviceInterestOptions.map((option) => (
                 <label class="cursor-pointer">
                   <input type="radio" name="service-interest" value={option.value} class="sr-only peer" />
-                  <div class="border border-white/10 rounded-lg px-4 py-3 text-center text-sm text-brand-white/70 transition-all peer-checked:border-brand-accent peer-checked:bg-brand-accent/10 peer-checked:text-brand-white hover:border-white/20 min-h-[44px] flex items-center justify-center">
+                  <div
+                    data-i18n={`contact.option.${option.value}`}
+                    class="border border-white/10 rounded-lg px-4 py-3 text-center text-sm text-brand-white/70 transition-all peer-checked:border-brand-accent peer-checked:bg-brand-accent/10 peer-checked:text-brand-white hover:border-white/20 min-h-[44px] flex items-center justify-center"
+                  >
                     {option.label}
                   </div>
                 </label>
@@ -123,19 +133,20 @@ import { siteConfig } from '../data/site';
 
           <!-- Project Details -->
           <div>
-            <label for="message" class="block text-brand-white text-sm font-medium mb-2">Project Details</label>
+            <label for="message" data-i18n="contact.form.message" class="block text-brand-white text-sm font-medium mb-2">Project Details</label>
             <textarea
               id="message"
               name="message"
               required
               rows="4"
               placeholder="Tell us about your project..."
+              data-i18n-placeholder="contact.message_placeholder"
               class="bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-brand-white placeholder:text-brand-white/30 focus:outline-none focus:ring-2 focus:ring-brand-accent focus:border-transparent w-full resize-none"
             ></textarea>
           </div>
 
           <!-- Submit Button -->
-          <button type="submit" class="btn-primary w-full py-3">
+          <button type="submit" data-i18n="contact.form.submit" class="btn-primary w-full py-3">
             Send Message ✈
           </button>
         </form>

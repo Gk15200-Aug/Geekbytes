@@ -42,9 +42,9 @@ const techIcons: Record<string, string> = {
   <div class="max-w-container mx-auto px-4">
     <!-- Section header -->
     <div class="text-center mb-14">
-      <span class="section-label">OUR EXPERTISE</span>
-      <h2 id="skills-heading" class="section-heading mt-4">Technologies We Master</h2>
-      <p class="mt-4 text-brand-white/60 max-w-2xl mx-auto leading-relaxed">
+      <span data-i18n="skills.label" class="section-label">OUR EXPERTISE</span>
+      <h2 id="skills-heading" data-i18n="skills.heading" class="section-heading mt-4">Technologies We Master</h2>
+      <p data-i18n="skills.subtext" class="mt-4 text-brand-white/60 max-w-2xl mx-auto leading-relaxed">
         We build with modern, robust, and scalable technologies to ensure your project's long-term success.
       </p>
     </div>
@@ -58,7 +58,7 @@ const techIcons: Record<string, string> = {
             <div class="w-10 h-10 rounded-lg bg-brand-accent/10 flex items-center justify-center text-brand-accent">
               <Fragment set:html={categoryIcons[category.icon] || ''} />
             </div>
-            <h3 class="text-lg font-bold text-brand-white">{category.name}</h3>
+            <h3 data-i18n={`skill.${category.icon}`} class="text-lg font-bold text-brand-white">{category.name}</h3>
           </div>
 
           <!-- Technology grid -->

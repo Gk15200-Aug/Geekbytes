@@ -23,9 +23,9 @@ const checkmarkSvg = `<svg class="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24" fil
   <div class="max-w-container mx-auto px-4">
     <!-- Section header -->
     <div class="text-center mb-14">
-      <span class="section-label">WHAT WE DO</span>
-      <h2 id="services-heading" class="section-heading mt-4">Comprehensive IT Services</h2>
-      <p class="mt-4 text-brand-white/60 max-w-2xl mx-auto leading-relaxed">
+      <span data-i18n="services.label" class="section-label">WHAT WE DO</span>
+      <h2 id="services-heading" data-i18n="services.heading" class="section-heading mt-4">Comprehensive IT Services</h2>
+      <p data-i18n="services.subtext" class="mt-4 text-brand-white/60 max-w-2xl mx-auto leading-relaxed">
         End-to-end solutions tailored to elevate your business in your digital landscape.
       </p>
     </div>
@@ -40,19 +40,19 @@ const checkmarkSvg = `<svg class="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24" fil
           </div>
 
           <!-- Title -->
-          <h3 class="text-lg font-bold text-brand-white mb-2">{service.title}</h3>
+          <h3 data-i18n={`service.${service.icon}.title`} class="text-lg font-bold text-brand-white mb-2">{service.title}</h3>
 
           <!-- Description -->
-          <p class="text-sm text-brand-white/60 leading-relaxed mb-4">{service.description}</p>
+          <p data-i18n={`service.${service.icon}.description`} class="text-sm text-brand-white/60 leading-relaxed mb-4">{service.description}</p>
 
           <!-- Bullet points with blue checkmarks -->
           <ul class="space-y-2">
-            {service.bulletPoints.map((point) => (
+            {service.bulletPoints.map((point, idx) => (
               <li class="flex items-center gap-2">
                 <span class="text-brand-accent">
                   <Fragment set:html={checkmarkSvg} />
                 </span>
-                <span class="text-sm text-brand-white/70">{point}</span>
+                <span data-i18n={`service.${service.icon}.b${idx}`} class="text-sm text-brand-white/70">{point}</span>
               </li>
             ))}
           </ul>
