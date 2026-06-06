@@ -1,0 +1,119 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout title="Refund Policy — GeekBytes" description="Refund Policy for GeekBytes Solutions. Learn about our 30-day money-back guarantee and refund process.">
+  <Fragment slot="header">
+    <Navbar />
+  </Fragment>
+
+  <!-- Hero banner -->
+  <section class="relative pt-32 pb-16 overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-b from-brand-accent/5 to-transparent"></div>
+    <div class="relative max-w-4xl mx-auto px-4 text-center">
+      <span class="section-label">LEGAL</span>
+      <h1 class="section-heading mt-4">Refund Policy</h1>
+      <p class="text-brand-white/50 mt-4 max-w-2xl mx-auto">Customer satisfaction is important to us. We strive to provide reliable and professional IT services.</p>
+      <p class="text-brand-white/30 text-sm mt-4">Last updated: June 2026</p>
+    </div>
+  </section>
+
+  <section class="pb-20 lg:pb-24">
+    <div class="max-w-3xl mx-auto px-4">
+      <div class="space-y-8">
+        <!-- Guarantee highlight -->
+        <div class="bg-gradient-to-r from-brand-accent/10 to-brand-accent/5 rounded-2xl border border-brand-accent/20 p-6 lg:p-8 text-center">
+          <div class="w-16 h-16 rounded-full bg-brand-accent/10 flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-brand-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </div>
+          <h2 class="text-2xl font-bold text-brand-white mb-2">30-Day Money-Back Guarantee</h2>
+          <p class="text-brand-white/60">If you are not satisfied with our website maintenance service, you may request a full refund within the first 30 days of your purchase.</p>
+        </div>
+
+        <!-- Eligible -->
+        <div class="bg-white/5 rounded-2xl border border-white/10 p-6 lg:p-8">
+          <h2 class="text-xl font-bold text-brand-white mb-4 flex items-center gap-2">
+            <svg class="w-5 h-5 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            Eligible Refunds
+          </h2>
+          <p class="text-brand-white/60 mb-3">Refunds are available for:</p>
+          <ul class="space-y-3">
+            <li class="flex items-center gap-3 text-brand-white/60">
+              <span class="w-6 h-6 rounded-full bg-green-500/10 flex items-center justify-center flex-shrink-0"><svg class="w-3.5 h-3.5 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></span>
+              Monthly maintenance plans
+            </li>
+            <li class="flex items-center gap-3 text-brand-white/60">
+              <span class="w-6 h-6 rounded-full bg-green-500/10 flex items-center justify-center flex-shrink-0"><svg class="w-3.5 h-3.5 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></span>
+              3-month maintenance plans
+            </li>
+            <li class="flex items-center gap-3 text-brand-white/60">
+              <span class="w-6 h-6 rounded-full bg-green-500/10 flex items-center justify-center flex-shrink-0"><svg class="w-3.5 h-3.5 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></span>
+              Yearly maintenance plans
+            </li>
+          </ul>
+        </div>
+
+        <!-- Non-refundable -->
+        <div class="bg-white/5 rounded-2xl border border-white/10 p-6 lg:p-8">
+          <h2 class="text-xl font-bold text-brand-white mb-4 flex items-center gap-2">
+            <svg class="w-5 h-5 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+            Non-Refundable Services
+          </h2>
+          <p class="text-brand-white/60 mb-3">Refunds may not apply for:</p>
+          <ul class="space-y-3">
+            <li class="flex items-center gap-3 text-brand-white/60">
+              <span class="w-6 h-6 rounded-full bg-red-500/10 flex items-center justify-center flex-shrink-0"><svg class="w-3.5 h-3.5 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg></span>
+              Custom development work already completed
+            </li>
+            <li class="flex items-center gap-3 text-brand-white/60">
+              <span class="w-6 h-6 rounded-full bg-red-500/10 flex items-center justify-center flex-shrink-0"><svg class="w-3.5 h-3.5 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg></span>
+              Third-party software or hosting issues
+            </li>
+            <li class="flex items-center gap-3 text-brand-white/60">
+              <span class="w-6 h-6 rounded-full bg-red-500/10 flex items-center justify-center flex-shrink-0"><svg class="w-3.5 h-3.5 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg></span>
+              Services affected by incorrect client access
+            </li>
+            <li class="flex items-center gap-3 text-brand-white/60">
+              <span class="w-6 h-6 rounded-full bg-red-500/10 flex items-center justify-center flex-shrink-0"><svg class="w-3.5 h-3.5 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg></span>
+              Policy violations or misuse of services
+            </li>
+          </ul>
+        </div>
+
+        <!-- Processing & Cancellation -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="bg-white/5 rounded-2xl border border-white/10 p-6">
+            <div class="flex items-center gap-3 mb-3">
+              <div class="w-10 h-10 rounded-lg bg-brand-accent/10 flex items-center justify-center">
+                <svg class="w-5 h-5 text-brand-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              </div>
+              <h3 class="text-lg font-bold text-brand-white">Processing Time</h3>
+            </div>
+            <p class="text-brand-white/60 text-sm">Approved refunds are usually processed within 5–10 business days through the original payment method.</p>
+          </div>
+
+          <div class="bg-white/5 rounded-2xl border border-white/10 p-6">
+            <div class="flex items-center gap-3 mb-3">
+              <div class="w-10 h-10 rounded-lg bg-brand-accent/10 flex items-center justify-center">
+                <svg class="w-5 h-5 text-brand-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"/></svg>
+              </div>
+              <h3 class="text-lg font-bold text-brand-white">Cancellation</h3>
+            </div>
+            <p class="text-brand-white/60 text-sm">Clients may cancel their subscription at any time. Service access continues until the current billing period ends.</p>
+          </div>
+        </div>
+
+        <!-- Contact note -->
+        <div class="border border-brand-accent/20 rounded-2xl p-6 bg-brand-accent/5">
+          <p class="text-brand-white/70 text-sm"><strong class="text-brand-white">Need help?</strong> For refund requests or billing support, contact us at <a href="mailto:geekbytessolutions@gmail.com" class="text-brand-accent hover:underline">geekbytessolutions@gmail.com</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Fragment slot="footer">
+    <Footer />
+  </Fragment>
+</BaseLayout>

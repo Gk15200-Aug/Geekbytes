@@ -1,0 +1,98 @@
+---
+import Logo from './icons/Logo.astro';
+import { navItems, contactButton } from '../data/navigation';
+---
+
+<nav
+  class="fixed top-0 left-0 right-0 z-50 bg-brand-black/80 backdrop-blur-md border-b border-white/10"
+  aria-label="Main navigation"
+>
+  <div class="max-w-container mx-auto px-4 flex items-center justify-between h-16">
+    <!-- Logo -->
+    <a href="/#hero" class="flex items-center gap-2 min-w-[44px] min-h-[44px]" aria-label="GeekBytes Home">
+      <Logo />
+      <span class="text-brand-white font-bold text-lg hidden sm:inline">GeekBytes</span>
+    </a>
+
+    <!-- Desktop Navigation Links -->
+    <ul class="hidden lg:flex items-center gap-1">
+      {navItems.map((item) => (
+        <li>
+          <a
+            href={'/' + item.href}
+            data-section={item.href.replace('#', '')}
+            class="relative px-3 py-2 text-sm text-brand-white/70 hover:text-brand-white transition-colors rounded focus:outline-none focus:ring-2 focus:ring-brand-accent focus:ring-offset-2 focus:ring-offset-brand-black min-w-[44px] min-h-[44px] inline-flex items-center"
+          >
+            {item.label}
+            <span class="absolute bottom-0 left-3 right-3 h-0.5 bg-brand-accent transition-transform duration-300 origin-left nav-indicator" style="transform: scaleX(0)"></span>
+          </a>
+        </li>
+      ))}
+    </ul>
+
+    <!-- Right side: Contact button + Hamburger -->
+    <div class="flex items-center gap-3">
+      <!-- Contact Us pill button (visible on desktop) -->
+      <a
+        href={'/' + contactButton.href}
+        class="hidden lg:inline-flex btn-primary text-sm px-5 py-2 min-h-[44px] items-center focus:outline-none focus:ring-2 focus:ring-brand-accent focus:ring-offset-2 focus:ring-offset-brand-black"
+      >
+        {contactButton.label}
+      </a>
+
+      <!-- Hamburger Menu Button (visible on mobile/tablet) -->
+      <button
+        id="mobile-menu-toggle"
+        class="lg:hidden flex items-center justify-center w-11 h-11 text-brand-white rounded focus:outline-none focus:ring-2 focus:ring-brand-accent focus:ring-offset-2 focus:ring-offset-brand-black"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+        aria-label="Open navigation menu"
+      >
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile Menu Overlay — OUTSIDE nav to avoid stacking context issues -->
+<div
+  id="mobile-menu"
+  class="hidden lg:hidden"
+  style="position: fixed; inset: 0; z-index: 9999; background: #000000;"
+  aria-hidden="true"
+>
+  <!-- Close button -->
+  <div class="flex justify-end p-4">
+    <button
+      class="mobile-menu-close w-11 h-11 flex items-center justify-center text-brand-white"
+      aria-label="Close menu"
+    >
+      <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
+  </div>
+  <ul class="flex flex-col items-center justify-center h-[calc(100%-80px)] gap-8">
+    {navItems.map((item) => (
+      <li>
+        <a
+          href={'/' + item.href}
+          data-section={item.href.replace('#', '')}
+          class="text-2xl text-brand-white/80 hover:text-brand-white transition-colors px-4 py-3 min-w-[44px] min-h-[44px] inline-flex items-center"
+        >
+          {item.label}
+        </a>
+      </li>
+    ))}
+    <li>
+      <a
+        href={'/' + contactButton.href}
+        class="btn-primary text-lg px-8 py-3 min-h-[44px] inline-flex items-center"
+      >
+        {contactButton.label}
+      </a>
+    </li>
+  </ul>
+</div>

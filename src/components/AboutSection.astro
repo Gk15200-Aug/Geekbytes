@@ -1,0 +1,55 @@
+---
+// About Section — two-column layout with image and company description
+---
+
+<section id="about" aria-labelledby="about-heading" class="bg-brand-black py-20 lg:py-24">
+  <div class="max-w-container mx-auto px-4">
+    <div class="animate-on-scroll opacity-0 translate-y-4 transition-all duration-700 flex flex-col lg:flex-row gap-12 lg:gap-16 items-center">
+      <!-- Left: Image with overlay card -->
+      <div class="w-full lg:w-1/2 relative">
+        <div class="relative aspect-[4/3] rounded-2xl overflow-hidden border border-white/10">
+          <img src="/images/about-team.png" alt="GeekBytes team working on technology solutions" class="w-full h-full object-cover" loading="lazy" />
+
+          <!-- Overlay card -->
+          <div class="absolute bottom-4 right-4 bg-brand-black/90 border border-white/10 rounded-xl px-5 py-4 backdrop-blur-sm">
+            <span class="text-3xl font-bold text-brand-accent">50+</span>
+            <p class="text-sm text-brand-white/70 mt-0.5">Projects Delivered</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Text content -->
+      <div class="w-full lg:w-1/2">
+        <span class="section-label">ABOUT GEEKBYTES</span>
+        <h2 id="about-heading" class="section-heading mt-4 leading-tight">
+          Bridging the gap between <span class="text-brand-accent">vision</span> and <span class="text-brand-accent">technology</span>.
+        </h2>
+
+        <p class="mt-6 text-brand-white/60 leading-relaxed">
+          At GeekBytes, we are more than just a development agency; we are your strategic technology partners. Founded on the principle of delivering excellence, we specialize in crafting bespoke digital solutions that solve complex business challenges.
+        </p>
+        <p class="mt-4 text-brand-white/60 leading-relaxed">
+          Our mission is simple: to empower businesses with cutting-edge technology that is scalable, secure, and user-centric. We believe in writing clean code, designing intuitive interfaces, and building architectures that stand the test of time.
+        </p>
+
+        <!-- Feature Pills -->
+        <div class="mt-8 flex flex-wrap gap-4">
+          <div class="inline-flex items-center gap-2.5 px-4 py-2.5 rounded-xl bg-white/5 border border-white/10">
+            <!-- Rocket icon -->
+            <svg class="w-5 h-5 text-brand-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15.59 14.37a6 6 0 01-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 006.16-12.12A14.98 14.98 0 009.631 8.41m5.96 5.96a14.926 14.926 0 01-5.841 2.58m-.119-8.54a6 6 0 00-7.381 5.84h4.8m2.58-5.84a14.927 14.927 0 00-2.58 5.84m2.699 2.7c-.103.021-.207.041-.311.06a15.09 15.09 0 01-2.448-2.448 14.9 14.9 0 01.06-.312m-2.24 2.39a4.493 4.493 0 00-1.757 4.306 4.493 4.493 0 004.306-1.758M16.5 9a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z" />
+            </svg>
+            <span class="text-sm font-medium text-brand-white">Innovation First</span>
+          </div>
+          <div class="inline-flex items-center gap-2.5 px-4 py-2.5 rounded-xl bg-white/5 border border-white/10">
+            <!-- Shield icon -->
+            <svg class="w-5 h-5 text-brand-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
+            </svg>
+            <span class="text-sm font-medium text-brand-white">Secure by Design</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

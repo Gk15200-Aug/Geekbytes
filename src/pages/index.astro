@@ -1,0 +1,40 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import HeroSection from '../components/HeroSection.astro';
+import AboutSection from '../components/AboutSection.astro';
+import SkillsSection from '../components/SkillsSection.astro';
+import ServicesSection from '../components/ServicesSection.astro';
+import ProjectsSection from '../components/ProjectsSection.astro';
+import TestimonialsSection from '../components/TestimonialsSection.astro';
+import ContactSection from '../components/ContactSection.astro';
+import Footer from '../components/Footer.astro';
+import { siteConfig } from '../data/site';
+---
+
+<BaseLayout title={siteConfig.meta.title} description={siteConfig.meta.description}>
+  <Fragment slot="header">
+    <Navbar />
+  </Fragment>
+
+  <HeroSection />
+  <AboutSection />
+  <SkillsSection />
+  <ServicesSection />
+  <ProjectsSection />
+  <TestimonialsSection />
+  <ContactSection />
+
+  <Fragment slot="footer">
+    <Footer />
+  </Fragment>
+</BaseLayout>
+
+<script>
+import '../scripts/mobile-menu.js';
+import '../scripts/smooth-scroll.js';
+import '../scripts/active-nav.js';
+import '../scripts/project-filter.js';
+import '../scripts/form-validation.js';
+import '../scripts/scroll-animations.js';
+</script>

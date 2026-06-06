@@ -1,0 +1,168 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-bg: #000000;
+  --color-accent: #00A3FF;
+  --color-text: #FFFFFF;
+  --color-text-muted: #9CA3AF;
+  --color-surface: #111111;
+  --color-border: #1F2937;
+  --font-sans: 'Inter', system-ui, sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-brand-black text-brand-white font-sans antialiased;
+  }
+
+  * {
+    @apply border-brand-black;
+  }
+
+  section {
+    scroll-margin-top: 5rem;
+  }
+}
+
+@layer components {
+  .section-label {
+    @apply text-brand-accent uppercase text-sm font-semibold tracking-wider;
+  }
+
+  .section-heading {
+    @apply text-3xl md:text-4xl lg:text-5xl font-bold text-brand-white;
+  }
+
+  .btn-primary {
+    @apply bg-brand-accent text-brand-white px-6 py-3 rounded-full font-medium transition-all hover:opacity-90;
+  }
+
+  .btn-outline {
+    @apply border border-brand-accent text-brand-accent px-6 py-3 rounded-full font-medium transition-all hover:bg-brand-accent hover:text-brand-white;
+  }
+
+  /* Hero heading display font */
+  .hero-heading {
+    font-family: 'Inter', system-ui, sans-serif;
+    letter-spacing: -0.02em;
+  }
+
+  /* Gradient text for "Digital Future" */
+  .hero-gradient-text {
+    background: linear-gradient(135deg, #00A3FF 0%, #60CFFF 40%, #ffffff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: none;
+    filter: drop-shadow(0 0 30px rgba(0, 163, 255, 0.3));
+  }
+
+  /* Typing cursor animation */
+  .typing-cursor {
+    color: #00A3FF;
+    font-weight: 300;
+    animation: blink 1s step-end infinite;
+  }
+
+  /* Hero grid background */
+  .hero-grid {
+    background-image:
+      linear-gradient(rgba(0, 163, 255, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 163, 255, 0.05) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  /* Horizontal scanning line — moves top to bottom */
+  .scan-line {
+    position: absolute;
+    left: 10%;
+    right: 10%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent 0%, rgba(0, 163, 255, 0.6) 20%, rgba(0, 163, 255, 0.9) 50%, rgba(0, 163, 255, 0.6) 80%, transparent 100%);
+    box-shadow: 0 0 15px 3px rgba(0, 163, 255, 0.4), 0 0 30px 6px rgba(0, 163, 255, 0.2);
+    animation: scan-down 6s linear infinite;
+    opacity: 0.7;
+  }
+
+  /* Vertical falling lines */
+  .falling-line {
+    position: absolute;
+    top: -120px;
+    width: 1px;
+    height: 80px;
+    background: linear-gradient(to bottom, transparent, rgba(0, 163, 255, 0.5), transparent);
+    animation: fall-down 7s linear infinite;
+  }
+
+  /* Badge sliding glass shine effect */
+  .badge-shine::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -100%;
+    width: 60%;
+    height: 200%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.1),
+      rgba(255, 255, 255, 0.2),
+      rgba(255, 255, 255, 0.1),
+      transparent
+    );
+    transform: skewX(-20deg);
+    animation: badge-slide 3s ease-in-out infinite;
+  }
+}
+
+/* Animations */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+@keyframes float-1 {
+  0%, 100% { transform: translateY(0) translateX(0); opacity: 0.4; }
+  50% { transform: translateY(-20px) translateX(10px); opacity: 0.8; }
+}
+
+@keyframes float-2 {
+  0%, 100% { transform: translateY(0) translateX(0); opacity: 0.3; }
+  50% { transform: translateY(15px) translateX(-8px); opacity: 0.7; }
+}
+
+@keyframes float-3 {
+  0%, 100% { transform: translateY(0); opacity: 0.2; }
+  50% { transform: translateY(-25px); opacity: 0.6; }
+}
+
+@keyframes pulse-slow {
+  0%, 100% { opacity: 0.4; transform: translate(-50%, 0) scale(1); }
+  50% { opacity: 0.7; transform: translate(-50%, 0) scale(1.05); }
+}
+
+@keyframes badge-slide {
+  0% { left: -100%; }
+  50% { left: 150%; }
+  100% { left: 150%; }
+}
+
+@keyframes scan-down {
+  0% { top: -2%; opacity: 0; }
+  5% { opacity: 0.7; }
+  95% { opacity: 0.7; }
+  100% { top: 100%; opacity: 0; }
+}
+
+@keyframes fall-down {
+  0% { top: -120px; opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { top: 100%; opacity: 0; }
+}

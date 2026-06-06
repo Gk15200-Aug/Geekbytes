@@ -1,0 +1,89 @@
+---
+// Hero Section — full viewport height with animated background, heading, CTAs, and stats bar
+---
+
+<section id="hero" aria-label="Hero" class="relative min-h-screen flex items-center justify-center bg-brand-black pt-16 overflow-hidden">
+  <!-- Animated Background -->
+  <div class="absolute inset-0 z-0">
+    <!-- Grid pattern overlay -->
+    <div class="absolute inset-0 hero-grid"></div>
+
+    <!-- Horizontal scanning line moving top to bottom -->
+    <div class="scan-line"></div>
+
+    <!-- Top blue glow -->
+    <div class="absolute -top-20 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] bg-brand-accent/15 rounded-full blur-[150px] animate-pulse-slow"></div>
+
+    <!-- Corner glow accents -->
+    <div class="absolute top-0 right-0 w-[400px] h-[400px] bg-brand-accent/8 rounded-full blur-[120px] animate-float-2"></div>
+    <div class="absolute bottom-0 left-0 w-[350px] h-[350px] bg-blue-600/8 rounded-full blur-[100px] animate-float-3"></div>
+
+    <!-- Vertical falling lines (CSS-only) -->
+    <div class="falling-line" style="left: 10%; animation-delay: 0s; animation-duration: 7s;"></div>
+    <div class="falling-line" style="left: 25%; animation-delay: 2s; animation-duration: 9s;"></div>
+    <div class="falling-line" style="left: 40%; animation-delay: 4s; animation-duration: 6s;"></div>
+    <div class="falling-line" style="left: 55%; animation-delay: 1s; animation-duration: 8s;"></div>
+    <div class="falling-line" style="left: 70%; animation-delay: 3s; animation-duration: 7.5s;"></div>
+    <div class="falling-line" style="left: 85%; animation-delay: 5s; animation-duration: 6.5s;"></div>
+    <div class="falling-line" style="left: 95%; animation-delay: 2.5s; animation-duration: 8.5s;"></div>
+    <div class="falling-line" style="left: 5%; animation-delay: 6s; animation-duration: 9.5s;"></div>
+  </div>
+
+  <div class="relative z-10 max-w-container mx-auto px-4 py-20 flex flex-col items-center text-center">
+    <!-- Badge with glassy sliding shine -->
+    <div class="badge-shine relative inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-white/15 bg-white/5 backdrop-blur-md mb-8 overflow-hidden">
+      <span class="w-2.5 h-2.5 rounded-full bg-green-500 animate-pulse"></span>
+      <span class="text-sm text-brand-white/90 font-medium">Innovative IT Solutions</span>
+    </div>
+
+    <!-- Main Heading with display font styling -->
+    <h1 class="hero-heading text-5xl md:text-6xl lg:text-7xl xl:text-[5.5rem] font-extrabold leading-[1.1] max-w-5xl tracking-tight">
+      <span class="text-brand-white">Empowering Your</span>
+      <br />
+      <span class="hero-gradient-text">Digital Future</span><span class="typing-cursor">|</span>
+    </h1>
+
+    <!-- Subtext -->
+    <p class="mt-6 text-lg md:text-xl text-brand-white/50 max-w-2xl leading-relaxed font-light">
+      We build scalable, secure, and modern technology solutions that drive business growth and transform ideas into reality.
+    </p>
+
+    <!-- CTA Buttons -->
+    <div class="mt-10 flex flex-col sm:flex-row items-center gap-4">
+      <a
+        href="#contact"
+        class="btn-primary text-base px-8 py-3.5 min-h-[44px] inline-flex items-center focus:outline-none focus:ring-2 focus:ring-brand-accent focus:ring-offset-2 focus:ring-offset-brand-black shadow-lg shadow-brand-accent/20"
+      >
+        Get in Touch
+      </a>
+      <a
+        href="#projects"
+        class="btn-outline text-base px-8 py-3.5 min-h-[44px] inline-flex items-center focus:outline-none focus:ring-2 focus:ring-brand-accent focus:ring-offset-2 focus:ring-offset-brand-black"
+      >
+        View Our Work &rarr;
+      </a>
+    </div>
+
+    <!-- Stats Bar -->
+    <div class="mt-16 w-full max-w-3xl border-t border-white/5 pt-8">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-0 md:divide-x md:divide-white/10">
+        <div class="flex flex-col items-center px-4 py-3">
+          <span class="text-3xl md:text-4xl font-bold text-brand-accent">50+</span>
+          <span class="mt-1 text-sm text-brand-white/40 font-light">Projects Delivered</span>
+        </div>
+        <div class="flex flex-col items-center px-4 py-3">
+          <span class="text-3xl md:text-4xl font-bold text-brand-accent">30+</span>
+          <span class="mt-1 text-sm text-brand-white/40 font-light">Happy Clients</span>
+        </div>
+        <div class="flex flex-col items-center px-4 py-3">
+          <span class="text-3xl md:text-4xl font-bold text-brand-accent">6+</span>
+          <span class="mt-1 text-sm text-brand-white/40 font-light">Service Domains</span>
+        </div>
+        <div class="flex flex-col items-center px-4 py-3">
+          <span class="text-3xl md:text-4xl font-bold text-brand-accent">99%</span>
+          <span class="mt-1 text-sm text-brand-white/40 font-light">Client Satisfaction</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

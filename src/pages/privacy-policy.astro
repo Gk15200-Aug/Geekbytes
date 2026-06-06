@@ -1,0 +1,115 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout title="Privacy Policy — GeekBytes" description="Privacy Policy for GeekBytes Solutions. Learn how we collect, use, and protect your personal information.">
+  <Fragment slot="header">
+    <Navbar />
+  </Fragment>
+
+  <!-- Hero banner -->
+  <section class="relative pt-32 pb-16 overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-b from-brand-accent/5 to-transparent"></div>
+    <div class="relative max-w-4xl mx-auto px-4 text-center">
+      <span class="section-label">LEGAL</span>
+      <h1 class="section-heading mt-4">Privacy Policy</h1>
+      <p class="text-brand-white/50 mt-4 max-w-2xl mx-auto">We respect your privacy and are committed to protecting your personal information.</p>
+      <p class="text-brand-white/30 text-sm mt-4">Last updated: June 2026</p>
+    </div>
+  </section>
+
+  <section class="pb-20 lg:pb-24">
+    <div class="max-w-3xl mx-auto px-4">
+      <div class="space-y-10">
+        <!-- Card style sections -->
+        <div class="bg-white/5 rounded-2xl border border-white/10 p-6 lg:p-8">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 rounded-lg bg-brand-accent/10 flex items-center justify-center">
+              <svg class="w-5 h-5 text-brand-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+            </div>
+            <h2 class="text-xl font-bold text-brand-white">Information We Collect</h2>
+          </div>
+          <p class="text-brand-white/60 mb-3">We may collect the following information when you use our services:</p>
+          <ul class="space-y-2">
+            <li class="flex items-center gap-2 text-brand-white/60"><span class="text-brand-accent">•</span> Name and contact details</li>
+            <li class="flex items-center gap-2 text-brand-white/60"><span class="text-brand-accent">•</span> Email address</li>
+            <li class="flex items-center gap-2 text-brand-white/60"><span class="text-brand-accent">•</span> Phone number</li>
+            <li class="flex items-center gap-2 text-brand-white/60"><span class="text-brand-accent">•</span> Billing and payment information</li>
+            <li class="flex items-center gap-2 text-brand-white/60"><span class="text-brand-accent">•</span> Website access credentials (for maintenance services)</li>
+            <li class="flex items-center gap-2 text-brand-white/60"><span class="text-brand-accent">•</span> Technical support and project-related information</li>
+          </ul>
+        </div>
+
+        <div class="bg-white/5 rounded-2xl border border-white/10 p-6 lg:p-8">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 rounded-lg bg-brand-accent/10 flex items-center justify-center">
+              <svg class="w-5 h-5 text-brand-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+            </div>
+            <h2 class="text-xl font-bold text-brand-white">How We Use Information</h2>
+          </div>
+          <p class="text-brand-white/60 mb-3">We use your information to:</p>
+          <ul class="space-y-2">
+            <li class="flex items-center gap-2 text-brand-white/60"><span class="text-brand-accent">•</span> Deliver IT services including web development, mobile apps, AI automation, CRM setup, cloud architecture, video editing, and design</li>
+            <li class="flex items-center gap-2 text-brand-white/60"><span class="text-brand-accent">•</span> Process payments and billing ($10/hour for development services)</li>
+            <li class="flex items-center gap-2 text-brand-white/60"><span class="text-brand-accent">•</span> Improve our service quality and offerings</li>
+            <li class="flex items-center gap-2 text-brand-white/60"><span class="text-brand-accent">•</span> Respond to support requests and project communication</li>
+            <li class="flex items-center gap-2 text-brand-white/60"><span class="text-brand-accent">•</span> Send project updates and relevant information</li>
+          </ul>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="bg-white/5 rounded-2xl border border-white/10 p-6">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-10 h-10 rounded-lg bg-brand-accent/10 flex items-center justify-center">
+                <svg class="w-5 h-5 text-brand-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+              </div>
+              <h2 class="text-lg font-bold text-brand-white">Payment Security</h2>
+            </div>
+            <p class="text-brand-white/60 text-sm">All payments are securely processed through trusted third-party payment providers. We do not store sensitive card or banking information.</p>
+          </div>
+
+          <div class="bg-white/5 rounded-2xl border border-white/10 p-6">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-10 h-10 rounded-lg bg-brand-accent/10 flex items-center justify-center">
+                <svg class="w-5 h-5 text-brand-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg>
+              </div>
+              <h2 class="text-lg font-bold text-brand-white">Data Protection</h2>
+            </div>
+            <p class="text-brand-white/60 text-sm">We implement reasonable security measures to protect client information and website access credentials.</p>
+          </div>
+
+          <div class="bg-white/5 rounded-2xl border border-white/10 p-6">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-10 h-10 rounded-lg bg-brand-accent/10 flex items-center justify-center">
+                <svg class="w-5 h-5 text-brand-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9"/></svg>
+              </div>
+              <h2 class="text-lg font-bold text-brand-white">Cookies & Analytics</h2>
+            </div>
+            <p class="text-brand-white/60 text-sm">Our website may use cookies and analytics tools to improve user experience and website performance.</p>
+          </div>
+
+          <div class="bg-white/5 rounded-2xl border border-white/10 p-6">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-10 h-10 rounded-lg bg-brand-accent/10 flex items-center justify-center">
+                <svg class="w-5 h-5 text-brand-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+              </div>
+              <h2 class="text-lg font-bold text-brand-white">Third-Party Services</h2>
+            </div>
+            <p class="text-brand-white/60 text-sm">We may use trusted third-party tools for payment processing, analytics, communication, and project management.</p>
+          </div>
+        </div>
+
+        <!-- Policy updates note -->
+        <div class="border border-brand-accent/20 rounded-2xl p-6 bg-brand-accent/5">
+          <p class="text-brand-white/70 text-sm"><strong class="text-brand-white">Note:</strong> We may update this privacy policy at any time without prior notice. For questions, contact us at <a href="mailto:geekbytessolutions@gmail.com" class="text-brand-accent hover:underline">geekbytessolutions@gmail.com</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Fragment slot="footer">
+    <Footer />
+  </Fragment>
+</BaseLayout>

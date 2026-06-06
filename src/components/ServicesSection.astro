@@ -1,0 +1,63 @@
+---
+// Services Section — 3x2 grid of service cards with bullet points
+import { services } from '../data/services';
+
+// SVG icons for each service type
+const serviceIcons: Record<string, string> = {
+  web: `<svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>`,
+  wordpress: `<svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zM3.6 12c0-1.1.2-2.2.6-3.2l3.5 9.5A8.4 8.4 0 013.6 12zm8.4 8.4c-.8 0-1.6-.1-2.4-.3l2.5-7.3 2.6 7.1c0 .1.1.1.1.2-.9.2-1.8.3-2.8.3zm1.1-12.3c.5 0 1-.1 1-.1.5-.1.4-.7-.1-.7 0 0-1.4.1-2.4.1-.9 0-2.3-.1-2.3-.1-.5 0-.5.7-.1.7 0 0 .4.1.9.1l1.4 3.7-1.9 5.8L7.3 8.1c.5 0 1-.1 1-.1.5-.1.4-.7-.1-.7 0 0-1.4.1-2.4.1h-.6A8.4 8.4 0 0112 3.6c1.8 0 3.4.5 4.8 1.5h-.1c-.9 0-1.5.8-1.5 1.6 0 .7.4 1.3.9 2 .3.6.7 1.3.7 2.3 0 .7-.3 1.5-.6 2.7l-.8 2.7-2.9-8.3zm4.2 11.2l2.5-7.3c.5-1.2.7-2.1.7-3 0-.3 0-.6-.1-.8.7 1.4 1.1 3 1.1 4.7 0 2.8-1.5 5.2-3.7 6.6l-.5-2.2z"/></svg>`,
+  'ai-bot': `<svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"/><circle cx="9" cy="16" r="1" fill="currentColor"/><circle cx="15" cy="16" r="1" fill="currentColor"/><path d="M8 11V7a4 4 0 018 0v4"/><path d="M12 2v3"/><path d="M4 11c0-1 .5-2 1.5-2.5"/><path d="M20 11c0-1-.5-2-1.5-2.5"/></svg>`,
+  crm: `<svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>`,
+  mobile: `<svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2" width="10" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12" y2="18.01"/></svg>`,
+  software: `<svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>`,
+  cloud: `<svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 109 20h9a5 5 0 000-10z"/></svg>`,
+  video: `<svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>`,
+  design: `<svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg>`,
+};
+
+// Blue checkmark SVG
+const checkmarkSvg = `<svg class="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>`;
+---
+
+<section id="services" aria-labelledby="services-heading" class="bg-brand-black py-20 lg:py-24">
+  <div class="max-w-container mx-auto px-4">
+    <!-- Section header -->
+    <div class="text-center mb-14">
+      <span class="section-label">WHAT WE DO</span>
+      <h2 id="services-heading" class="section-heading mt-4">Comprehensive IT Services</h2>
+      <p class="mt-4 text-brand-white/60 max-w-2xl mx-auto leading-relaxed">
+        End-to-end solutions tailored to elevate your business in your digital landscape.
+      </p>
+    </div>
+
+    <!-- Services grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {services.map((service) => (
+        <div class="animate-on-scroll opacity-0 translate-y-4 transition-all duration-700 bg-white/5 rounded-2xl border border-white/10 p-6 hover:-translate-y-1 hover:border-brand-accent/30">
+          <!-- Service icon -->
+          <div class="w-12 h-12 rounded-lg bg-brand-accent/10 flex items-center justify-center text-brand-accent mb-4">
+            <Fragment set:html={serviceIcons[service.icon] || ''} />
+          </div>
+
+          <!-- Title -->
+          <h3 class="text-lg font-bold text-brand-white mb-2">{service.title}</h3>
+
+          <!-- Description -->
+          <p class="text-sm text-brand-white/60 leading-relaxed mb-4">{service.description}</p>
+
+          <!-- Bullet points with blue checkmarks -->
+          <ul class="space-y-2">
+            {service.bulletPoints.map((point) => (
+              <li class="flex items-center gap-2">
+                <span class="text-brand-accent">
+                  <Fragment set:html={checkmarkSvg} />
+                </span>
+                <span class="text-sm text-brand-white/70">{point}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

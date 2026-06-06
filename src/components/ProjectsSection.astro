@@ -1,0 +1,61 @@
+---
+// Projects Section — Filter tabs + 3-column grid of project cards
+import { projects, filterCategories } from '../data/projects';
+import ProjectCard from './ProjectCard.astro';
+---
+
+<section id="projects" aria-labelledby="projects-heading" class="bg-brand-black py-20 lg:py-24">
+  <div class="max-w-container mx-auto px-4">
+    <!-- Section header -->
+    <div class="mb-4">
+      <span class="section-label">PORTFOLIO</span>
+    </div>
+
+    <!-- Heading row: title left, link right -->
+    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-4">
+      <h2 id="projects-heading" class="section-heading">Featured Projects</h2>
+      <a href="#projects" class="text-brand-accent text-sm font-medium hover:underline hidden sm:inline-block">
+        View All Projects &rarr;
+      </a>
+    </div>
+
+    <!-- Subtext -->
+    <p class="text-brand-white/60 max-w-2xl leading-relaxed mb-8">
+      A selection of our recent work showcasing AI-powered solutions, WordPress builds, mobile apps, and automation platforms.
+    </p>
+
+    <!-- Filter tabs -->
+    <div class="flex flex-wrap gap-3 mb-10" role="tablist" aria-label="Filter projects by category">
+      {filterCategories.map((cat, index) => (
+        <button
+          role="tab"
+          aria-selected={index === 0 ? "true" : "false"}
+          data-filter={cat.key}
+          class:list={[
+            "px-4 py-2 rounded-full text-sm font-medium transition-colors duration-200 min-h-[44px] inline-flex items-center",
+            index === 0
+              ? "bg-brand-accent text-white"
+              : "bg-transparent border border-white/20 text-brand-white/70 hover:border-brand-accent/50 hover:text-brand-white",
+          ]}
+        >
+          {cat.label}
+        </button>
+      ))}
+    </div>
+
+    <!-- Project grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {projects.map((project) => (
+        <ProjectCard
+          name={project.name}
+          description={project.description}
+          thumbnail={project.thumbnail}
+          techTags={project.techTags}
+          category={project.category}
+          url={project.url}
+          stats={project.stats}
+        />
+      ))}
+    </div>
+  </div>
+</section>
