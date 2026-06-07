@@ -33,19 +33,31 @@ const jsonLd = {
       "description": siteConfig.meta.description,
       "email": siteConfig.email,
       "foundingDate": "2023",
-      "numberOfEmployees": { "@type": "QuantitativeValue", "value": "5" },
-      "knowsLanguage": ["en", "de", "es"],
+      "numberOfEmployees": { "@type": "QuantitativeValue", "value": 5 },
+      "knowsLanguage": [
+        { "@type": "Language", "name": "English" },
+        { "@type": "Language", "name": "German" },
+        { "@type": "Language", "name": "Spanish" }
+      ],
       "areaServed": "Worldwide",
-      "priceRange": "$12/hour",
+      "priceRange": "$12 - $50",
       "sameAs": [
         "https://linkedin.com/company/geekbytes-solutions/",
         "https://www.instagram.com/_geekbytes"
       ],
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "IN"
+      },
       "contactPoint": {
         "@type": "ContactPoint",
         "contactType": "customer support",
         "email": siteConfig.email,
-        "availableLanguage": ["English", "German", "Spanish"]
+        "availableLanguage": [
+          { "@type": "Language", "name": "English" },
+          { "@type": "Language", "name": "German" },
+          { "@type": "Language", "name": "Spanish" }
+        ]
       }
     },
     {

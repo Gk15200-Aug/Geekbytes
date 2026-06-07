@@ -29,7 +29,7 @@ export const siteConfig: SiteConfig = {
   },
   meta: {
     title: "GeekBytes — Modern IT Solutions & Software Development",
-    description: "GeekBytes delivers scalable, secure technology solutions — WordPress, AI chatbots, mobile apps, custom software & cloud architecture. Your trusted IT partner.",
+    description: "GeekBytes delivers web development, AI chatbots, mobile apps & cloud solutions. Scalable, secure IT for businesses worldwide.",
     ogImage: "/images/og-image.png",
   },
 };
