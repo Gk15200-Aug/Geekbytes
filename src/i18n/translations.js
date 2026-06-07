@@ -2,7 +2,7 @@ export const translations = {
   en: {
     // Navbar
     'nav.home': 'Home',
-    'nav.about': 'About',
+    'nav.about': 'Company',
     'nav.skills': 'Skills',
     'nav.services': 'Services',
     'nav.projects': 'Projects',
@@ -163,7 +163,7 @@ export const translations = {
   de: {
     // Navbar
     'nav.home': 'Startseite',
-    'nav.about': 'Über uns',
+    'nav.about': 'Unternehmen',
     'nav.skills': 'Fähigkeiten',
     'nav.services': 'Leistungen',
     'nav.projects': 'Projekte',
@@ -324,7 +324,7 @@ export const translations = {
   es: {
     // Navbar
     'nav.home': 'Inicio',
-    'nav.about': 'Nosotros',
+    'nav.about': 'Empresa',
     'nav.skills': 'Habilidades',
     'nav.services': 'Servicios',
     'nav.projects': 'Proyectos',
