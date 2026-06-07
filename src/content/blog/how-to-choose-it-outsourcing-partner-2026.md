@@ -84,7 +84,7 @@ At minimum, your contract should cover:
 
 ## Is GeekBytes a Good IT Outsourcing Partner?
 
-GeekBytes is a remote-first IT solutions company based in India, founded in 2023. We offer web development, AI chatbot integration, mobile apps, GoHighLevel CRM, cloud architecture, and custom software starting at $12/hour.
+GeekBytes is a remote-first IT solutions company based in India, founded in 2020. We offer web development, AI chatbot integration, mobile apps, GoHighLevel CRM, cloud architecture, and custom software starting at $12/hour.
 
 We've delivered 50+ projects to clients across the US, UK, Germany, Australia, and beyond. Our team of specialist developers handles everything from simple WordPress sites to complex AI-powered platforms.
 
