@@ -119,6 +119,48 @@ const related = allPosts.filter(p => p.slug !== post.slug).slice(0, 2);
 
       <p class="text-lg text-brand-white/55 leading-relaxed mb-8">{post.data.description}</p>
 
+      <!-- Listen button -->
+      <div class="mb-6">
+        <button
+          id="listen-btn"
+          class="group flex items-center gap-3 px-5 py-3 rounded-full bg-brand-accent/10 border border-brand-accent/30 text-brand-accent hover:bg-brand-accent hover:text-brand-black transition-all duration-300 font-semibold text-sm"
+          aria-label="Listen to this article"
+        >
+          <span id="listen-icon" class="flex items-center justify-center w-7 h-7 rounded-full bg-brand-accent/20 group-hover:bg-brand-black/20 transition-colors">
+            <!-- Play icon -->
+            <svg id="icon-play" class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M8 5v14l11-7z"/>
+            </svg>
+            <!-- Pause icon (hidden by default) -->
+            <svg id="icon-pause" class="w-3.5 h-3.5 hidden" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+            </svg>
+            <!-- Stop icon (hidden by default) -->
+            <svg id="icon-stop" class="w-3.5 h-3.5 hidden" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M6 6h12v12H6z"/>
+            </svg>
+          </span>
+          <span id="listen-label">Listen to this article</span>
+          <!-- Sound wave animation -->
+          <span id="sound-wave" class="hidden items-center gap-0.5 h-4">
+            <span class="w-0.5 h-2 bg-current rounded-full animate-bounce" style="animation-delay:0ms"></span>
+            <span class="w-0.5 h-4 bg-current rounded-full animate-bounce" style="animation-delay:150ms"></span>
+            <span class="w-0.5 h-3 bg-current rounded-full animate-bounce" style="animation-delay:75ms"></span>
+            <span class="w-0.5 h-4 bg-current rounded-full animate-bounce" style="animation-delay:225ms"></span>
+            <span class="w-0.5 h-2 bg-current rounded-full animate-bounce" style="animation-delay:100ms"></span>
+          </span>
+        </button>
+        <!-- Speed control (hidden until listening) -->
+        <div id="speed-control" class="hidden mt-3 flex items-center gap-3 text-xs text-brand-white/40">
+          <span>Speed:</span>
+          {[0.75, 1, 1.25, 1.5, 2].map((s) => (
+            <button class="speed-btn px-2.5 py-1 rounded-full border border-white/10 hover:border-brand-accent/40 hover:text-brand-accent transition-colors" data-speed={s}>
+              {s}×
+            </button>
+          ))}
+        </div>
+      </div>
+
       <!-- Meta row -->
       <div class="flex flex-wrap items-center gap-5 pb-8 border-b border-white/8">
         <div class="flex items-center gap-2.5">
@@ -150,24 +192,53 @@ const related = allPosts.filter(p => p.slug !== post.slug).slice(0, 2);
   <!-- Article Content -->
   <section class="py-12">
     <div class="max-w-3xl mx-auto px-4">
-      <div class="prose prose-invert prose-lg
-        prose-headings:font-extrabold prose-headings:text-brand-white prose-headings:tracking-tight
-        prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-4 prose-h2:pb-3 prose-h2:border-b prose-h2:border-white/10
-        prose-h3:text-xl prose-h3:mt-8 prose-h3:text-brand-white/90
-        prose-p:text-brand-white/65 prose-p:leading-[1.8]
-        prose-a:text-brand-accent prose-a:no-underline prose-a:font-medium hover:prose-a:underline
-        prose-strong:text-brand-white prose-strong:font-bold
-        prose-code:text-brand-accent prose-code:bg-brand-accent/10 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:text-sm prose-code:font-mono prose-code:border prose-code:border-brand-accent/20
-        prose-pre:bg-white/[0.04] prose-pre:border prose-pre:border-white/10 prose-pre:rounded-2xl prose-pre:shadow-xl
-        prose-blockquote:border-l-brand-accent prose-blockquote:border-l-4 prose-blockquote:bg-brand-accent/5 prose-blockquote:rounded-r-xl prose-blockquote:px-6 prose-blockquote:py-4 prose-blockquote:not-italic prose-blockquote:text-brand-white/70
-        prose-hr:border-white/10
-        prose-table:w-full
-        prose-thead:border-b prose-thead:border-white/10
-        prose-th:text-brand-white prose-th:font-bold prose-th:text-sm prose-th:py-3 prose-th:px-4 prose-th:text-left prose-th:bg-white/5
-        prose-td:text-brand-white/65 prose-td:py-3 prose-td:px-4 prose-td:border-b prose-td:border-white/5 prose-td:text-sm
-        prose-li:text-brand-white/65 prose-li:leading-relaxed
-        prose-ul:space-y-1 prose-ol:space-y-1
-        max-w-none">
+      <div id="article-content" class="
+        prose prose-invert prose-lg max-w-none
+
+        [&_h2]:text-2xl [&_h2]:font-extrabold [&_h2]:text-white [&_h2]:mt-14 [&_h2]:mb-5
+        [&_h2]:pb-4 [&_h2]:border-b [&_h2]:border-white/10 [&_h2]:tracking-tight
+
+        [&_h3]:text-xl [&_h3]:font-bold [&_h3]:text-white/90 [&_h3]:mt-10 [&_h3]:mb-4
+
+        [&_p]:text-white/65 [&_p]:leading-[1.85] [&_p]:text-base [&_p]:mb-6
+
+        [&_a]:text-[#00A3FF] [&_a]:font-medium [&_a]:no-underline hover:[&_a]:underline
+
+        [&_strong]:text-white [&_strong]:font-bold
+
+        [&_ul]:my-6 [&_ul]:space-y-2 [&_ul]:pl-0 [&_ul]:list-none
+        [&_ul_li]:relative [&_ul_li]:pl-6 [&_ul_li]:text-white/65 [&_ul_li]:leading-relaxed [&_ul_li]:text-base
+        [&_ul_li]:before:content-[''] [&_ul_li]:before:absolute [&_ul_li]:before:left-0 [&_ul_li]:before:top-2.5
+        [&_ul_li]:before:w-1.5 [&_ul_li]:before:h-1.5 [&_ul_li]:before:rounded-full [&_ul_li]:before:bg-[#00A3FF]
+
+        [&_ol]:my-6 [&_ol]:space-y-3 [&_ol]:pl-0 [&_ol]:list-none [&_ol]:counter-reset-[item]
+        [&_ol_li]:relative [&_ol_li]:pl-10 [&_ol_li]:text-white/65 [&_ol_li]:leading-relaxed [&_ol_li]:text-base
+        [&_ol_li]:before:content-[counter(item)] [&_ol_li]:before:counter-increment-[item]
+        [&_ol_li]:before:absolute [&_ol_li]:before:left-0 [&_ol_li]:before:top-0.5
+        [&_ol_li]:before:w-6 [&_ol_li]:before:h-6 [&_ol_li]:before:rounded-full
+        [&_ol_li]:before:bg-[#00A3FF]/10 [&_ol_li]:before:text-[#00A3FF] [&_ol_li]:before:text-xs
+        [&_ol_li]:before:font-bold [&_ol_li]:before:flex [&_ol_li]:before:items-center [&_ol_li]:before:justify-center
+
+        [&_blockquote]:border-l-4 [&_blockquote]:border-[#00A3FF] [&_blockquote]:bg-[#00A3FF]/5
+        [&_blockquote]:rounded-r-2xl [&_blockquote]:px-6 [&_blockquote]:py-5 [&_blockquote]:my-8
+        [&_blockquote]:not-italic [&_blockquote]:text-white/70 [&_blockquote]:leading-relaxed
+
+        [&_code]:text-[#00A3FF] [&_code]:bg-[#00A3FF]/10 [&_code]:px-2 [&_code]:py-0.5
+        [&_code]:rounded [&_code]:text-sm [&_code]:font-mono [&_code]:border [&_code]:border-[#00A3FF]/20
+
+        [&_pre]:bg-white/5 [&_pre]:border [&_pre]:border-white/10 [&_pre]:rounded-2xl
+        [&_pre]:p-6 [&_pre]:my-8 [&_pre]:overflow-x-auto [&_pre]:shadow-xl
+        [&_pre_code]:bg-transparent [&_pre_code]:border-0 [&_pre_code]:p-0 [&_pre_code]:text-white/80
+
+        [&_hr]:border-white/10 [&_hr]:my-12
+
+        [&_table]:w-full [&_table]:my-8 [&_table]:border-collapse
+        [&_thead]:border-b-2 [&_thead]:border-white/10
+        [&_th]:text-white [&_th]:font-bold [&_th]:text-sm [&_th]:py-3 [&_th]:px-4
+        [&_th]:text-left [&_th]:bg-white/5
+        [&_td]:text-white/60 [&_td]:py-3 [&_td]:px-4 [&_td]:border-b [&_td]:border-white/5 [&_td]:text-sm
+        [&_tr:hover_td]:bg-white/[0.02]
+      ">
         <Content />
       </div>
     </div>
@@ -258,7 +329,7 @@ const related = allPosts.filter(p => p.slug !== post.slug).slice(0, 2);
 </BaseLayout>
 
 <script>
-  // Reading progress bar
+  // ── Reading progress bar ──────────────────────────────────────────
   const bar = document.getElementById('reading-progress');
   if (bar) {
     window.addEventListener('scroll', () => {
@@ -269,4 +340,144 @@ const related = allPosts.filter(p => p.slug !== post.slug).slice(0, 2);
       bar.style.width = `${progress}%`;
     }, { passive: true });
   }
+
+  // ── Text-to-Speech ────────────────────────────────────────────────
+  const listenBtn = document.getElementById('listen-btn');
+  const listenLabel = document.getElementById('listen-label');
+  const iconPlay = document.getElementById('icon-play');
+  const iconPause = document.getElementById('icon-pause');
+  const iconStop = document.getElementById('icon-stop');
+  const soundWave = document.getElementById('sound-wave');
+  const speedControl = document.getElementById('speed-control');
+  const speedBtns = document.querySelectorAll('.speed-btn');
+
+  let utterance: SpeechSynthesisUtterance | null = null;
+  let speaking = false;
+  let paused = false;
+  let currentSpeed = 1;
+
+  function getArticleText(): string {
+    const el = document.getElementById('article-content');
+    if (!el) return '';
+    // Get clean text, skip code blocks
+    const clone = el.cloneNode(true) as HTMLElement;
+    clone.querySelectorAll('pre, code').forEach(n => n.remove());
+    return clone.innerText.replace(/\n{3,}/g, '\n\n').trim();
+  }
+
+  function setIcons(state: 'idle' | 'playing' | 'paused') {
+    iconPlay!.classList.toggle('hidden', state !== 'idle');
+    iconPause!.classList.toggle('hidden', state !== 'playing');
+    iconStop!.classList.toggle('hidden', state !== 'paused');
+    soundWave!.classList.toggle('hidden', state !== 'playing');
+    soundWave!.classList.toggle('flex', state === 'playing');
+
+    if (state === 'idle') {
+      listenLabel!.textContent = 'Listen to this article';
+      speedControl!.classList.add('hidden');
+    } else if (state === 'playing') {
+      listenLabel!.textContent = 'Pause';
+      speedControl!.classList.remove('hidden');
+    } else {
+      listenLabel!.textContent = 'Resume';
+      speedControl!.classList.remove('hidden');
+    }
+  }
+
+  function startSpeech() {
+    const text = getArticleText();
+    if (!text) return;
+
+    utterance = new SpeechSynthesisUtterance(text);
+    utterance.rate = currentSpeed;
+    utterance.pitch = 1;
+    utterance.lang = 'en-US';
+
+    // Try to pick a natural voice
+    const voices = speechSynthesis.getVoices();
+    const preferred = voices.find(v =>
+      v.lang.startsWith('en') && (v.name.includes('Google') || v.name.includes('Natural') || v.name.includes('Premium'))
+    ) || voices.find(v => v.lang.startsWith('en'));
+    if (preferred) utterance.voice = preferred;
+
+    utterance.onend = () => {
+      speaking = false;
+      paused = false;
+      setIcons('idle');
+    };
+    utterance.onerror = () => {
+      speaking = false;
+      paused = false;
+      setIcons('idle');
+    };
+
+    speechSynthesis.speak(utterance);
+    speaking = true;
+    paused = false;
+    setIcons('playing');
+  }
+
+  listenBtn?.addEventListener('click', () => {
+    if (!('speechSynthesis' in window)) {
+      alert('Your browser does not support text-to-speech. Try Chrome or Edge.');
+      return;
+    }
+
+    if (!speaking && !paused) {
+      // Start fresh
+      startSpeech();
+    } else if (speaking && !paused) {
+      // Pause
+      speechSynthesis.pause();
+      paused = true;
+      speaking = false;
+      setIcons('paused');
+    } else if (paused) {
+      // Resume
+      speechSynthesis.resume();
+      paused = false;
+      speaking = true;
+      setIcons('playing');
+    }
+  });
+
+  // Speed controls
+  speedBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      currentSpeed = parseFloat((btn as HTMLElement).dataset.speed || '1');
+      speedBtns.forEach(b => b.classList.remove('border-brand-accent/60', 'text-brand-accent'));
+      btn.classList.add('border-brand-accent/60', 'text-brand-accent');
+
+      // Restart with new speed if currently playing
+      if (speaking || paused) {
+        const wasPaused = paused;
+        speechSynthesis.cancel();
+        speaking = false;
+        paused = false;
+        setTimeout(() => {
+          startSpeech();
+          if (wasPaused) {
+            speechSynthesis.pause();
+            paused = true;
+            speaking = false;
+            setIcons('paused');
+          }
+        }, 100);
+      }
+    });
+  });
+
+  // Highlight default speed (1×)
+  speedBtns.forEach(btn => {
+    if ((btn as HTMLElement).dataset.speed === '1') {
+      btn.classList.add('border-brand-accent/60', 'text-brand-accent');
+    }
+  });
+
+  // Stop speech when leaving page
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden && (speaking || paused)) {
+      speechSynthesis.cancel();
+    }
+  });
 </script>
