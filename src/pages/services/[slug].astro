@@ -30,11 +30,7 @@ const jsonLd = {
       "name": service.title,
       "description": service.metaDescription,
       "url": `${siteUrl}/services/${service.slug}`,
-      "provider": {
-        "@type": "Organization",
-        "@id": `${siteUrl}/#organization`,
-        "name": "GeekBytes",
-      },
+      "provider": { "@type": "Organization", "@id": `${siteUrl}/#organization`, "name": "GeekBytes" },
       "areaServed": "Worldwide",
       "availableLanguage": ["English", "German", "Spanish"],
     },
@@ -50,16 +46,19 @@ const jsonLd = {
 };
 
 const serviceIcons: Record<string, string> = {
-  web: `<svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>`,
-  wordpress: `<svg class="w-8 h-8" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zM3.6 12c0-1.1.2-2.2.6-3.2l3.5 9.5A8.4 8.4 0 013.6 12zm8.4 8.4c-.8 0-1.6-.1-2.4-.3l2.5-7.3 2.6 7.1c0 .1.1.1.1.2-.9.2-1.8.3-2.8.3zm1.1-12.3c.5 0 1-.1 1-.1.5-.1.4-.7-.1-.7 0 0-1.4.1-2.4.1-.9 0-2.3-.1-2.3-.1-.5 0-.5.7-.1.7 0 0 .4.1.9.1l1.4 3.7-1.9 5.8L7.3 8.1c.5 0 1-.1 1-.1.5-.1.4-.7-.1-.7 0 0-1.4.1-2.4.1h-.6A8.4 8.4 0 0112 3.6c1.8 0 3.4.5 4.8 1.5h-.1c-.9 0-1.5.8-1.5 1.6 0 .7.4 1.3.9 2 .3.6.7 1.3.7 2.3 0 .7-.3 1.5-.6 2.7l-.8 2.7-2.9-8.3zm4.2 11.2l2.5-7.3c.5-1.2.7-2.1.7-3 0-.3 0-.6-.1-.8.7 1.4 1.1 3 1.1 4.7 0 2.8-1.5 5.2-3.7 6.6l-.5-2.2z"/></svg>`,
-  'ai-bot': `<svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"/><circle cx="9" cy="16" r="1" fill="currentColor"/><circle cx="15" cy="16" r="1" fill="currentColor"/><path d="M8 11V7a4 4 0 018 0v4"/><path d="M12 2v3"/></svg>`,
-  crm: `<svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>`,
-  mobile: `<svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2" width="10" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12" y2="18.01"/></svg>`,
-  software: `<svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>`,
-  cloud: `<svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 109 20h9a5 5 0 000-10z"/></svg>`,
-  video: `<svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>`,
-  design: `<svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><circle cx="11" cy="11" r="2"/></svg>`,
+  web: `<svg class="w-9 h-9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>`,
+  wordpress: `<svg class="w-9 h-9" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zM3.6 12c0-1.1.2-2.2.6-3.2l3.5 9.5A8.4 8.4 0 013.6 12zm8.4 8.4c-.8 0-1.6-.1-2.4-.3l2.5-7.3 2.6 7.1c0 .1.1.1.1.2-.9.2-1.8.3-2.8.3zm1.1-12.3c.5 0 1-.1 1-.1.5-.1.4-.7-.1-.7 0 0-1.4.1-2.4.1-.9 0-2.3-.1-2.3-.1-.5 0-.5.7-.1.7 0 0 .4.1.9.1l1.4 3.7-1.9 5.8L7.3 8.1c.5 0 1-.1 1-.1.5-.1.4-.7-.1-.7 0 0-1.4.1-2.4.1h-.6A8.4 8.4 0 0112 3.6c1.8 0 3.4.5 4.8 1.5h-.1c-.9 0-1.5.8-1.5 1.6 0 .7.4 1.3.9 2 .3.6.7 1.3.7 2.3 0 .7-.3 1.5-.6 2.7l-.8 2.7-2.9-8.3zm4.2 11.2l2.5-7.3c.5-1.2.7-2.1.7-3 0-.3 0-.6-.1-.8.7 1.4 1.1 3 1.1 4.7 0 2.8-1.5 5.2-3.7 6.6l-.5-2.2z"/></svg>`,
+  'ai-bot': `<svg class="w-9 h-9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"/><circle cx="9" cy="16" r="1" fill="currentColor"/><circle cx="15" cy="16" r="1" fill="currentColor"/><path d="M8 11V7a4 4 0 018 0v4"/><path d="M12 2v3"/></svg>`,
+  crm: `<svg class="w-9 h-9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>`,
+  mobile: `<svg class="w-9 h-9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2" width="10" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12" y2="18.01"/></svg>`,
+  software: `<svg class="w-9 h-9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>`,
+  cloud: `<svg class="w-9 h-9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 109 20h9a5 5 0 000-10z"/></svg>`,
+  video: `<svg class="w-9 h-9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>`,
+  design: `<svg class="w-9 h-9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><circle cx="11" cy="11" r="2"/></svg>`,
 };
+
+// Get related services (exclude current)
+const related = servicesDetail.filter(s => s.slug !== service.slug).slice(0, 3);
 ---
 
 <BaseLayout title={`${service.title} — GeekBytes`} description={service.metaDescription}>
@@ -73,65 +72,107 @@ const serviceIcons: Record<string, string> = {
 
   <!-- Hero -->
   <section class="relative pt-32 pb-20 overflow-hidden bg-brand-black">
-    <div class="absolute inset-0 hero-grid opacity-30"></div>
-    <div class="absolute -top-20 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-brand-accent/10 rounded-full blur-[120px]"></div>
+    <div class="absolute inset-0 hero-grid opacity-20"></div>
+    <div class="absolute -top-40 left-0 w-[600px] h-[600px] bg-brand-accent/6 rounded-full blur-[130px]"></div>
+    <div class="absolute top-20 right-0 w-[400px] h-[400px] bg-blue-500/5 rounded-full blur-[100px]"></div>
+
     <div class="relative max-w-container mx-auto px-4">
       <!-- Breadcrumb -->
-      <nav aria-label="Breadcrumb" class="mb-8">
-        <ol class="flex items-center gap-2 text-sm text-brand-white/40">
+      <nav aria-label="Breadcrumb" class="mb-10">
+        <ol class="flex items-center gap-2 text-xs text-brand-white/30 w-fit bg-white/5 px-4 py-2 rounded-full border border-white/10">
           <li><a href="/" class="hover:text-brand-accent transition-colors">Home</a></li>
-          <li><span aria-hidden="true">/</span></li>
+          <li><span aria-hidden="true" class="mx-1">/</span></li>
           <li><a href="/services" class="hover:text-brand-accent transition-colors">Services</a></li>
-          <li><span aria-hidden="true">/</span></li>
-          <li class="text-brand-white/70" aria-current="page">{service.title}</li>
+          <li><span aria-hidden="true" class="mx-1">/</span></li>
+          <li class="text-brand-white/60 truncate max-w-[160px]" aria-current="page">{service.title}</li>
         </ol>
       </nav>
 
-      <div class="flex flex-col lg:flex-row gap-12 items-center">
-        <div class="lg:w-2/3">
-          <div class="w-16 h-16 rounded-2xl bg-brand-accent/10 flex items-center justify-center text-brand-accent mb-6">
+      <div class="flex flex-col lg:flex-row gap-16 items-start">
+        <!-- Left: Content -->
+        <div class="lg:w-3/5">
+          <div class="w-20 h-20 rounded-2xl bg-gradient-to-br from-brand-accent/20 to-brand-accent/5 border border-brand-accent/30 flex items-center justify-center text-brand-accent mb-8">
             <Fragment set:html={serviceIcons[service.icon] || ''} />
           </div>
-          <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-brand-white leading-tight mb-6">
+
+          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-accent/10 border border-brand-accent/20 text-brand-accent text-xs font-semibold mb-5">
+            <span class="w-1.5 h-1.5 rounded-full bg-brand-accent animate-pulse"></span>
+            Available Now · Starting at $12/hr
+          </div>
+
+          <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-brand-white leading-[1.05] tracking-tight mb-5">
             {service.title}
           </h1>
-          <p class="text-xl text-brand-accent font-medium mb-4">{service.tagline}</p>
-          <p class="text-lg text-brand-white/60 leading-relaxed mb-8">{service.heroDescription}</p>
-          <a href="/#contact" class="btn-primary text-base px-8 py-3.5 inline-flex items-center gap-2">
-            {service.cta} &rarr;
-          </a>
+          <p class="text-xl text-brand-accent font-medium mb-5 leading-snug">{service.tagline}</p>
+          <p class="text-lg text-brand-white/55 leading-relaxed mb-10">{service.heroDescription}</p>
+
+          <div class="flex flex-col sm:flex-row gap-4">
+            <a href="/#contact" class="btn-primary text-base px-8 py-4 inline-flex items-center justify-center gap-2">
+              {service.cta} &rarr;
+            </a>
+            <a href="/services" class="px-8 py-4 rounded-full border border-white/15 text-brand-white/60 hover:border-brand-accent/40 hover:text-brand-white transition-all text-base font-medium inline-flex items-center justify-center gap-2">
+              All Services
+            </a>
+          </div>
         </div>
 
-        <!-- Stats -->
-        <div class="lg:w-1/3 grid grid-cols-1 gap-4 w-full">
+        <!-- Right: Stats -->
+        <div class="lg:w-2/5 w-full space-y-4">
           {service.stats.map((stat) => (
-            <div class="bg-white/5 border border-white/10 rounded-2xl px-6 py-5 text-center">
-              <div class="text-3xl font-bold text-brand-accent">{stat.value}</div>
-              <div class="text-sm text-brand-white/50 mt-1">{stat.label}</div>
+            <div class="relative group bg-white/[0.04] border border-white/10 rounded-2xl px-8 py-6 hover:border-brand-accent/30 transition-all duration-300 overflow-hidden">
+              <div class="absolute inset-0 bg-gradient-to-r from-brand-accent/0 to-brand-accent/0 group-hover:from-brand-accent/5 transition-all duration-500"></div>
+              <div class="relative flex items-center justify-between">
+                <div>
+                  <div class="text-3xl font-extrabold text-brand-accent leading-none">{stat.value}</div>
+                  <div class="text-sm text-brand-white/40 mt-1.5 font-medium">{stat.label}</div>
+                </div>
+                <div class="w-10 h-10 rounded-full bg-brand-accent/10 flex items-center justify-center">
+                  <svg class="w-4 h-4 text-brand-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                  </svg>
+                </div>
+              </div>
             </div>
           ))}
+
+          <!-- Trust badge -->
+          <div class="bg-gradient-to-br from-brand-accent/10 to-transparent border border-brand-accent/20 rounded-2xl px-8 py-6">
+            <div class="flex items-center gap-3 mb-3">
+              <svg class="w-5 h-5 text-brand-accent" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              </svg>
+              <span class="text-brand-white font-semibold text-sm">Satisfaction Guaranteed</span>
+            </div>
+            <p class="text-xs text-brand-white/40 leading-relaxed">We back every project with clear communication, honest timelines, and a commitment to your success.</p>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Features -->
-  <section class="py-20 bg-brand-black border-t border-white/5">
+  <section class="py-24 bg-white/[0.02] border-t border-white/5">
     <div class="max-w-container mx-auto px-4">
-      <div class="text-center mb-14">
+      <div class="text-center mb-16">
         <span class="section-label">WHAT'S INCLUDED</span>
-        <h2 class="section-heading mt-4">Everything You Need</h2>
+        <h2 class="text-3xl md:text-4xl font-bold text-brand-white mt-4">Everything You Need</h2>
+        <p class="text-brand-white/50 mt-3 max-w-xl mx-auto">A complete solution — no need to stitch together multiple vendors.</p>
       </div>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {service.features.map((feature) => (
-          <div class="bg-white/5 border border-white/10 rounded-2xl p-6 hover:border-brand-accent/30 transition-colors">
-            <div class="w-8 h-8 rounded-lg bg-brand-accent/10 flex items-center justify-center text-brand-accent mb-4">
-              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
-                <polyline points="20 6 9 17 4 12"/>
-              </svg>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        {service.features.map((feature, i) => (
+          <div class="group relative bg-white/[0.03] border border-white/8 rounded-2xl p-7 hover:border-brand-accent/30 hover:bg-white/[0.05] transition-all duration-300 overflow-hidden">
+            <div class="absolute top-4 right-5 text-5xl font-black text-white/[0.03] group-hover:text-brand-accent/8 transition-colors select-none">
+              {String(i + 1).padStart(2, '0')}
             </div>
-            <h3 class="text-lg font-bold text-brand-white mb-2">{feature.title}</h3>
-            <p class="text-sm text-brand-white/60 leading-relaxed">{feature.description}</p>
+            <div class="relative">
+              <div class="w-10 h-10 rounded-xl bg-brand-accent/10 border border-brand-accent/20 flex items-center justify-center text-brand-accent mb-5 group-hover:bg-brand-accent/15 transition-colors">
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                  <polyline points="20 6 9 17 4 12"/>
+                </svg>
+              </div>
+              <h3 class="text-base font-bold text-brand-white mb-2 group-hover:text-brand-accent transition-colors">{feature.title}</h3>
+              <p class="text-sm text-brand-white/50 leading-relaxed">{feature.description}</p>
+            </div>
           </div>
         ))}
       </div>
@@ -139,46 +180,53 @@ const serviceIcons: Record<string, string> = {
   </section>
 
   <!-- Process -->
-  <section class="py-20 border-t border-white/5">
+  <section class="py-24 border-t border-white/5">
     <div class="max-w-container mx-auto px-4">
-      <div class="text-center mb-14">
+      <div class="text-center mb-16">
         <span class="section-label">HOW WE WORK</span>
-        <h2 class="section-heading mt-4">Our Process</h2>
+        <h2 class="text-3xl md:text-4xl font-bold text-brand-white mt-4">Our Process</h2>
+        <p class="text-brand-white/50 mt-3 max-w-xl mx-auto">A proven methodology that keeps projects on time and on budget.</p>
       </div>
-      <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
-        {service.process.map((step, i) => (
-          <div class="relative text-center">
-            {i < service.process.length - 1 && (
-              <div class="hidden lg:block absolute top-8 left-[calc(50%+2rem)] right-[-50%] h-px bg-brand-accent/20"></div>
-            )}
-            <div class="w-16 h-16 rounded-full bg-brand-accent/10 border border-brand-accent/30 flex items-center justify-center text-brand-accent font-bold text-lg mx-auto mb-4">
-              {step.step}
+
+      <div class="relative">
+        <!-- Connecting line -->
+        <div class="hidden lg:block absolute top-10 left-[10%] right-[10%] h-px bg-gradient-to-r from-transparent via-brand-accent/20 to-transparent"></div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-8">
+          {service.process.map((step, i) => (
+            <div class="group flex flex-col items-center text-center">
+              <div class="relative w-20 h-20 rounded-full bg-gradient-to-br from-brand-accent/15 to-brand-accent/5 border-2 border-brand-accent/30 flex items-center justify-center text-brand-accent font-black text-xl mx-auto mb-5 group-hover:border-brand-accent group-hover:scale-110 transition-all duration-300 z-10">
+                <span class="bg-gradient-to-br from-brand-accent to-blue-400 bg-clip-text text-transparent">{step.step}</span>
+              </div>
+              <h3 class="font-bold text-brand-white mb-2 group-hover:text-brand-accent transition-colors">{step.title}</h3>
+              <p class="text-sm text-brand-white/40 leading-relaxed">{step.description}</p>
             </div>
-            <h3 class="font-bold text-brand-white mb-2">{step.title}</h3>
-            <p class="text-sm text-brand-white/50 leading-relaxed">{step.description}</p>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   </section>
 
   <!-- FAQ -->
-  <section class="py-20 bg-brand-black border-t border-white/5">
+  <section class="py-24 bg-white/[0.02] border-t border-white/5">
     <div class="max-w-3xl mx-auto px-4">
-      <div class="text-center mb-14">
+      <div class="text-center mb-16">
         <span class="section-label">FAQ</span>
-        <h2 class="section-heading mt-4">Frequently Asked Questions</h2>
+        <h2 class="text-3xl md:text-4xl font-bold text-brand-white mt-4">Frequently Asked Questions</h2>
+        <p class="text-brand-white/50 mt-3">Everything you need to know before getting started.</p>
       </div>
-      <div class="space-y-4">
-        {service.faqs.map((faq) => (
-          <details class="group bg-white/5 border border-white/10 rounded-2xl overflow-hidden">
-            <summary class="flex items-center justify-between px-6 py-5 cursor-pointer text-brand-white font-medium hover:text-brand-accent transition-colors list-none">
-              {faq.question}
-              <svg class="w-5 h-5 shrink-0 text-brand-accent transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-              </svg>
+      <div class="space-y-3">
+        {service.faqs.map((faq, i) => (
+          <details class="group bg-white/[0.03] border border-white/8 rounded-2xl overflow-hidden hover:border-white/15 transition-colors">
+            <summary class="flex items-center justify-between px-7 py-5 cursor-pointer list-none">
+              <span class="text-brand-white font-medium pr-4 group-hover:text-brand-accent transition-colors">{faq.question}</span>
+              <div class="w-8 h-8 rounded-full bg-brand-accent/10 flex items-center justify-center shrink-0 group-open:bg-brand-accent group-open:text-brand-black transition-all duration-300">
+                <svg class="w-4 h-4 text-brand-accent group-open:text-brand-black transition-transform duration-300 group-open:rotate-45" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
+                </svg>
+              </div>
             </summary>
-            <div class="px-6 pb-5 text-brand-white/60 leading-relaxed">
+            <div class="px-7 pb-6 text-brand-white/55 leading-relaxed text-sm border-t border-white/5 pt-4">
               {faq.answer}
             </div>
           </details>
@@ -187,14 +235,45 @@ const serviceIcons: Record<string, string> = {
     </div>
   </section>
 
-  <!-- CTA -->
+  <!-- Related Services -->
   <section class="py-20 border-t border-white/5">
-    <div class="max-w-container mx-auto px-4 text-center">
-      <h2 class="text-3xl md:text-4xl font-bold text-brand-white mb-4">Ready to get started?</h2>
-      <p class="text-brand-white/60 mb-8 max-w-xl mx-auto">Tell us about your project and we'll get back to you within 24 hours.</p>
-      <a href="/#contact" class="btn-primary text-base px-10 py-4 inline-flex items-center gap-2">
-        {service.cta} &rarr;
-      </a>
+    <div class="max-w-container mx-auto px-4">
+      <div class="text-center mb-12">
+        <span class="section-label">EXPLORE MORE</span>
+        <h2 class="text-2xl md:text-3xl font-bold text-brand-white mt-4">Other Services</h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+        {related.map((s) => (
+          <a href={`/services/${s.slug}`} class="group bg-white/[0.03] border border-white/8 rounded-2xl p-6 hover:border-brand-accent/30 hover:bg-white/[0.05] transition-all duration-300 flex items-center gap-4">
+            <div class="w-10 h-10 rounded-xl bg-brand-accent/10 flex items-center justify-center text-brand-accent shrink-0 group-hover:bg-brand-accent/20 transition-colors">
+              <Fragment set:html={serviceIcons[s.icon]?.replace('class="w-9 h-9"', 'class="w-5 h-5"') || ''} />
+            </div>
+            <div class="flex-1 min-w-0">
+              <h3 class="text-sm font-bold text-brand-white group-hover:text-brand-accent transition-colors truncate">{s.title}</h3>
+              <p class="text-xs text-brand-white/40 mt-0.5 truncate">{s.tagline}</p>
+            </div>
+            <svg class="w-4 h-4 text-brand-accent opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Banner -->
+  <section class="py-20 border-t border-white/5">
+    <div class="max-w-4xl mx-auto px-4">
+      <div class="relative rounded-3xl overflow-hidden border border-brand-accent/20 bg-gradient-to-br from-brand-accent/10 via-transparent to-blue-500/5 p-12 text-center">
+        <div class="absolute inset-0 hero-grid opacity-10"></div>
+        <div class="relative">
+          <h2 class="text-3xl md:text-4xl font-bold text-brand-white mb-4">Ready to get started?</h2>
+          <p class="text-brand-white/55 mb-8 max-w-lg mx-auto leading-relaxed">Tell us about your project. We'll get back to you within 24 hours with a clear plan and honest estimate.</p>
+          <a href="/#contact" class="btn-primary text-base px-10 py-4 inline-flex items-center gap-2">
+            {service.cta} &rarr;
+          </a>
+        </div>
+      </div>
     </div>
   </section>
 

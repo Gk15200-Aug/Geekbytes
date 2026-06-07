@@ -23,7 +23,6 @@ const jsonLd = {
       "description": "Full-stack digital services — web development, AI chatbots, mobile apps, cloud architecture, design, and more. Quality IT services starting at $12/hour.",
       "url": `${siteUrl}/services`,
       "isPartOf": { "@id": `${siteUrl}/#website` },
-      "breadcrumb": { "@id": `${siteUrl}/services#breadcrumb` },
     },
   ],
 };
@@ -39,6 +38,13 @@ const serviceIcons: Record<string, string> = {
   video: `<svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>`,
   design: `<svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><circle cx="11" cy="11" r="2"/></svg>`,
 };
+
+const whyUs = [
+  { icon: `<svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>`, title: "Transparent Pricing", desc: "$12/hour, no hidden fees, upfront estimates" },
+  { icon: `<svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>`, title: "Fast Delivery", desc: "Agile sprints, weekly updates, no endless delays" },
+  { icon: `<svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064"/></svg>`, title: "Global Reach", desc: "Serving clients across 20+ countries worldwide" },
+  { icon: `<svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>`, title: "Quality Guaranteed", desc: "99% satisfaction rate across 50+ delivered projects" },
+];
 ---
 
 <BaseLayout
@@ -54,48 +60,88 @@ const serviceIcons: Record<string, string> = {
   </Fragment>
 
   <!-- Hero -->
-  <section class="relative pt-32 pb-20 overflow-hidden bg-brand-black">
-    <div class="absolute inset-0 hero-grid opacity-30"></div>
-    <div class="absolute -top-20 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-brand-accent/10 rounded-full blur-[120px]"></div>
+  <section class="relative pt-32 pb-24 overflow-hidden bg-brand-black">
+    <div class="absolute inset-0 hero-grid opacity-20"></div>
+    <div class="absolute -top-40 left-1/2 -translate-x-1/2 w-[900px] h-[500px] bg-brand-accent/8 rounded-full blur-[140px]"></div>
+    <div class="absolute top-20 right-0 w-[400px] h-[400px] bg-blue-500/5 rounded-full blur-[100px]"></div>
     <div class="relative max-w-container mx-auto px-4 text-center">
-      <nav aria-label="Breadcrumb" class="mb-8 flex justify-center">
-        <ol class="flex items-center gap-2 text-sm text-brand-white/40">
+      <nav aria-label="Breadcrumb" class="mb-10 flex justify-center">
+        <ol class="flex items-center gap-2 text-xs text-brand-white/30 bg-white/5 px-4 py-2 rounded-full border border-white/10">
           <li><a href="/" class="hover:text-brand-accent transition-colors">Home</a></li>
-          <li><span aria-hidden="true">/</span></li>
-          <li class="text-brand-white/70" aria-current="page">Services</li>
+          <li><span aria-hidden="true" class="mx-1">/</span></li>
+          <li class="text-brand-white/60" aria-current="page">Services</li>
         </ol>
       </nav>
-      <span class="section-label">WHAT WE BUILD</span>
-      <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-brand-white leading-tight mt-4 mb-6">
-        Services That <span class="text-brand-accent">Drive Growth</span>
+
+      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-accent/10 border border-brand-accent/20 text-brand-accent text-xs font-semibold tracking-wider uppercase mb-6">
+        <span class="w-1.5 h-1.5 rounded-full bg-brand-accent animate-pulse"></span>
+        What We Build
+      </div>
+
+      <h1 class="text-4xl md:text-5xl lg:text-7xl font-extrabold text-brand-white leading-[1.05] tracking-tight mb-6">
+        Services That<br/><span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-accent to-blue-400">Drive Real Growth</span>
       </h1>
-      <p class="text-lg text-brand-white/60 max-w-2xl mx-auto leading-relaxed">
-        From custom web apps and AI chatbots to full brand identities — everything your business needs to compete and win online. Transparent pricing starting at <strong class="text-brand-white">$12/hour</strong>.
+      <p class="text-lg md:text-xl text-brand-white/50 max-w-2xl mx-auto leading-relaxed mb-10">
+        From custom web apps and AI chatbots to full brand identities — everything your business needs to compete and win online.
       </p>
+
+      <!-- Stats bar -->
+      <div class="inline-flex flex-wrap justify-center gap-8 bg-white/5 border border-white/10 rounded-2xl px-10 py-5">
+        {[["50+","Projects"], ["99%","Satisfaction"], ["$12/hr","Transparent"], ["24h","Response"]].map(([val, label]) => (
+          <div class="text-center">
+            <div class="text-2xl font-bold text-brand-accent">{val}</div>
+            <div class="text-xs text-brand-white/40 mt-0.5">{label}</div>
+          </div>
+        ))}
+      </div>
     </div>
   </section>
 
   <!-- Services Grid -->
-  <section class="py-20 border-t border-white/5">
+  <section class="py-24 border-t border-white/5">
     <div class="max-w-container mx-auto px-4">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {servicesDetail.map((service) => (
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        {servicesDetail.map((service, i) => (
           <a
             href={`/services/${service.slug}`}
-            class="group bg-white/5 border border-white/10 rounded-2xl p-8 hover:border-brand-accent/40 hover:bg-brand-accent/5 transition-all duration-300 flex flex-col"
+            class="group relative bg-white/[0.03] border border-white/8 rounded-2xl p-7 hover:border-brand-accent/40 transition-all duration-500 flex flex-col overflow-hidden"
+            style={`--delay: ${i * 50}ms`}
           >
-            <div class="w-12 h-12 rounded-xl bg-brand-accent/10 flex items-center justify-center text-brand-accent mb-6 group-hover:bg-brand-accent/20 transition-colors">
-              <Fragment set:html={serviceIcons[service.icon] || ''} />
+            <!-- Hover glow -->
+            <div class="absolute inset-0 bg-gradient-to-br from-brand-accent/0 to-brand-accent/0 group-hover:from-brand-accent/5 group-hover:to-transparent transition-all duration-500 rounded-2xl"></div>
+
+            <!-- Number -->
+            <div class="absolute top-5 right-6 text-4xl font-black text-white/[0.04] group-hover:text-brand-accent/10 transition-colors duration-500 select-none">
+              {String(i + 1).padStart(2, '0')}
             </div>
-            <h2 class="text-xl font-bold text-brand-white mb-3 group-hover:text-brand-accent transition-colors">
-              {service.title}
-            </h2>
-            <p class="text-sm text-brand-white/50 leading-relaxed mb-6 flex-1">{service.tagline}</p>
-            <div class="flex items-center gap-2 text-brand-accent text-sm font-medium">
-              Learn more
-              <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
-              </svg>
+
+            <div class="relative">
+              <!-- Icon -->
+              <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-brand-accent/20 to-brand-accent/5 border border-brand-accent/20 flex items-center justify-center text-brand-accent mb-5 group-hover:scale-110 group-hover:border-brand-accent/40 transition-all duration-300">
+                <Fragment set:html={serviceIcons[service.icon] || ''} />
+              </div>
+
+              <h2 class="text-lg font-bold text-brand-white mb-2 group-hover:text-brand-accent transition-colors duration-300 leading-snug">
+                {service.title}
+              </h2>
+              <p class="text-sm text-brand-white/40 leading-relaxed mb-6 flex-1">{service.tagline}</p>
+
+              <!-- Features preview -->
+              <ul class="space-y-1.5 mb-6">
+                {service.features.slice(0, 3).map((f) => (
+                  <li class="flex items-center gap-2 text-xs text-brand-white/50">
+                    <svg class="w-3 h-3 text-brand-accent shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                    {f.title}
+                  </li>
+                ))}
+              </ul>
+
+              <div class="flex items-center gap-1.5 text-brand-accent text-sm font-semibold">
+                Learn more
+                <svg class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                </svg>
+              </div>
             </div>
           </a>
         ))}
@@ -103,18 +149,52 @@ const serviceIcons: Record<string, string> = {
     </div>
   </section>
 
+  <!-- Why GeekBytes -->
+  <section class="py-20 border-t border-white/5 bg-white/[0.02]">
+    <div class="max-w-container mx-auto px-4">
+      <div class="text-center mb-14">
+        <span class="section-label">WHY GEEKBYTES</span>
+        <h2 class="text-3xl md:text-4xl font-bold text-brand-white mt-4">The GeekBytes Difference</h2>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        {whyUs.map((item) => (
+          <div class="bg-white/5 border border-white/10 rounded-2xl p-6 hover:border-brand-accent/30 transition-colors">
+            <div class="w-10 h-10 rounded-xl bg-brand-accent/10 flex items-center justify-center text-brand-accent mb-4">
+              <Fragment set:html={item.icon} />
+            </div>
+            <h3 class="font-bold text-brand-white mb-1.5">{item.title}</h3>
+            <p class="text-sm text-brand-white/50 leading-relaxed">{item.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
   <!-- Pricing CTA -->
-  <section class="py-20 border-t border-white/5">
-    <div class="max-w-3xl mx-auto px-4 text-center">
-      <h2 class="text-3xl md:text-4xl font-bold text-brand-white mb-4">
-        Transparent Pricing — <span class="text-brand-accent">$12/hour</span>
-      </h2>
-      <p class="text-brand-white/60 mb-8 leading-relaxed">
-        No surprise invoices. No hidden fees. We estimate your project upfront, work within your budget, and report hours honestly. Most projects also available on a fixed-price basis.
-      </p>
-      <a href="/#contact" class="btn-primary text-base px-10 py-4 inline-flex items-center gap-2">
-        Get a Free Quote &rarr;
-      </a>
+  <section class="py-24 border-t border-white/5">
+    <div class="max-w-4xl mx-auto px-4">
+      <div class="relative rounded-3xl overflow-hidden border border-brand-accent/20 bg-gradient-to-br from-brand-accent/10 via-transparent to-blue-500/5 p-12 text-center">
+        <div class="absolute inset-0 hero-grid opacity-10"></div>
+        <div class="relative">
+          <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-accent/10 border border-brand-accent/20 text-brand-accent text-xs font-semibold tracking-wider uppercase mb-6">
+            Transparent Pricing
+          </div>
+          <h2 class="text-3xl md:text-5xl font-extrabold text-brand-white mb-4">
+            Starting at <span class="text-brand-accent">$12/hour</span>
+          </h2>
+          <p class="text-brand-white/60 mb-8 max-w-xl mx-auto leading-relaxed text-lg">
+            No surprise invoices. No hidden fees. We estimate your project upfront, work within your budget, and report hours honestly.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="/#contact" class="btn-primary text-base px-10 py-4 inline-flex items-center justify-center gap-2">
+              Get a Free Quote &rarr;
+            </a>
+            <a href="/#projects" class="px-10 py-4 rounded-full border border-white/20 text-brand-white/70 hover:border-brand-accent/40 hover:text-brand-white transition-all text-base font-medium inline-flex items-center justify-center gap-2">
+              View Our Work
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
