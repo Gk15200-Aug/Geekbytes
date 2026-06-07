@@ -1,6 +1,7 @@
 import { translations, GERMAN_COUNTRIES, SPANISH_COUNTRIES, SUPPORTED_LANGS } from '../i18n/translations.js';
 
 const STORAGE_KEY = 'gb_lang';
+const MANUAL_KEY = 'gb_lang_manual'; // set only when user explicitly picks a language
 
 // ─── Language resolution ──────────────────────────────────────────────────────
 
@@ -29,8 +30,11 @@ async function detectLangFromIP() {
 }
 
 async function resolveInitialLang() {
-  const saved = localStorage.getItem(STORAGE_KEY);
-  if (saved && SUPPORTED_LANGS.includes(saved)) return saved;
+  // If the user manually picked a language, always respect that choice
+  const manual = localStorage.getItem(MANUAL_KEY);
+  if (manual && SUPPORTED_LANGS.includes(manual)) return manual;
+
+  // Otherwise always re-detect from IP (works correctly with VPN changes too)
   const detected = await detectLangFromIP();
   localStorage.setItem(STORAGE_KEY, detected);
   return detected;
@@ -109,6 +113,8 @@ function initSwitcher(currentLang) {
     btn.addEventListener('click', () => {
       const lang = btn.getAttribute('data-lang');
       if (!lang) return;
+      // Mark as a deliberate manual choice so IP re-detection doesn't override it
+      localStorage.setItem(MANUAL_KEY, lang);
       localStorage.setItem(STORAGE_KEY, lang);
       applyTranslations(lang);
       dropdown.classList.add('hidden');
