@@ -24,23 +24,15 @@ const jsonLd = {
       "url": siteUrl,
       "logo": {
         "@type": "ImageObject",
-        "@id": `${siteUrl}/#logo`,
         "url": `${siteUrl}/images/logo.jpeg`,
-        "contentUrl": `${siteUrl}/images/logo.jpeg`,
-        "caption": "GeekBytes"
+        "width": 200,
+        "height": 200
       },
-      "image": { "@id": `${siteUrl}/#logo` },
+      "image": `${siteUrl}/images/og-image.png`,
       "description": siteConfig.meta.description,
       "email": siteConfig.email,
       "foundingDate": "2023",
       "numberOfEmployees": { "@type": "QuantitativeValue", "value": 5 },
-      "knowsLanguage": [
-        { "@type": "Language", "name": "English" },
-        { "@type": "Language", "name": "German" },
-        { "@type": "Language", "name": "Spanish" }
-      ],
-      "areaServed": "Worldwide",
-      "priceRange": "$12 - $50",
       "sameAs": [
         "https://linkedin.com/company/geekbytes-solutions/",
         "https://www.instagram.com/_geekbytes"
@@ -53,11 +45,7 @@ const jsonLd = {
         "@type": "ContactPoint",
         "contactType": "customer support",
         "email": siteConfig.email,
-        "availableLanguage": [
-          { "@type": "Language", "name": "English" },
-          { "@type": "Language", "name": "German" },
-          { "@type": "Language", "name": "Spanish" }
-        ]
+        "availableLanguage": ["English", "German", "Spanish"]
       }
     },
     {
@@ -67,7 +55,7 @@ const jsonLd = {
       "name": "GeekBytes",
       "description": "Modern IT Solutions & Software Development",
       "publisher": { "@id": `${siteUrl}/#organization` },
-      "inLanguage": ["en", "de", "es"]
+      "inLanguage": "en"
     },
     {
       "@type": "WebPage",
@@ -77,19 +65,23 @@ const jsonLd = {
       "description": siteConfig.meta.description,
       "isPartOf": { "@id": `${siteUrl}/#website` },
       "about": { "@id": `${siteUrl}/#organization` },
-      "inLanguage": ["en", "de", "es"]
+      "inLanguage": "en",
+      "dateModified": new Date().toISOString().split('T')[0]
     },
     {
-      "@type": "ProfessionalService",
-      "@id": `${siteUrl}/#service`,
+      "@type": "LocalBusiness",
+      "@id": `${siteUrl}/#localbusiness`,
       "name": "GeekBytes IT Solutions",
       "url": siteUrl,
       "image": `${siteUrl}/images/og-image.png`,
       "description": "GeekBytes provides web development, mobile apps, AI chatbots, GoHighLevel CRM, cloud architecture, video editing, and graphic design services worldwide.",
-      "provider": { "@id": `${siteUrl}/#organization` },
+      "email": siteConfig.email,
+      "priceRange": "$12 - $50",
       "areaServed": "Worldwide",
-      "availableLanguage": ["English", "German", "Spanish"],
-      "priceRange": "$12/hour",
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "IN"
+      },
       "hasOfferCatalog": {
         "@type": "OfferCatalog",
         "name": "IT Services",
