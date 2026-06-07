@@ -119,42 +119,62 @@ const related = allPosts.filter(p => p.slug !== post.slug).slice(0, 2);
 
       <p class="text-lg text-brand-white/55 leading-relaxed mb-8">{post.data.description}</p>
 
-      <!-- Listen button -->
-      <div class="mb-6">
-        <button
-          id="listen-btn"
-          class="group flex items-center gap-3 px-5 py-3 rounded-full bg-brand-accent/10 border border-brand-accent/30 text-brand-accent hover:bg-brand-accent hover:text-brand-black transition-all duration-300 font-semibold text-sm"
-          aria-label="Listen to this article"
-        >
-          <span id="listen-icon" class="flex items-center justify-center w-7 h-7 rounded-full bg-brand-accent/20 group-hover:bg-brand-black/20 transition-colors">
-            <!-- Play icon -->
-            <svg id="icon-play" class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M8 5v14l11-7z"/>
-            </svg>
-            <!-- Pause icon (hidden by default) -->
-            <svg id="icon-pause" class="w-3.5 h-3.5 hidden" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
-            </svg>
-            <!-- Stop icon (hidden by default) -->
-            <svg id="icon-stop" class="w-3.5 h-3.5 hidden" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M6 6h12v12H6z"/>
-            </svg>
-          </span>
-          <span id="listen-label">Listen to this article</span>
-          <!-- Sound wave animation -->
-          <span id="sound-wave" class="hidden items-center gap-0.5 h-4">
-            <span class="w-0.5 h-2 bg-current rounded-full animate-bounce" style="animation-delay:0ms"></span>
-            <span class="w-0.5 h-4 bg-current rounded-full animate-bounce" style="animation-delay:150ms"></span>
-            <span class="w-0.5 h-3 bg-current rounded-full animate-bounce" style="animation-delay:75ms"></span>
-            <span class="w-0.5 h-4 bg-current rounded-full animate-bounce" style="animation-delay:225ms"></span>
-            <span class="w-0.5 h-2 bg-current rounded-full animate-bounce" style="animation-delay:100ms"></span>
-          </span>
-        </button>
-        <!-- Speed control (hidden until listening) -->
-        <div id="speed-control" class="hidden mt-3 flex items-center gap-3 text-xs text-brand-white/40">
-          <span>Speed:</span>
+      <!-- Listen Panel -->
+      <div class="mb-8 bg-white/[0.04] border border-white/10 rounded-2xl p-5 space-y-4">
+        <!-- Row 1: Play button + sound wave -->
+        <div class="flex items-center gap-4 flex-wrap">
+          <button
+            id="listen-btn"
+            class="group flex items-center gap-3 px-5 py-2.5 rounded-full bg-brand-accent/10 border border-brand-accent/30 text-brand-accent hover:bg-brand-accent hover:text-brand-black transition-all duration-300 font-semibold text-sm shrink-0"
+            aria-label="Listen to this article"
+          >
+            <span class="flex items-center justify-center w-6 h-6 rounded-full bg-brand-accent/20 group-hover:bg-brand-black/20 transition-colors">
+              <svg id="icon-play" class="w-3 h-3" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+              <svg id="icon-pause" class="w-3 h-3 hidden" fill="currentColor" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+              <svg id="icon-stop" class="w-3 h-3 hidden" fill="currentColor" viewBox="0 0 24 24"><path d="M6 6h12v12H6z"/></svg>
+            </span>
+            <span id="listen-label">Listen to this article</span>
+            <span id="sound-wave" class="hidden items-center gap-0.5 h-3.5">
+              <span class="w-0.5 h-1.5 bg-current rounded-full animate-bounce" style="animation-delay:0ms"></span>
+              <span class="w-0.5 h-3.5 bg-current rounded-full animate-bounce" style="animation-delay:150ms"></span>
+              <span class="w-0.5 h-2.5 bg-current rounded-full animate-bounce" style="animation-delay:75ms"></span>
+              <span class="w-0.5 h-3.5 bg-current rounded-full animate-bounce" style="animation-delay:225ms"></span>
+              <span class="w-0.5 h-1.5 bg-current rounded-full animate-bounce" style="animation-delay:100ms"></span>
+            </span>
+          </button>
+
+          <!-- Voice name display -->
+          <span id="voice-name-display" class="text-xs text-brand-white/30 italic truncate max-w-[180px]"></span>
+        </div>
+
+        <!-- Row 2: Voice gender selector -->
+        <div class="flex items-center gap-3 flex-wrap">
+          <span class="text-xs text-brand-white/40 shrink-0">Voice:</span>
+          <div class="flex gap-2">
+            <button id="voice-female" class="voice-gender-btn flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-white/10 text-xs text-brand-white/50 hover:border-brand-accent/40 hover:text-brand-accent transition-all" data-gender="female">
+              <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2a5 5 0 100 10A5 5 0 0012 2zm0 12c-5.33 0-8 2.67-8 4v2h16v-2c0-1.33-2.67-4-8-4z"/></svg>
+              Female
+            </button>
+            <button id="voice-male" class="voice-gender-btn flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-white/10 text-xs text-brand-white/50 hover:border-brand-accent/40 hover:text-brand-accent transition-all" data-gender="male">
+              <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2a5 5 0 100 10A5 5 0 0012 2zm0 12c-5.33 0-8 2.67-8 4v2h16v-2c0-1.33-2.67-4-8-4z"/></svg>
+              Male
+            </button>
+            <button id="voice-custom" class="voice-gender-btn flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-white/10 text-xs text-brand-white/50 hover:border-brand-accent/40 hover:text-brand-accent transition-all" data-gender="custom">
+              <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"/></svg>
+              Custom
+            </button>
+          </div>
+          <!-- Custom voice dropdown -->
+          <select id="voice-select" class="hidden text-xs bg-white/5 border border-white/10 rounded-lg px-3 py-1.5 text-brand-white/60 focus:outline-none focus:border-brand-accent/40">
+            <option value="">Select a voice...</option>
+          </select>
+        </div>
+
+        <!-- Row 3: Speed (hidden until playing) -->
+        <div id="speed-control" class="hidden flex items-center gap-3 flex-wrap">
+          <span class="text-xs text-brand-white/40 shrink-0">Speed:</span>
           {[0.75, 1, 1.25, 1.5, 2].map((s) => (
-            <button class="speed-btn px-2.5 py-1 rounded-full border border-white/10 hover:border-brand-accent/40 hover:text-brand-accent transition-colors" data-speed={s}>
+            <button class="speed-btn px-2.5 py-1 rounded-full border border-white/10 text-xs text-brand-white/40 hover:border-brand-accent/40 hover:text-brand-accent transition-all" data-speed={String(s)}>
               {s}×
             </button>
           ))}
@@ -339,156 +359,208 @@ const related = allPosts.filter(p => p.slug !== post.slug).slice(0, 2);
     }, { passive: true });
   }
 
-  // ── Text-to-Speech (chunk-based to fix Chrome 15-sec bug) ─────────
-  const listenBtn   = document.getElementById('listen-btn');
-  const listenLabel = document.getElementById('listen-label');
-  const iconPlay    = document.getElementById('icon-play');
-  const iconPause   = document.getElementById('icon-pause');
-  const iconStop    = document.getElementById('icon-stop');
-  const soundWave   = document.getElementById('sound-wave');
-  const speedControl = document.getElementById('speed-control');
-  const speedBtns   = document.querySelectorAll('.speed-btn');
+  if (!('speechSynthesis' in window)) {
+    const btn = document.getElementById('listen-btn');
+    if (btn) { btn.textContent = 'TTS not supported in this browser'; (btn as HTMLButtonElement).disabled = true; }
+  } else {
+    // ── Voice management ───────────────────────────────────────────
+    const listenBtn       = document.getElementById('listen-btn') as HTMLButtonElement;
+    const listenLabel     = document.getElementById('listen-label')!;
+    const iconPlay        = document.getElementById('icon-play')!;
+    const iconPause       = document.getElementById('icon-pause')!;
+    const iconStop        = document.getElementById('icon-stop')!;
+    const soundWave       = document.getElementById('sound-wave')!;
+    const speedControl    = document.getElementById('speed-control')!;
+    const speedBtns       = document.querySelectorAll<HTMLButtonElement>('.speed-btn');
+    const genderBtns      = document.querySelectorAll<HTMLButtonElement>('.voice-gender-btn');
+    const voiceSelect     = document.getElementById('voice-select') as HTMLSelectElement;
+    const voiceNameDisplay = document.getElementById('voice-name-display')!;
 
-  let chunks: string[] = [];
-  let chunkIndex = 0;
-  let currentSpeed = 1;
-  let isPlaying = false;
-  let isPaused = false;
-  let keepAliveTimer: ReturnType<typeof setInterval> | null = null;
+    let chunks: string[] = [];
+    let chunkIndex = 0;
+    let currentSpeed = 1;
+    let isPlaying = false;
+    let isPaused = false;
+    let keepAliveTimer: ReturnType<typeof setInterval> | null = null;
+    let selectedVoice: SpeechSynthesisVoice | null = null;
+    let selectedGender: 'female' | 'male' | 'custom' = 'female';
+    let allVoices: SpeechSynthesisVoice[] = [];
 
-  // Get clean article text split into ~200-word chunks (Chrome fix)
-  function getChunks(): string[] {
-    const el = document.getElementById('article-content');
-    if (!el) return [];
-    const clone = el.cloneNode(true) as HTMLElement;
-    clone.querySelectorAll('pre, code, script').forEach(n => n.remove());
-    const text = clone.innerText.replace(/\n{2,}/g, ' ').replace(/\s+/g, ' ').trim();
+    // Classify voices by gender heuristic (name-based)
+    function classifyVoice(v: SpeechSynthesisVoice): 'female' | 'male' | 'unknown' {
+      const n = v.name.toLowerCase();
+      if (/\b(female|woman|girl|zira|samantha|victoria|karen|moira|fiona|tessa|veena|allison|ava|susan|lisa|emily|sarah|rachel|jessica|olivia|aria)\b/.test(n)) return 'female';
+      if (/\b(male|man|guy|david|mark|daniel|alex|thomas|fred|jorge|luca|rishi|aaron|arthur|james|ryan)\b/.test(n)) return 'male';
+      return 'unknown';
+    }
 
-    // Split on sentence boundaries into ~200-word chunks
-    const sentences = text.match(/[^.!?]+[.!?]+/g) || [text];
-    const result: string[] = [];
-    let current = '';
-    for (const s of sentences) {
-      if ((current + s).split(' ').length > 180) {
-        if (current.trim()) result.push(current.trim());
-        current = s;
+    function loadVoices() {
+      allVoices = speechSynthesis.getVoices().filter(v => v.lang.startsWith('en'));
+      if (!allVoices.length) return;
+
+      // Populate custom dropdown
+      voiceSelect.innerHTML = '<option value="">Select a voice...</option>';
+      allVoices.forEach((v, i) => {
+        const gender = classifyVoice(v);
+        const genderLabel = gender === 'female' ? '♀' : gender === 'male' ? '♂' : '●';
+        const opt = document.createElement('option');
+        opt.value = String(i);
+        opt.textContent = `${genderLabel} ${v.name.replace(/^(Microsoft|Google)\s*/i, '')}`;
+        voiceSelect.appendChild(opt);
+      });
+
+      applyGenderChoice(selectedGender);
+    }
+
+    function applyGenderChoice(gender: 'female' | 'male' | 'custom') {
+      selectedGender = gender;
+      if (gender === 'custom') {
+        voiceSelect.classList.remove('hidden');
+        // Pick whatever is selected in dropdown
+        const idx = parseInt(voiceSelect.value);
+        selectedVoice = !isNaN(idx) ? (allVoices[idx] || null) : null;
       } else {
-        current += ' ' + s;
+        voiceSelect.classList.add('hidden');
+        const matches = allVoices.filter(v => classifyVoice(v) === gender);
+        // Prefer Google/premium voices
+        const preferred = matches.find(v => v.name.toLowerCase().includes('google'))
+          || matches.find(v => v.name.toLowerCase().includes('microsoft'))
+          || matches[0]
+          || allVoices[0]
+          || null;
+        selectedVoice = preferred;
       }
-    }
-    if (current.trim()) result.push(current.trim());
-    return result;
-  }
 
-  function setUI(state: 'idle' | 'playing' | 'paused') {
-    iconPlay!.classList.toggle('hidden', state !== 'idle');
-    iconPause!.classList.toggle('hidden', state !== 'playing');
-    iconStop!.classList.toggle('hidden', state !== 'paused');
-    soundWave!.classList.toggle('hidden', state !== 'playing');
-    soundWave!.classList.toggle('flex', state === 'playing');
-    speedControl!.classList.toggle('hidden', state === 'idle');
+      voiceNameDisplay.textContent = selectedVoice
+        ? selectedVoice.name.replace(/^(Microsoft|Google)\s*/i, '')
+        : '';
 
-    if (state === 'idle')    listenLabel!.textContent = 'Listen to this article';
-    if (state === 'playing') listenLabel!.textContent = 'Pause';
-    if (state === 'paused')  listenLabel!.textContent = 'Resume';
-  }
-
-  // Chrome keep-alive: call getVoices() every 10s to prevent Chrome from killing synthesis
-  function startKeepAlive() {
-    keepAliveTimer = setInterval(() => {
-      if (isPlaying) speechSynthesis.getVoices();
-    }, 10000);
-  }
-  function stopKeepAlive() {
-    if (keepAliveTimer) { clearInterval(keepAliveTimer); keepAliveTimer = null; }
-  }
-
-  function speakChunk(index: number) {
-    if (index >= chunks.length) {
-      // Finished all chunks
-      isPlaying = false;
-      isPaused = false;
-      chunkIndex = 0;
-      stopKeepAlive();
-      setUI('idle');
-      return;
+      // Highlight active gender button
+      genderBtns.forEach(b => {
+        const active = b.dataset.gender === gender;
+        b.classList.toggle('!border-[#00A3FF]', active);
+        b.classList.toggle('!text-[#00A3FF]', active);
+        b.classList.toggle('border-white/10', !active);
+        b.classList.toggle('text-brand-white/50', !active);
+      });
     }
 
-    const u = new SpeechSynthesisUtterance(chunks[index]);
-    u.rate = currentSpeed;
-    u.lang = 'en-US';
+    // Voices load async in Chrome
+    loadVoices();
+    speechSynthesis.addEventListener('voiceschanged', loadVoices);
 
-    u.onend = () => {
-      if (isPlaying) speakChunk(index + 1);
-    };
-    u.onerror = (e) => {
-      // 'interrupted' fires when we manually cancel — not a real error
-      if (e.error !== 'interrupted') {
-        isPlaying = false; isPaused = false; stopKeepAlive(); setUI('idle');
+    // Gender buttons
+    genderBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const g = btn.dataset.gender as 'female' | 'male' | 'custom';
+        applyGenderChoice(g);
+        if (isPlaying || isPaused) restart();
+      });
+    });
+
+    // Custom voice dropdown
+    voiceSelect.addEventListener('change', () => {
+      const idx = parseInt(voiceSelect.value);
+      selectedVoice = !isNaN(idx) ? (allVoices[idx] || null) : null;
+      voiceNameDisplay.textContent = selectedVoice ? selectedVoice.name.replace(/^(Microsoft|Google)\s*/i, '') : '';
+      if (isPlaying || isPaused) restart();
+    });
+
+    // ── Chunking & playback ────────────────────────────────────────
+    function getChunks(): string[] {
+      const el = document.getElementById('article-content');
+      if (!el) return [];
+      const clone = el.cloneNode(true) as HTMLElement;
+      clone.querySelectorAll('pre, code, script').forEach(n => n.remove());
+      const text = clone.innerText.replace(/\n{2,}/g, ' ').replace(/\s+/g, ' ').trim();
+      const sentences = text.match(/[^.!?]+[.!?]+/g) || [text];
+      const result: string[] = [];
+      let current = '';
+      for (const s of sentences) {
+        if ((current + s).split(' ').length > 180) {
+          if (current.trim()) result.push(current.trim());
+          current = s;
+        } else {
+          current += ' ' + s;
+        }
       }
-    };
-
-    speechSynthesis.speak(u);
-    chunkIndex = index;
-  }
-
-  function startSpeech() {
-    if (!('speechSynthesis' in window)) {
-      alert('Text-to-speech is not supported in this browser. Please use Chrome, Edge, or Safari.');
-      return;
+      if (current.trim()) result.push(current.trim());
+      return result;
     }
-    speechSynthesis.cancel();
-    chunks = getChunks();
-    if (!chunks.length) return;
-    chunkIndex = 0;
-    isPlaying = true;
-    isPaused = false;
-    startKeepAlive();
-    setUI('playing');
-    speakChunk(0);
-  }
 
-  listenBtn?.addEventListener('click', () => {
-    if (!isPlaying && !isPaused) {
-      startSpeech();
-    } else if (isPlaying && !isPaused) {
-      speechSynthesis.pause();
-      isPaused = true;
-      isPlaying = false;
-      stopKeepAlive();
-      setUI('paused');
-    } else if (isPaused) {
-      speechSynthesis.resume();
-      isPaused = false;
-      isPlaying = true;
-      startKeepAlive();
-      setUI('playing');
+    function setUI(state: 'idle' | 'playing' | 'paused') {
+      iconPlay.classList.toggle('hidden', state !== 'idle');
+      iconPause.classList.toggle('hidden', state !== 'playing');
+      iconStop.classList.toggle('hidden', state !== 'paused');
+      soundWave.classList.toggle('hidden', state !== 'playing');
+      soundWave.classList.toggle('flex', state === 'playing');
+      speedControl.classList.toggle('hidden', state === 'idle');
+      if (state === 'idle')    listenLabel.textContent = 'Listen to this article';
+      if (state === 'playing') listenLabel.textContent = 'Pause';
+      if (state === 'paused')  listenLabel.textContent = 'Resume';
     }
-  });
 
-  // Speed controls
-  speedBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      currentSpeed = parseFloat((btn as HTMLElement).dataset.speed || '1');
-      speedBtns.forEach(b => b.classList.remove('!border-[#00A3FF]', '!text-[#00A3FF]'));
-      btn.classList.add('!border-[#00A3FF]', '!text-[#00A3FF]');
+    function startKeepAlive() {
+      keepAliveTimer = setInterval(() => { if (isPlaying) speechSynthesis.getVoices(); }, 10000);
+    }
+    function stopKeepAlive() {
+      if (keepAliveTimer) { clearInterval(keepAliveTimer); keepAliveTimer = null; }
+    }
 
-      if (isPlaying || isPaused) {
-        speechSynthesis.cancel();
-        isPlaying = false; isPaused = false;
-        stopKeepAlive();
-        setTimeout(() => startSpeech(), 150);
+    function speakChunk(index: number) {
+      if (index >= chunks.length) {
+        isPlaying = false; isPaused = false; chunkIndex = 0; stopKeepAlive(); setUI('idle'); return;
+      }
+      const u = new SpeechSynthesisUtterance(chunks[index]);
+      u.rate = currentSpeed;
+      u.lang = 'en-US';
+      if (selectedVoice) u.voice = selectedVoice;
+      u.onend = () => { if (isPlaying) speakChunk(index + 1); };
+      u.onerror = (e) => { if (e.error !== 'interrupted') { isPlaying = false; isPaused = false; stopKeepAlive(); setUI('idle'); } };
+      speechSynthesis.speak(u);
+      chunkIndex = index;
+    }
+
+    function startSpeech() {
+      speechSynthesis.cancel();
+      chunks = getChunks();
+      if (!chunks.length) return;
+      chunkIndex = 0; isPlaying = true; isPaused = false;
+      startKeepAlive(); setUI('playing'); speakChunk(0);
+    }
+
+    function restart() {
+      speechSynthesis.cancel();
+      isPlaying = false; isPaused = false; stopKeepAlive();
+      setTimeout(() => startSpeech(), 150);
+    }
+
+    listenBtn.addEventListener('click', () => {
+      if (!isPlaying && !isPaused) {
+        startSpeech();
+      } else if (isPlaying) {
+        speechSynthesis.pause(); isPaused = true; isPlaying = false; stopKeepAlive(); setUI('paused');
+      } else if (isPaused) {
+        speechSynthesis.resume(); isPaused = false; isPlaying = true; startKeepAlive(); setUI('playing');
       }
     });
-  });
 
-  // Default highlight
-  speedBtns.forEach(btn => {
-    if ((btn as HTMLElement).dataset.speed === '1') btn.classList.add('!border-[#00A3FF]', '!text-[#00A3FF]');
-  });
+    // Speed controls
+    speedBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        currentSpeed = parseFloat(btn.dataset.speed || '1');
+        speedBtns.forEach(b => { b.classList.remove('!border-[#00A3FF]', '!text-[#00A3FF]'); });
+        btn.classList.add('!border-[#00A3FF]', '!text-[#00A3FF]');
+        if (isPlaying || isPaused) restart();
+      });
+    });
 
-  // Stop when tab hidden
-  document.addEventListener('visibilitychange', () => {
-    if (document.hidden) { speechSynthesis.cancel(); stopKeepAlive(); isPlaying = false; isPaused = false; setUI('idle'); }
-  });
+    speedBtns.forEach(btn => {
+      if (btn.dataset.speed === '1') btn.classList.add('!border-[#00A3FF]', '!text-[#00A3FF]');
+    });
+
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) { speechSynthesis.cancel(); stopKeepAlive(); isPlaying = false; isPaused = false; setUI('idle'); }
+    });
+  }
 </script>
