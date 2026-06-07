@@ -10,9 +10,103 @@ import TestimonialsSection from '../components/TestimonialsSection.astro';
 import ContactSection from '../components/ContactSection.astro';
 import Footer from '../components/Footer.astro';
 import { siteConfig } from '../data/site';
+
+const siteUrl = 'https://geekbytes.dev';
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": `${siteUrl}/#organization`,
+      "name": "GeekBytes",
+      "alternateName": "GeekBytes Solutions",
+      "url": siteUrl,
+      "logo": {
+        "@type": "ImageObject",
+        "@id": `${siteUrl}/#logo`,
+        "url": `${siteUrl}/images/logo.jpeg`,
+        "contentUrl": `${siteUrl}/images/logo.jpeg`,
+        "caption": "GeekBytes"
+      },
+      "image": { "@id": `${siteUrl}/#logo` },
+      "description": siteConfig.meta.description,
+      "email": siteConfig.email,
+      "foundingDate": "2023",
+      "numberOfEmployees": { "@type": "QuantitativeValue", "value": "5" },
+      "knowsLanguage": ["en", "de", "es"],
+      "areaServed": "Worldwide",
+      "priceRange": "$12/hour",
+      "sameAs": [
+        "https://linkedin.com/company/geekbytes-solutions/",
+        "https://www.instagram.com/_geekbytes"
+      ],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "customer support",
+        "email": siteConfig.email,
+        "availableLanguage": ["English", "German", "Spanish"]
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${siteUrl}/#website`,
+      "url": siteUrl,
+      "name": "GeekBytes",
+      "description": "Modern IT Solutions & Software Development",
+      "publisher": { "@id": `${siteUrl}/#organization` },
+      "inLanguage": ["en", "de", "es"]
+    },
+    {
+      "@type": "WebPage",
+      "@id": `${siteUrl}/#webpage`,
+      "url": siteUrl,
+      "name": siteConfig.meta.title,
+      "description": siteConfig.meta.description,
+      "isPartOf": { "@id": `${siteUrl}/#website` },
+      "about": { "@id": `${siteUrl}/#organization` },
+      "inLanguage": ["en", "de", "es"]
+    },
+    {
+      "@type": "ProfessionalService",
+      "@id": `${siteUrl}/#service`,
+      "name": "GeekBytes IT Solutions",
+      "url": siteUrl,
+      "image": `${siteUrl}/images/og-image.png`,
+      "description": "GeekBytes provides web development, mobile app development, AI chatbots, GoHighLevel CRM, cloud architecture, video editing, and graphic design services.",
+      "provider": { "@id": `${siteUrl}/#organization` },
+      "areaServed": "Worldwide",
+      "availableLanguage": ["English", "German", "Spanish"],
+      "priceRange": "$12/hour",
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "IT Services",
+        "itemListElement": [
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Web Development" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "WordPress Development" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "AI Chatbots & Automation" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Mobile App Development" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "GoHighLevel CRM" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Custom Software Solutions" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Cloud Architecture" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Video Editing" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Graphic Design & Branding" } }
+        ]
+      }
+    }
+  ]
+};
 ---
 
-<BaseLayout title={siteConfig.meta.title} description={siteConfig.meta.description}>
+<BaseLayout
+  title={siteConfig.meta.title}
+  description={siteConfig.meta.description}
+  ogImage={siteConfig.meta.ogImage}
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </Fragment>
+
   <Fragment slot="header">
     <Navbar />
   </Fragment>

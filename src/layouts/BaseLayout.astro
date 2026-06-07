@@ -5,15 +5,23 @@ interface Props {
   title: string;
   description: string;
   ogImage?: string;
+  ogType?: string;
 }
 
 const {
   title,
   description,
   ogImage = '/images/og-image.png',
+  ogType = 'website',
 } = Astro.props;
 
+const siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? 'https://geekbytes.dev';
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
+// Always resolve OG image to an absolute URL so social crawlers can fetch it
+const ogImageAbsolute = ogImage.startsWith('http')
+  ? ogImage
+  : `${siteUrl}${ogImage}`;
 ---
 
 <!DOCTYPE html>
@@ -24,23 +32,33 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <meta name="generator" content={Astro.generator} />
     <meta name="theme-color" content="#000000" />
 
-    <!-- SEO Meta Tags -->
+    <!-- SEO -->
     <title>{title}</title>
     <meta name="description" content={description} />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
     <link rel="canonical" href={canonicalURL} />
 
-    <!-- Open Graph Tags -->
-    <meta property="og:type" content="website" />
+    <!-- Open Graph -->
+    <meta property="og:type" content={ogType} />
+    <meta property="og:site_name" content="GeekBytes" />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={ogImage} />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:locale:alternate" content="de_DE" />
+    <meta property="og:locale:alternate" content="es_ES" />
+    <meta property="og:image" content={ogImageAbsolute} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="GeekBytes — Modern IT Solutions & Software Development" />
+    <meta property="og:image:type" content="image/png" />
 
-    <!-- Twitter Card Tags -->
+    <!-- Twitter / X Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image" content={ogImageAbsolute} />
+    <meta name="twitter:image:alt" content="GeekBytes — Modern IT Solutions & Software Development" />
 
     <!-- Favicon -->
     <link rel="icon" type="image/jpeg" href="/images/logo.jpeg" />
@@ -64,6 +82,9 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
     <!-- Sitemap -->
     <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <!-- Page-specific head content (JSON-LD, hreflang, etc.) -->
+    <slot name="head" />
   </head>
   <body>
     <header role="banner">
