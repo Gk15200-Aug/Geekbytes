@@ -20,7 +20,7 @@ const { name, description, thumbnail, techTags, category, url, stats } = Astro.p
   data-category={category}
 >
   <!-- Thumbnail area -->
-  <a href={url} target="_blank" rel="noopener noreferrer" class="block relative aspect-[16/9] overflow-hidden bg-gradient-to-br from-brand-accent/5 via-brand-black to-brand-accent/10">
+  <a href={url} target="_blank" rel="nofollow noopener noreferrer" class="block relative aspect-[16/9] overflow-hidden bg-gradient-to-br from-brand-accent/5 via-brand-black to-brand-accent/10">
     <!-- Website screenshot using Google's thumbnail service -->
     <img
       src={`https://s0.wp.com/mshots/v1/${encodeURIComponent(url)}?w=600&h=400`}
@@ -49,11 +49,11 @@ const { name, description, thumbnail, techTags, category, url, stats } = Astro.p
     </div>
 
     <!-- Project name -->
-    <h3 class="text-lg font-bold text-brand-white mt-3">
-      <a href={url} target="_blank" rel="noopener noreferrer" class="hover:text-brand-accent transition-colors">
+    <p class="text-lg font-bold text-brand-white mt-3">
+      <a href={url} target="_blank" rel="nofollow noopener noreferrer" class="hover:text-brand-accent transition-colors">
         {name}
       </a>
-    </h3>
+    </p>
 
     <!-- Description -->
     <p class="text-sm text-brand-white/60 mt-1 line-clamp-2">{description}</p>
