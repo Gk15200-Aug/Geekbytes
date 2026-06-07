@@ -209,6 +209,16 @@ const related = allPosts.filter(p => p.slug !== post.slug).slice(0, 2);
     </div>
   </section>
 
+  <!-- TL;DR Summary box — AI tools (Perplexity, ChatGPT, Gemini) cite this as the quick answer -->
+  <section class="pt-8 pb-0">
+    <div class="max-w-3xl mx-auto px-4">
+      <div class="rounded-2xl border border-brand-accent/25 bg-brand-accent/5 px-6 py-5">
+        <p class="text-xs font-bold text-brand-accent uppercase tracking-widest mb-2">Quick Summary</p>
+        <p class="text-sm text-brand-white/75 leading-relaxed">{post.data.description}</p>
+      </div>
+    </div>
+  </section>
+
   <!-- Article Content -->
   <section class="py-12">
     <div class="max-w-3xl mx-auto px-4">
