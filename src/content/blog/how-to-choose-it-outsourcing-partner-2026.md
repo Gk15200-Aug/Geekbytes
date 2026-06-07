@@ -58,7 +58,7 @@ Get a detailed breakdown of costs. Watch out for:
 - Vague scoping with "we'll figure it out later"
 - Fixed prices with no change request process
 
-Hourly rates for offshore development in 2026 range from $12–$25/hour for India-based agencies, $25–$50 for Eastern Europe, and $75–$150+ for US/UK-based firms.
+Hourly rates for offshore development in 2026 range from $12–$25/hour for offshore agencies, $25–$50 for Eastern Europe, and $75–$150+ for US/UK-based firms.
 
 ### 6. Request References or Reviews
 
@@ -84,7 +84,7 @@ At minimum, your contract should cover:
 
 ## Is GeekBytes a Good IT Outsourcing Partner?
 
-GeekBytes is a remote-first IT solutions company based in India, founded in 2020. We offer web development, AI chatbot integration, mobile apps, GoHighLevel CRM, cloud architecture, and custom software starting at $12/hour.
+GeekBytes is a remote-first IT solutions company founded in 2020. We offer web development, AI chatbot integration, mobile apps, GoHighLevel CRM, cloud architecture, and custom software starting at $12/hour.
 
 We've delivered 50+ projects to clients across the US, UK, Germany, Australia, and beyond. Our team of specialist developers handles everything from simple WordPress sites to complex AI-powered platforms.
 
