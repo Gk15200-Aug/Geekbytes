@@ -333,111 +333,136 @@ const related = allPosts.filter(p => p.slug !== post.slug).slice(0, 2);
   const bar = document.getElementById('reading-progress');
   if (bar) {
     window.addEventListener('scroll', () => {
-      const doc = document.documentElement;
-      const scrollTop = doc.scrollTop || document.body.scrollTop;
-      const scrollHeight = doc.scrollHeight - doc.clientHeight;
-      const progress = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
-      bar.style.width = `${progress}%`;
+      const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+      const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      bar.style.width = scrollHeight > 0 ? `${(scrollTop / scrollHeight) * 100}%` : '0%';
     }, { passive: true });
   }
 
-  // ── Text-to-Speech ────────────────────────────────────────────────
-  const listenBtn = document.getElementById('listen-btn');
+  // ── Text-to-Speech (chunk-based to fix Chrome 15-sec bug) ─────────
+  const listenBtn   = document.getElementById('listen-btn');
   const listenLabel = document.getElementById('listen-label');
-  const iconPlay = document.getElementById('icon-play');
-  const iconPause = document.getElementById('icon-pause');
-  const iconStop = document.getElementById('icon-stop');
-  const soundWave = document.getElementById('sound-wave');
+  const iconPlay    = document.getElementById('icon-play');
+  const iconPause   = document.getElementById('icon-pause');
+  const iconStop    = document.getElementById('icon-stop');
+  const soundWave   = document.getElementById('sound-wave');
   const speedControl = document.getElementById('speed-control');
-  const speedBtns = document.querySelectorAll('.speed-btn');
+  const speedBtns   = document.querySelectorAll('.speed-btn');
 
-  let utterance: SpeechSynthesisUtterance | null = null;
-  let speaking = false;
-  let paused = false;
+  let chunks: string[] = [];
+  let chunkIndex = 0;
   let currentSpeed = 1;
+  let isPlaying = false;
+  let isPaused = false;
+  let keepAliveTimer: ReturnType<typeof setInterval> | null = null;
 
-  function getArticleText(): string {
+  // Get clean article text split into ~200-word chunks (Chrome fix)
+  function getChunks(): string[] {
     const el = document.getElementById('article-content');
-    if (!el) return '';
-    // Get clean text, skip code blocks
+    if (!el) return [];
     const clone = el.cloneNode(true) as HTMLElement;
-    clone.querySelectorAll('pre, code').forEach(n => n.remove());
-    return clone.innerText.replace(/\n{3,}/g, '\n\n').trim();
+    clone.querySelectorAll('pre, code, script').forEach(n => n.remove());
+    const text = clone.innerText.replace(/\n{2,}/g, ' ').replace(/\s+/g, ' ').trim();
+
+    // Split on sentence boundaries into ~200-word chunks
+    const sentences = text.match(/[^.!?]+[.!?]+/g) || [text];
+    const result: string[] = [];
+    let current = '';
+    for (const s of sentences) {
+      if ((current + s).split(' ').length > 180) {
+        if (current.trim()) result.push(current.trim());
+        current = s;
+      } else {
+        current += ' ' + s;
+      }
+    }
+    if (current.trim()) result.push(current.trim());
+    return result;
   }
 
-  function setIcons(state: 'idle' | 'playing' | 'paused') {
+  function setUI(state: 'idle' | 'playing' | 'paused') {
     iconPlay!.classList.toggle('hidden', state !== 'idle');
     iconPause!.classList.toggle('hidden', state !== 'playing');
     iconStop!.classList.toggle('hidden', state !== 'paused');
     soundWave!.classList.toggle('hidden', state !== 'playing');
     soundWave!.classList.toggle('flex', state === 'playing');
+    speedControl!.classList.toggle('hidden', state === 'idle');
 
-    if (state === 'idle') {
-      listenLabel!.textContent = 'Listen to this article';
-      speedControl!.classList.add('hidden');
-    } else if (state === 'playing') {
-      listenLabel!.textContent = 'Pause';
-      speedControl!.classList.remove('hidden');
-    } else {
-      listenLabel!.textContent = 'Resume';
-      speedControl!.classList.remove('hidden');
-    }
+    if (state === 'idle')    listenLabel!.textContent = 'Listen to this article';
+    if (state === 'playing') listenLabel!.textContent = 'Pause';
+    if (state === 'paused')  listenLabel!.textContent = 'Resume';
   }
 
-  function startSpeech() {
-    const text = getArticleText();
-    if (!text) return;
-
-    utterance = new SpeechSynthesisUtterance(text);
-    utterance.rate = currentSpeed;
-    utterance.pitch = 1;
-    utterance.lang = 'en-US';
-
-    // Try to pick a natural voice
-    const voices = speechSynthesis.getVoices();
-    const preferred = voices.find(v =>
-      v.lang.startsWith('en') && (v.name.includes('Google') || v.name.includes('Natural') || v.name.includes('Premium'))
-    ) || voices.find(v => v.lang.startsWith('en'));
-    if (preferred) utterance.voice = preferred;
-
-    utterance.onend = () => {
-      speaking = false;
-      paused = false;
-      setIcons('idle');
-    };
-    utterance.onerror = () => {
-      speaking = false;
-      paused = false;
-      setIcons('idle');
-    };
-
-    speechSynthesis.speak(utterance);
-    speaking = true;
-    paused = false;
-    setIcons('playing');
+  // Chrome keep-alive: call getVoices() every 10s to prevent Chrome from killing synthesis
+  function startKeepAlive() {
+    keepAliveTimer = setInterval(() => {
+      if (isPlaying) speechSynthesis.getVoices();
+    }, 10000);
+  }
+  function stopKeepAlive() {
+    if (keepAliveTimer) { clearInterval(keepAliveTimer); keepAliveTimer = null; }
   }
 
-  listenBtn?.addEventListener('click', () => {
-    if (!('speechSynthesis' in window)) {
-      alert('Your browser does not support text-to-speech. Try Chrome or Edge.');
+  function speakChunk(index: number) {
+    if (index >= chunks.length) {
+      // Finished all chunks
+      isPlaying = false;
+      isPaused = false;
+      chunkIndex = 0;
+      stopKeepAlive();
+      setUI('idle');
       return;
     }
 
-    if (!speaking && !paused) {
-      // Start fresh
+    const u = new SpeechSynthesisUtterance(chunks[index]);
+    u.rate = currentSpeed;
+    u.lang = 'en-US';
+
+    u.onend = () => {
+      if (isPlaying) speakChunk(index + 1);
+    };
+    u.onerror = (e) => {
+      // 'interrupted' fires when we manually cancel — not a real error
+      if (e.error !== 'interrupted') {
+        isPlaying = false; isPaused = false; stopKeepAlive(); setUI('idle');
+      }
+    };
+
+    speechSynthesis.speak(u);
+    chunkIndex = index;
+  }
+
+  function startSpeech() {
+    if (!('speechSynthesis' in window)) {
+      alert('Text-to-speech is not supported in this browser. Please use Chrome, Edge, or Safari.');
+      return;
+    }
+    speechSynthesis.cancel();
+    chunks = getChunks();
+    if (!chunks.length) return;
+    chunkIndex = 0;
+    isPlaying = true;
+    isPaused = false;
+    startKeepAlive();
+    setUI('playing');
+    speakChunk(0);
+  }
+
+  listenBtn?.addEventListener('click', () => {
+    if (!isPlaying && !isPaused) {
       startSpeech();
-    } else if (speaking && !paused) {
-      // Pause
+    } else if (isPlaying && !isPaused) {
       speechSynthesis.pause();
-      paused = true;
-      speaking = false;
-      setIcons('paused');
-    } else if (paused) {
-      // Resume
+      isPaused = true;
+      isPlaying = false;
+      stopKeepAlive();
+      setUI('paused');
+    } else if (isPaused) {
       speechSynthesis.resume();
-      paused = false;
-      speaking = true;
-      setIcons('playing');
+      isPaused = false;
+      isPlaying = true;
+      startKeepAlive();
+      setUI('playing');
     }
   });
 
@@ -445,39 +470,25 @@ const related = allPosts.filter(p => p.slug !== post.slug).slice(0, 2);
   speedBtns.forEach(btn => {
     btn.addEventListener('click', () => {
       currentSpeed = parseFloat((btn as HTMLElement).dataset.speed || '1');
-      speedBtns.forEach(b => b.classList.remove('border-brand-accent/60', 'text-brand-accent'));
-      btn.classList.add('border-brand-accent/60', 'text-brand-accent');
+      speedBtns.forEach(b => b.classList.remove('!border-[#00A3FF]', '!text-[#00A3FF]'));
+      btn.classList.add('!border-[#00A3FF]', '!text-[#00A3FF]');
 
-      // Restart with new speed if currently playing
-      if (speaking || paused) {
-        const wasPaused = paused;
+      if (isPlaying || isPaused) {
         speechSynthesis.cancel();
-        speaking = false;
-        paused = false;
-        setTimeout(() => {
-          startSpeech();
-          if (wasPaused) {
-            speechSynthesis.pause();
-            paused = true;
-            speaking = false;
-            setIcons('paused');
-          }
-        }, 100);
+        isPlaying = false; isPaused = false;
+        stopKeepAlive();
+        setTimeout(() => startSpeech(), 150);
       }
     });
   });
 
-  // Highlight default speed (1×)
+  // Default highlight
   speedBtns.forEach(btn => {
-    if ((btn as HTMLElement).dataset.speed === '1') {
-      btn.classList.add('border-brand-accent/60', 'text-brand-accent');
-    }
+    if ((btn as HTMLElement).dataset.speed === '1') btn.classList.add('!border-[#00A3FF]', '!text-[#00A3FF]');
   });
 
-  // Stop speech when leaving page
+  // Stop when tab hidden
   document.addEventListener('visibilitychange', () => {
-    if (document.hidden && (speaking || paused)) {
-      speechSynthesis.cancel();
-    }
+    if (document.hidden) { speechSynthesis.cancel(); stopKeepAlive(); isPlaying = false; isPaused = false; setUI('idle'); }
   });
 </script>
