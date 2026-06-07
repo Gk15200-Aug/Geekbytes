@@ -48,12 +48,8 @@ const { name, description, thumbnail, techTags, category, url, stats } = Astro.p
       ))}
     </div>
 
-    <!-- Project name -->
-    <p class="text-lg font-bold text-brand-white mt-3">
-      <a href={url} target="_blank" rel="nofollow noopener noreferrer" class="hover:text-brand-accent transition-colors">
-        {name}
-      </a>
-    </p>
+    <!-- Project name (plain text — thumbnail link above is the clickable entry point) -->
+    <p class="text-lg font-bold text-brand-white mt-3">{name}</p>
 
     <!-- Description -->
     <p class="text-sm text-brand-white/60 mt-1 line-clamp-2">{description}</p>
