@@ -14,3 +14,4 @@ User-agent: anthropic-ai
 Disallow: /
 
 Sitemap: https://geekbytes.vercel.app/sitemap-index.xml
+Sitemap: https://geekbytes.vercel.app/sitemap.xml
