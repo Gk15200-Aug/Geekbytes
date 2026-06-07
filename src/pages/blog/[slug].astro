@@ -165,8 +165,8 @@ const related = allPosts.filter(p => p.slug !== post.slug).slice(0, 2);
             </button>
           </div>
           <!-- Custom voice dropdown -->
-          <select id="voice-select" class="hidden text-xs bg-white/5 border border-white/10 rounded-lg px-3 py-1.5 text-brand-white/60 focus:outline-none focus:border-brand-accent/40">
-            <option value="">Select a voice...</option>
+          <select id="voice-select" class="hidden text-xs rounded-lg px-3 py-1.5 focus:outline-none cursor-pointer" style="background:#111; border:1px solid rgba(255,255,255,0.15); color:rgba(255,255,255,0.7);">
+            <option value="" style="background:#111;">Loading voices...</option>
           </select>
         </div>
 
@@ -395,22 +395,33 @@ const related = allPosts.filter(p => p.slug !== post.slug).slice(0, 2);
     }
 
     function loadVoices() {
-      allVoices = speechSynthesis.getVoices().filter(v => v.lang.startsWith('en'));
-      if (!allVoices.length) return;
+      const allAvailable = speechSynthesis.getVoices();
+      if (!allAvailable.length) return;
+      const englishVoices = allAvailable.filter(v => v.lang.startsWith('en'));
+      allVoices = englishVoices.length ? englishVoices : allAvailable;
 
-      // Populate custom dropdown
-      voiceSelect.innerHTML = '<option value="">Select a voice...</option>';
+      voiceSelect.innerHTML = '';
+      const ph = document.createElement('option');
+      ph.value = ''; ph.textContent = '\u2014 Pick a voice \u2014'; ph.style.background = '#111';
+      voiceSelect.appendChild(ph);
+
       allVoices.forEach((v, i) => {
         const gender = classifyVoice(v);
-        const genderLabel = gender === 'female' ? '♀' : gender === 'male' ? '♂' : '●';
+        const genderLabel = gender === 'female' ? '\u2640' : gender === 'male' ? '\u2642' : '\u25cf';
         const opt = document.createElement('option');
-        opt.value = String(i);
-        opt.textContent = `${genderLabel} ${v.name.replace(/^(Microsoft|Google)\s*/i, '')}`;
+        opt.value = String(i); opt.style.background = '#111';
+        opt.textContent = `${genderLabel} ${v.name.replace(/^(Microsoft|Google)\s*/i, '')} (${v.lang})`;
         voiceSelect.appendChild(opt);
       });
 
       applyGenderChoice(selectedGender);
     }
+
+    // Voices load async — try immediately, on event, and with retries
+    loadVoices();
+    speechSynthesis.addEventListener('voiceschanged', loadVoices);
+    setTimeout(loadVoices, 300);
+    setTimeout(loadVoices, 1200);
 
     function applyGenderChoice(gender: 'female' | 'male' | 'custom') {
       selectedGender = gender;
@@ -445,9 +456,6 @@ const related = allPosts.filter(p => p.slug !== post.slug).slice(0, 2);
       });
     }
 
-    // Voices load async in Chrome
-    loadVoices();
-    speechSynthesis.addEventListener('voiceschanged', loadVoices);
 
     // Gender buttons
     genderBtns.forEach(btn => {
