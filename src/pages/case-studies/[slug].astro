@@ -64,19 +64,24 @@ const categoryLabel: Record<string, string> = {
       </div>
     </section>
 
-    <!-- Stats bar (if stats exist) -->
-    {project.stats && project.stats.length > 0 && (
-      <section class="border-y border-white/10 py-10 px-4">
-        <div class="max-w-3xl mx-auto flex flex-wrap justify-center gap-12 text-center">
-          {project.stats.map((stat) => (
-            <div>
-              <p class="text-3xl font-bold text-brand-accent">{stat.value}</p>
-              <p class="text-gray-400 text-sm mt-1">{stat.label}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-    )}
+    <!-- Stats bar — prefer case study stats, fall back to project stats -->
+    {(() => {
+      const stats = (caseStudy?.stats && caseStudy.stats.length > 0)
+        ? caseStudy.stats
+        : (project.stats && project.stats.length > 0 ? project.stats : null);
+      return stats ? (
+        <section class="border-y border-white/10 py-10 px-4">
+          <div class="max-w-3xl mx-auto grid grid-cols-3 gap-6 text-center">
+            {stats.map((stat) => (
+              <div>
+                <p class="text-3xl font-bold text-brand-accent">{stat.value}</p>
+                <p class="text-gray-400 text-sm mt-1">{stat.label}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+      ) : null;
+    })()}
 
     <!-- Body -->
     {caseStudy ? (

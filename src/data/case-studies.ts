@@ -3,14 +3,25 @@ export interface CaseStudyStep {
   description: string;
 }
 
+export interface CaseStudyStat {
+  value: string;
+  label: string;
+}
+
 export interface CaseStudyData {
   challenge: string;
   steps: CaseStudyStep[];
   outcomes: string;
+  stats?: CaseStudyStat[];
 }
 
 export const caseStudies: Record<string, CaseStudyData> = {
   "ori-beleza": {
+    stats: [
+      { value: "WooCommerce", label: "full online store launched" },
+      { value: "Mobile-first", label: "checkout optimized for Instagram traffic" },
+      { value: "4 wks", label: "from brief to live store" },
+    ],
     challenge:
       "Ori Beleza is a Brazilian-inspired beauty brand that had no online store — all sales were happening in person or via DMs on social media. The founders needed a professional eCommerce presence that reflected the brand's warmth and visual identity while handling product listings, inventory, and secure checkout.",
     steps: [
@@ -35,6 +46,11 @@ export const caseStudies: Record<string, CaseStudyData> = {
   },
 
   "tedxnuremberg": {
+    stats: [
+      { value: "Custom", label: "TEDx-aligned WordPress theme" },
+      { value: "Online", label: "event registrations enabled" },
+      { value: "3 wks", label: "from brief to launch" },
+    ],
     challenge:
       "TEDxNuremberg is a licensed TED event in Germany that needed a professional digital home to manage speaker profiles, event schedules, and ticket registrations — reflecting the bold, trusted TEDx brand while serving both German and English-speaking audiences.",
     steps: [
@@ -59,6 +75,11 @@ export const caseStudies: Record<string, CaseStudyData> = {
   },
 
   "hardens": {
+    stats: [
+      { value: "1000s", label: "indexed restaurant listings" },
+      { value: "Schema", label: "rich results in Google search" },
+      { value: "8 wks", label: "full platform rebuild" },
+    ],
     challenge:
       "Hardens is the UK's longest-running restaurant guide, with thousands of curated restaurant listings accumulated over decades. Their existing platform was slow, difficult to update, and lacked the SEO structure needed to compete with modern food discovery platforms for organic search traffic.",
     steps: [
@@ -83,6 +104,11 @@ export const caseStudies: Record<string, CaseStudyData> = {
   },
 
   "speciality": {
+    stats: [
+      { value: "Digital", label: "product catalog launched" },
+      { value: "RFQ", label: "online enquiry system live" },
+      { value: "4 wks", label: "from brief to launch" },
+    ],
     challenge:
       "Speciality had an outdated website with no product catalog, no online enquiry system, and no SEO presence — losing business to competitors who appeared in search results. The team was handling all sales enquiries through phone calls and walk-ins.",
     steps: [
@@ -107,6 +133,11 @@ export const caseStudies: Record<string, CaseStudyData> = {
   },
 
   "the-palm": {
+    stats: [
+      { value: "Multi-location", label: "pages for each restaurant" },
+      { value: "OpenTable", label: "reservation integration live" },
+      { value: "6 wks", label: "from brief to launch" },
+    ],
     challenge:
       "The Palm is an iconic US steakhouse chain with multiple locations. Their digital presence needed to handle location-specific pages, reservation integration, and a menu system that restaurant managers could update without contacting a developer for every seasonal change.",
     steps: [
@@ -131,6 +162,11 @@ export const caseStudies: Record<string, CaseStudyData> = {
   },
 
   "zum-wildbach": {
+    stats: [
+      { value: "Bilingual", label: "German & English site" },
+      { value: "24/7", label: "online table reservations" },
+      { value: "3 wks", label: "from brief to launch" },
+    ],
     challenge:
       "Zum Wildbach is a traditional Bavarian restaurant that was missing online bookings entirely — guests had to call during opening hours to reserve a table. With a growing number of English-speaking visitors in the area, a single-language German-only site was also limiting their reach.",
     steps: [
@@ -155,6 +191,11 @@ export const caseStudies: Record<string, CaseStudyData> = {
   },
 
   "sushiya": {
+    stats: [
+      { value: "0%", label: "third-party commission on orders" },
+      { value: "WhatsApp", label: "ordering integration" },
+      { value: "4 wks", label: "from brief to launch" },
+    ],
     challenge:
       "Sushiya was losing potential orders every day because customers had no way to order online — they had to visit or call. With a growing delivery culture and competitors offering app-based ordering, Sushiya needed a digital ordering system without the high commissions of third-party platforms like Swiggy or Zomato.",
     steps: [
@@ -179,6 +220,11 @@ export const caseStudies: Record<string, CaseStudyData> = {
   },
 
   "van-seat-covers": {
+    stats: [
+      { value: "60+", label: "van makes & models covered with compatibility filtering" },
+      { value: "↓ Returns", label: "fewer wrong-fit orders after vehicle selector" },
+      { value: "7 wks", label: "from brief to live store" },
+    ],
     challenge:
       "Van Seat Covers UK sells custom-fit seat covers for commercial vans — but with dozens of makes, models, and cab configurations, buyers frequently ordered the wrong product. The flat product catalog offered no compatibility filtering, resulting in a high return rate and frustrated customers who had to call the team for guidance.",
     steps: [
@@ -208,6 +254,11 @@ export const caseStudies: Record<string, CaseStudyData> = {
   },
 
   "truck-wreckers-sa": {
+    stats: [
+      { value: "#1", label: "Google rank for core SA search terms" },
+      { value: "60%+", label: "of new business via website" },
+      { value: "5 wks", label: "from brief to launch" },
+    ],
     challenge:
       "Truck Wreckers SA had been operating in South Australia for years but relied almost entirely on phone calls and a basic directory listing for new business. With no SEO presence and no digital lead capture, they were invisible to the buyers most likely to need them — people searching online for truck parts or dismantling services.",
     steps: [
@@ -232,6 +283,11 @@ export const caseStudies: Record<string, CaseStudyData> = {
   },
 
   "tobe-jewelry": {
+    stats: [
+      { value: "Premium", label: "luxury-matched visual design" },
+      { value: "1-page", label: "streamlined checkout flow" },
+      { value: "4 wks", label: "from brief to live store" },
+    ],
     challenge:
       "Tobe Jewelry is a luxury jewelry brand that needed an online store that matched the premium feel of their physical products. Generic WooCommerce themes couldn't convey the craftsmanship and exclusivity the brand demanded — and a poor-quality store would actively undermine customer trust.",
     steps: [
@@ -256,6 +312,11 @@ export const caseStudies: Record<string, CaseStudyData> = {
   },
 
   "vaporfi": {
+    stats: [
+      { value: "High-traffic", label: "performance-optimized store" },
+      { value: "Compliant", label: "age-gating for US regulations" },
+      { value: "8 wks", label: "full store build" },
+    ],
     challenge:
       "VaporFi is a leading US vaping brand handling thousands of daily visitors. Their WooCommerce store needed to be both high-performance under traffic load and compliant with age verification requirements for tobacco and vaping products — a combination that most generic store builds fail to deliver.",
     steps: [
@@ -280,6 +341,11 @@ export const caseStudies: Record<string, CaseStudyData> = {
   },
 
   "varma-steels": {
+    stats: [
+      { value: "Digital", label: "B2B product catalog live" },
+      { value: "RFQ", label: "online quotation system" },
+      { value: "5 wks", label: "from brief to launch" },
+    ],
     challenge:
       "Varma Steels is a steel distributor whose sales process was entirely phone and in-person — a significant disadvantage as competitors with proper websites captured B2B buyers doing online research before making contact. Without a product catalog or specification documentation online, many potential buyers moved on before ever reaching the team.",
     steps: [
@@ -304,6 +370,11 @@ export const caseStudies: Record<string, CaseStudyData> = {
   },
 
   "vic-recyclers": {
+    stats: [
+      { value: "Top 3", label: "local search rank in Melbourne area" },
+      { value: "Daily", label: "inbound leads via quote form" },
+      { value: "5 wks", label: "from brief to launch" },
+    ],
     challenge:
       "VIC Recyclers is a Victoria-based auto recycler that had minimal online visibility for local search — meaning buyers searching 'car wreckers Melbourne' or 'scrap car removal Victoria' were finding and calling competitors instead. Every missed search placement was a lost sale.",
     steps: [
@@ -328,6 +399,11 @@ export const caseStudies: Record<string, CaseStudyData> = {
   },
 
   "nailashes": {
+    stats: [
+      { value: "24/7", label: "online appointment bookings" },
+      { value: "Automated", label: "confirmation & reminder emails" },
+      { value: "3 wks", label: "from brief to launch" },
+    ],
     challenge:
       "Nailashes is a nail and lash salon that was managing 100% of their bookings by phone — missing appointment requests that came in after hours and spending significant staff time on scheduling calls rather than servicing clients.",
     steps: [
@@ -352,6 +428,11 @@ export const caseStudies: Record<string, CaseStudyData> = {
   },
 
   "eco-car-wreckers": {
+    stats: [
+      { value: "Top 5", label: "NSW Google rankings for 'cash for cars' terms" },
+      { value: "3×", label: "increase in inbound enquiries vs. previous site" },
+      { value: "6 wks", label: "from brief to live site" },
+    ],
     challenge:
       "Eco Car Wreckers had been operating in the Sydney metropolitan area for years but relied almost entirely on word-of-mouth and a basic directory listing. Their old website had no SEO structure, no clear call-to-action, and loaded slowly on mobile — the device used by most people searching 'cash for cars' in a hurry.",
     steps: [
@@ -381,6 +462,11 @@ export const caseStudies: Record<string, CaseStudyData> = {
   },
 
   "map-dental": {
+    stats: [
+      { value: "24/7", label: "online appointment booking" },
+      { value: "3+", label: "treatment landing pages" },
+      { value: "5 wks", label: "from brief to launch" },
+    ],
     challenge:
       "MAP Dental Center had no online booking system — all appointments were made by phone during clinic hours. Prospective patients researching treatments online found no detailed information on the clinic's site, leading them to book with competitors who had more informative digital presences.",
     steps: [
@@ -405,6 +491,11 @@ export const caseStudies: Record<string, CaseStudyData> = {
   },
 
   "one-aesthetics": {
+    stats: [
+      { value: "24/7", label: "online booking — no more missed calls after hours" },
+      { value: "8", label: "treatment landing pages with individual SEO targeting" },
+      { value: "5 wks", label: "from discovery to launch" },
+    ],
     challenge:
       "One Aesthetics is a Canadian medical aesthetics clinic offering treatments from Botox and fillers to laser skin resurfacing. Their original site was a single-page brochure with no booking capability — all appointments were handled by phone during business hours only, resulting in missed after-hours enquiries.",
     steps: [
@@ -434,6 +525,11 @@ export const caseStudies: Record<string, CaseStudyData> = {
   },
 
   "dr-granoth": {
+    stats: [
+      { value: "Bilingual", label: "Hebrew & English platform" },
+      { value: "International", label: "patient & physician reach" },
+      { value: "6 wks", label: "from brief to launch" },
+    ],
     challenge:
       "Dr. Granoth is an Israeli hand surgery specialist who needed a bilingual (Hebrew and English) medical platform to serve both local Israeli patients and international patients seeking specialized microsurgical expertise. A single-language site was limiting his reach and failing to convey the depth of his specialization to English-speaking referring physicians.",
     steps: [
@@ -458,6 +554,11 @@ export const caseStudies: Record<string, CaseStudyData> = {
   },
 
   "diamond-labs": {
+    stats: [
+      { value: "Blockchain", label: "verified diamond provenance" },
+      { value: "GIA", label: "certificate display per product" },
+      { value: "8 wks", label: "full platform build" },
+    ],
     challenge:
       "Diamond Labs sells lab-grown diamonds — a category where buyer skepticism is high and the ability to prove authenticity and ethical origin is a direct conversion factor. Their original site lacked any mechanism for buyers to verify the diamonds they were purchasing, undermining the core value proposition of lab-grown stones.",
     steps: [
@@ -482,6 +583,11 @@ export const caseStudies: Record<string, CaseStudyData> = {
   },
 
   "collabdiary": {
+    stats: [
+      { value: "Full SaaS", label: "MVP launched end-to-end" },
+      { value: "Dual", label: "creator & brand onboarding flows" },
+      { value: "12 wks", label: "from spec to live platform" },
+    ],
     challenge:
       "CollabDiary is an influencer marketing startup that needed a full SaaS platform MVP — not just a marketing website. The platform needed to connect brands with content creators, manage campaign briefs, track collaboration deliverables, and report on campaign performance.",
     steps: [
@@ -506,6 +612,11 @@ export const caseStudies: Record<string, CaseStudyData> = {
   },
 
   "ht-business-group": {
+    stats: [
+      { value: "Multi-market", label: "international service area pages" },
+      { value: "CRM", label: "connected lead pipeline" },
+      { value: "6 wks", label: "from brief to launch" },
+    ],
     challenge:
       "HT Business Group is a multinational digital services firm that needed a corporate website capable of targeting multiple international markets simultaneously — with service area pages, a professional brand presentation, and a lead capture system connected to their sales CRM.",
     steps: [
@@ -530,6 +641,11 @@ export const caseStudies: Record<string, CaseStudyData> = {
   },
 
   "faber-israel": {
+    stats: [
+      { value: "Hebrew RTL", label: "fully right-to-left WooCommerce store" },
+      { value: "Subscription", label: "recurring pod delivery model" },
+      { value: "6 wks", label: "from brief to live store" },
+    ],
     challenge:
       "Faber Israel distributes premium Italian espresso machines and coffee pods in the Israeli market. Entering a new market required a fully Hebrew-language eCommerce presence with subscription capabilities — and the technical challenge of a right-to-left language in WooCommerce requires careful implementation to avoid layout and checkout issues.",
     steps: [
@@ -554,6 +670,11 @@ export const caseStudies: Record<string, CaseStudyData> = {
   },
 
   "vouge-flix": {
+    stats: [
+      { value: "Editorial", label: "magazine-style content platform" },
+      { value: "Live", label: "Instagram feed integration" },
+      { value: "4 wks", label: "from brief to launch" },
+    ],
     challenge:
       "Vouge Flix is a fashion media brand that needed a content platform built for visual storytelling — editorial lookbooks, brand spotlights, and trend coverage — designed to perform specifically with audiences who discover content through Instagram and expect a premium visual experience.",
     steps: [
@@ -578,6 +699,11 @@ export const caseStudies: Record<string, CaseStudyData> = {
   },
 
   "ernest-sturm": {
+    stats: [
+      { value: "Editorial", label: "luxury personal brand platform" },
+      { value: "Media kit", label: "downloadable for brand partners" },
+      { value: "3 wks", label: "from brief to launch" },
+    ],
     challenge:
       "Ernest Sturm is a luxury hospitality influencer who needed a professional personal brand platform to attract high-end hotel and brand partnerships. Directing potential sponsors to social media profiles alone wasn't sufficient — enterprise brands require a media kit, press page, and portfolio of previous collaborations.",
     steps: [
@@ -602,6 +728,11 @@ export const caseStudies: Record<string, CaseStudyData> = {
   },
 
   "pacific-connect": {
+    stats: [
+      { value: "Android", label: "community app deployed on Play Store" },
+      { value: "Multi-country", label: "diaspora communities served" },
+      { value: "10 wks", label: "from spec to Play Store launch" },
+    ],
     challenge:
       "The Pacific Connect app was commissioned to serve a geographically dispersed Pacific Islander community across multiple countries who lacked a single digital platform for community communication, event announcements, and resource sharing — relying on fragmented WhatsApp groups and email chains.",
     steps: [
@@ -626,6 +757,11 @@ export const caseStudies: Record<string, CaseStudyData> = {
   },
 
   "auto-reply-bot": {
+    stats: [
+      { value: "50K+", label: "downloads on Google Play Store" },
+      { value: "Multi-platform", label: "WhatsApp, SMS & messaging apps" },
+      { value: "8 wks", label: "from spec to Play Store launch" },
+    ],
     challenge:
       "Small business owners and busy individuals needed a way to automatically respond to incoming messages on WhatsApp, SMS, and other messaging apps when unavailable — without expensive CRM systems or requiring a dedicated person to manage messages during off-hours.",
     steps: [
@@ -650,6 +786,11 @@ export const caseStudies: Record<string, CaseStudyData> = {
   },
 
   "irestore-pdm": {
+    stats: [
+      { value: "Paperless", label: "field operations for job teams" },
+      { value: "On-site", label: "invoice generation from the app" },
+      { value: "10 wks", label: "from spec to Play Store launch" },
+    ],
     challenge:
       "iRestore is a property restoration contractor whose field teams were managing jobs with paper-based job sheets, physical inspection reports, and manual invoice creation — a process that caused delays, lost documentation, and errors when transferring field data back to the office.",
     steps: [
@@ -674,6 +815,11 @@ export const caseStudies: Record<string, CaseStudyData> = {
   },
 
   "whitelms-school": {
+    stats: [
+      { value: "Real-time", label: "attendance & push notifications" },
+      { value: "Single app", label: "replacing WhatsApp groups & paper" },
+      { value: "8 wks", label: "from spec to Play Store launch" },
+    ],
     challenge:
       "Whitelms Public School was managing parent-teacher communication across WhatsApp groups, physical notices, and phone calls — an inconsistent system where important information was regularly missed by parents. Teachers had no centralized tool for homework assignments, attendance, and school-wide announcements.",
     steps: [
@@ -698,6 +844,11 @@ export const caseStudies: Record<string, CaseStudyData> = {
   },
 
   "benaka-stores": {
+    stats: [
+      { value: "Full", label: "online grocery store launched" },
+      { value: "1-click", label: "repeat order checkout for returning buyers" },
+      { value: "5 wks", label: "from brief to live store" },
+    ],
     challenge:
       "Benaka Stores is a local grocery retailer that needed to move beyond walk-in customers and build an online ordering channel — but a generic eCommerce template couldn't handle the specific requirements of grocery: large product volumes, category-heavy browsing, and a checkout flow optimized for repeat buyers who know exactly what they want.",
     steps: [
