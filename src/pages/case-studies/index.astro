@@ -1,46 +1,21 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import { projects, filterCategories } from '../../data/projects';
 
-const caseStudies = [
-  {
-    slug: "eco-car-wreckers",
-    title: "Eco Car Wreckers",
-    category: "Automotive · SEO · Lead Gen",
-    summary: "From zero digital presence to page-1 Google rankings — how we built a lead machine for a Sydney car wrecking business.",
-    stats: [
-      { value: "Top 5", label: "NSW Google rank" },
-      { value: "3×", label: "more enquiries" },
-    ],
-    tags: ["WordPress", "SEO", "Lead Gen"],
-  },
-  {
-    slug: "one-aesthetics",
-    title: "One Aesthetics",
-    category: "Healthcare · Booking · Canada",
-    summary: "A Canadian medical aesthetics clinic that replaced phone-only bookings with a 24/7 automated online consultation system.",
-    stats: [
-      { value: "24/7", label: "online booking" },
-      { value: "8", label: "treatment pages" },
-    ],
-    tags: ["WordPress", "Booking System", "Healthcare"],
-  },
-  {
-    slug: "van-seat-covers",
-    title: "Van Seat Covers UK",
-    category: "eCommerce · Automotive · UK",
-    summary: "A UK automotive accessories store that solved the #1 friction for vehicle parts buyers: vehicle compatibility filtering.",
-    stats: [
-      { value: "60+", label: "van models covered" },
-      { value: "↓ Returns", label: "wrong-fit orders" },
-    ],
-    tags: ["WooCommerce", "eCommerce", "UK"],
-  },
-];
+const categoryLabel: Record<string, string> = {
+  ecommerce: "eCommerce",
+  business: "Business",
+  hospitality: "Hospitality",
+  healthcare: "Healthcare",
+  automotive: "Automotive",
+  "mobile-apps": "Mobile App",
+  "saas-tech": "SaaS & Tech",
+};
 ---
 
 <BaseLayout
   title="Case Studies — GeekBytes Web Development & IT Solutions"
-  description="Real project case studies from GeekBytes. See how we helped automotive, healthcare, and eCommerce businesses grow with better websites and digital systems."
+  description="Real project case studies from GeekBytes. See how we helped businesses across automotive, healthcare, eCommerce, and more grow with better websites and digital systems."
 >
   <main class="bg-brand-black text-brand-white min-h-screen">
 
@@ -50,49 +25,72 @@ const caseStudies = [
         <p class="section-label mb-4">CLIENT WORK</p>
         <h1 class="text-4xl lg:text-5xl font-bold mb-4">Case Studies</h1>
         <p class="text-gray-400 text-lg max-w-2xl leading-relaxed">
-          A closer look at three projects — the challenge, what we built, and the results. Every project in our portfolio has a story; these are the ones we can share in detail.
+          {projects.length}+ real projects — the challenge, what we built, and the results. Click any project to read the full story.
         </p>
       </div>
     </section>
 
-    <!-- Case Study Cards -->
+    <!-- Filter tabs -->
+    <section class="px-4 pb-6">
+      <div class="max-w-container mx-auto flex flex-wrap gap-3" id="filter-tabs">
+        <button data-filter="all" class="filter-btn active px-4 py-2 rounded-full text-sm font-medium bg-brand-accent text-white transition-colors">
+          All ({projects.length})
+        </button>
+        {filterCategories.slice(1).map((cat) => {
+          const count = projects.filter(p => p.category === cat.key).length;
+          return count > 0 ? (
+            <button
+              data-filter={cat.key}
+              class="filter-btn px-4 py-2 rounded-full text-sm font-medium border border-white/20 text-brand-white/70 hover:border-brand-accent/50 hover:text-brand-white transition-colors"
+            >
+              {cat.label} ({count})
+            </button>
+          ) : null;
+        })}
+      </div>
+    </section>
+
+    <!-- Project grid -->
     <section class="pb-24 px-4">
-      <div class="max-w-container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {caseStudies.map((cs) => (
+      <div class="max-w-container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5" id="case-grid">
+        {projects.map((project) => (
           <a
-            href={`/case-studies/${cs.slug}`}
-            class="group block bg-white/5 border border-white/10 hover:border-brand-accent/40 rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1"
+            href={`/case-studies/${project.slug}`}
+            data-category={project.category}
+            class="case-card group block bg-white/5 border border-white/10 hover:border-brand-accent/40 rounded-2xl p-5 transition-all duration-300 hover:-translate-y-1"
           >
-            <!-- Category -->
-            <p class="text-xs text-gray-500 mb-3">{cs.category}</p>
+            <!-- Category pill -->
+            <p class="text-xs text-gray-500 mb-3">{categoryLabel[project.category] ?? project.category}</p>
 
             <!-- Title -->
-            <h2 class="text-xl font-bold text-brand-white mb-3 group-hover:text-brand-accent transition-colors">{cs.title}</h2>
+            <h2 class="text-lg font-bold text-brand-white mb-2 group-hover:text-brand-accent transition-colors">{project.name}</h2>
 
-            <!-- Summary -->
-            <p class="text-gray-400 text-sm leading-relaxed mb-5">{cs.summary}</p>
+            <!-- Description -->
+            <p class="text-gray-400 text-sm leading-relaxed mb-4 line-clamp-2">{project.description}</p>
 
-            <!-- Stats -->
-            <div class="flex gap-6 mb-5 pt-4 border-t border-white/10">
-              {cs.stats.map((stat) => (
-                <div>
-                  <p class="text-xl font-bold text-brand-accent">{stat.value}</p>
-                  <p class="text-xs text-gray-500">{stat.label}</p>
-                </div>
-              ))}
-            </div>
+            <!-- Stats (if any) -->
+            {project.stats && project.stats.length > 0 && (
+              <div class="flex gap-6 mb-4 pt-3 border-t border-white/10">
+                {project.stats.map((stat) => (
+                  <div>
+                    <p class="text-lg font-bold text-brand-accent">{stat.value}</p>
+                    <p class="text-xs text-gray-500">{stat.label}</p>
+                  </div>
+                ))}
+              </div>
+            )}
 
-            <!-- Tags -->
-            <div class="flex flex-wrap gap-2">
-              {cs.tags.map((tag) => (
-                <span class="text-xs px-2 py-1 rounded-full border border-white/15 text-gray-400">{tag}</span>
+            <!-- Tech tags -->
+            <div class="flex flex-wrap gap-1.5 mb-4">
+              {project.techTags.slice(0, 3).map((tag) => (
+                <span class="text-xs px-2 py-0.5 rounded-full border border-white/15 text-gray-400">{tag}</span>
               ))}
             </div>
 
             <!-- Read more -->
-            <p class="mt-5 text-brand-accent text-sm font-semibold flex items-center gap-1.5">
+            <p class="text-brand-accent text-xs font-semibold flex items-center gap-1">
               Read Case Study
-              <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              <svg class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
             </p>
           </a>
         ))}
@@ -109,3 +107,26 @@ const caseStudies = [
 
   </main>
 </BaseLayout>
+
+<script>
+  const buttons = document.querySelectorAll<HTMLButtonElement>('.filter-btn');
+  const cards = document.querySelectorAll<HTMLElement>('.case-card');
+
+  buttons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const filter = btn.dataset.filter!;
+
+      buttons.forEach((b) => {
+        b.classList.remove('active', 'bg-brand-accent', 'text-white');
+        b.classList.add('border', 'border-white/20', 'text-brand-white/70');
+      });
+      btn.classList.add('active', 'bg-brand-accent', 'text-white');
+      btn.classList.remove('border', 'border-white/20', 'text-brand-white/70');
+
+      cards.forEach((card) => {
+        const match = filter === 'all' || card.dataset.category === filter;
+        card.style.display = match ? '' : 'none';
+      });
+    });
+  });
+</script>

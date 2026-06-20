@@ -1,0 +1,144 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { projects } from '../../data/projects';
+import { caseStudies } from '../../data/case-studies';
+
+export async function getStaticPaths() {
+  return projects.map((project) => ({
+    params: { slug: project.slug },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+const caseStudy = caseStudies[project.slug];
+
+const categoryLabel: Record<string, string> = {
+  ecommerce: "eCommerce",
+  business: "Business",
+  hospitality: "Hospitality",
+  healthcare: "Healthcare",
+  automotive: "Automotive",
+  "mobile-apps": "Mobile App",
+  "saas-tech": "SaaS & Tech",
+};
+---
+
+<BaseLayout
+  title={`Case Study: ${project.name} — GeekBytes`}
+  description={`How GeekBytes built ${project.name}: ${project.description}`}
+>
+  <main class="bg-brand-black text-brand-white min-h-screen">
+
+    <!-- Hero -->
+    <section class="pt-32 pb-16 px-4">
+      <div class="max-w-3xl mx-auto">
+        <a href="/case-studies" class="inline-flex items-center gap-2 text-brand-accent text-sm mb-8 hover:underline">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+          All Case Studies
+        </a>
+
+        <div class="flex flex-wrap gap-2 mb-5">
+          <span class="text-xs px-3 py-1 rounded-full border border-brand-accent/50 text-brand-accent">
+            {categoryLabel[project.category] ?? project.category}
+          </span>
+          {project.techTags.map((tag) => (
+            <span class="text-xs px-3 py-1 rounded-full border border-white/20 text-gray-400">{tag}</span>
+          ))}
+        </div>
+
+        <h1 class="text-4xl lg:text-5xl font-bold mb-4">{project.name}</h1>
+        <p class="text-xl text-gray-400 leading-relaxed">{project.description}</p>
+
+        <div class="mt-8">
+          <a
+            href={project.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-brand-accent text-white font-semibold px-5 py-2.5 rounded-full text-sm hover:bg-brand-accent/90 transition-colors"
+          >
+            Visit Live Site
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats bar (if stats exist) -->
+    {project.stats && project.stats.length > 0 && (
+      <section class="border-y border-white/10 py-10 px-4">
+        <div class="max-w-3xl mx-auto flex flex-wrap justify-center gap-12 text-center">
+          {project.stats.map((stat) => (
+            <div>
+              <p class="text-3xl font-bold text-brand-accent">{stat.value}</p>
+              <p class="text-gray-400 text-sm mt-1">{stat.label}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+    )}
+
+    <!-- Body -->
+    {caseStudy ? (
+      <article class="max-w-3xl mx-auto px-4 py-16 space-y-14">
+
+        <!-- Challenge -->
+        <section>
+          <h2 class="text-2xl font-bold mb-4">The Challenge</h2>
+          <p class="text-gray-300 leading-relaxed">{caseStudy.challenge}</p>
+        </section>
+
+        <!-- What we built -->
+        <section>
+          <h2 class="text-2xl font-bold mb-6">What We Built</h2>
+          <ul class="space-y-5">
+            {caseStudy.steps.map((step, index) => (
+              <li class="flex gap-4">
+                <span class="w-8 h-8 rounded-full bg-brand-accent/10 border border-brand-accent/30 flex items-center justify-center text-brand-accent shrink-0 mt-0.5 text-sm font-bold">
+                  {index + 1}
+                </span>
+                <div>
+                  <p class="text-brand-white font-semibold">{step.title}</p>
+                  <p class="text-gray-400 text-sm mt-1 leading-relaxed">{step.description}</p>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <!-- Tech stack -->
+        <section>
+          <h2 class="text-2xl font-bold mb-4">Tech Stack</h2>
+          <div class="flex flex-wrap gap-3">
+            {project.techTags.map((tech) => (
+              <span class="text-sm px-3 py-1.5 rounded-lg border border-white/15 text-gray-300">{tech}</span>
+            ))}
+          </div>
+        </section>
+
+        <!-- Results -->
+        <section class="bg-white/5 border border-white/10 rounded-2xl p-8">
+          <h2 class="text-2xl font-bold mb-4">Results</h2>
+          <p class="text-gray-300 leading-relaxed">{caseStudy.outcomes}</p>
+        </section>
+
+        <!-- CTA -->
+        <section class="text-center pt-4">
+          <p class="text-gray-400 mb-6">Want results like these for your business?</p>
+          <a href="/#contact" class="inline-flex items-center gap-2 bg-brand-accent text-white font-semibold px-6 py-3 rounded-full hover:bg-brand-accent/90 transition-colors">
+            Get a Free Consultation
+          </a>
+        </section>
+
+      </article>
+    ) : (
+      <div class="max-w-3xl mx-auto px-4 py-16 text-center">
+        <p class="text-gray-400">Detailed case study coming soon.</p>
+        <a href="/#contact" class="inline-flex items-center gap-2 mt-6 bg-brand-accent text-white font-semibold px-6 py-3 rounded-full hover:bg-brand-accent/90 transition-colors">
+          Ask Us About This Project
+        </a>
+      </div>
+    )}
+
+  </main>
+</BaseLayout>
