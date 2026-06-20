@@ -1,0 +1,143 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Case Study: Van Seat Covers UK — Automotive eCommerce | GeekBytes"
+  description="How GeekBytes built a vehicle-compatible WooCommerce store for Van Seat Covers UK that lets buyers find the right seat cover for their specific van model in seconds."
+>
+  <main class="bg-brand-black text-brand-white min-h-screen">
+
+    <!-- Hero -->
+    <section class="pt-32 pb-16 px-4">
+      <div class="max-w-3xl mx-auto">
+        <a href="/#projects" class="inline-flex items-center gap-2 text-brand-accent text-sm mb-8 hover:underline">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+          Back to Portfolio
+        </a>
+
+        <div class="flex flex-wrap gap-2 mb-5">
+          <span class="text-xs px-3 py-1 rounded-full border border-brand-accent/50 text-brand-accent">eCommerce</span>
+          <span class="text-xs px-3 py-1 rounded-full border border-white/20 text-gray-400">Automotive</span>
+          <span class="text-xs px-3 py-1 rounded-full border border-white/20 text-gray-400">WooCommerce</span>
+          <span class="text-xs px-3 py-1 rounded-full border border-white/20 text-gray-400">UK</span>
+        </div>
+
+        <h1 class="text-4xl lg:text-5xl font-bold mb-4">Van Seat Covers UK</h1>
+        <p class="text-xl text-gray-400 leading-relaxed">
+          A UK automotive accessories store that solved the #1 eCommerce friction for vehicle parts buyers: "will this actually fit my van?"
+        </p>
+
+        <div class="flex items-center gap-4 mt-8">
+          <a
+            href="https://www.vanseatcoversuk.co.uk/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-brand-accent text-white font-semibold px-5 py-2.5 rounded-full text-sm hover:bg-brand-accent/90 transition-colors"
+          >
+            Visit Live Site
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats bar -->
+    <section class="border-y border-white/10 py-10 px-4">
+      <div class="max-w-3xl mx-auto grid grid-cols-3 gap-6 text-center">
+        <div>
+          <p class="text-3xl font-bold text-brand-accent">60+</p>
+          <p class="text-gray-400 text-sm mt-1">van makes & models covered with compatibility filtering</p>
+        </div>
+        <div>
+          <p class="text-3xl font-bold text-brand-accent">↓ Returns</p>
+          <p class="text-gray-400 text-sm mt-1">fewer "wrong fit" returns thanks to vehicle selector</p>
+        </div>
+        <div>
+          <p class="text-3xl font-bold text-brand-accent">7 wks</p>
+          <p class="text-gray-400 text-sm mt-1">from brief to live store</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Body -->
+    <article class="max-w-3xl mx-auto px-4 py-16 space-y-14">
+
+      <!-- Challenge -->
+      <section>
+        <h2 class="text-2xl font-bold mb-4">The Challenge</h2>
+        <p class="text-gray-300 leading-relaxed">
+          Van Seat Covers UK sells custom-fit seat covers for commercial vans — but "custom-fit" only works if buyers order the right product for their specific vehicle. With dozens of van makes, models, and cab configurations, the original site presented products in a flat catalog with no filtering, leading to frequent "wrong fit" returns and frustrated customers.
+        </p>
+        <p class="text-gray-300 leading-relaxed mt-4">
+          The brief was to build a shopping experience where a Transit Custom driver and a Sprinter driver both land on the right product page instantly, with no guessing and no phone calls to the team for clarification.
+        </p>
+      </section>
+
+      <!-- What we built -->
+      <section>
+        <h2 class="text-2xl font-bold mb-4">What We Built</h2>
+        <ul class="space-y-4">
+          <li class="flex gap-4">
+            <span class="w-8 h-8 rounded-full bg-brand-accent/10 border border-brand-accent/30 flex items-center justify-center text-brand-accent shrink-0 mt-0.5">1</span>
+            <div>
+              <p class="text-brand-white font-semibold">Vehicle Compatibility Filter</p>
+              <p class="text-gray-400 text-sm mt-1">A three-step "Make → Model → Year" selector on the shop and homepage that instantly filters the product catalog to only show seat covers guaranteed to fit the selected vehicle. Built with custom WooCommerce attributes and AJAX filtering.</p>
+            </div>
+          </li>
+          <li class="flex gap-4">
+            <span class="w-8 h-8 rounded-full bg-brand-accent/10 border border-brand-accent/30 flex items-center justify-center text-brand-accent shrink-0 mt-0.5">2</span>
+            <div>
+              <p class="text-brand-white font-semibold">Vehicle-Specific Landing Pages</p>
+              <p class="text-gray-400 text-sm mt-1">Dedicated SEO pages for the highest-volume van models (Ford Transit, VW Transporter, Mercedes Sprinter, etc.) targeting searches like "Ford Transit seat covers UK" — each with model-specific imagery and fitment guarantees.</p>
+            </div>
+          </li>
+          <li class="flex gap-4">
+            <span class="w-8 h-8 rounded-full bg-brand-accent/10 border border-brand-accent/30 flex items-center justify-center text-brand-accent shrink-0 mt-0.5">3</span>
+            <div>
+              <p class="text-brand-white font-semibold">Product Configurator</p>
+              <p class="text-gray-400 text-sm mt-1">On each product page, buyers can choose material (leatherette, canvas, neoprene), colour, and cab type (single, double, crew) with live price updates — reducing back-and-forth customer emails significantly.</p>
+            </div>
+          </li>
+          <li class="flex gap-4">
+            <span class="w-8 h-8 rounded-full bg-brand-accent/10 border border-brand-accent/30 flex items-center justify-center text-brand-accent shrink-0 mt-0.5">4</span>
+            <div>
+              <p class="text-brand-white font-semibold">Trust Signals & Fitment Guarantee</p>
+              <p class="text-gray-400 text-sm mt-1">A prominent "Guaranteed Fit or Free Return" banner on product and checkout pages, alongside verified buyer reviews filtered by vehicle type — addressing the biggest purchase objection for automotive accessories online.</p>
+            </div>
+          </li>
+        </ul>
+      </section>
+
+      <!-- Tech stack -->
+      <section>
+        <h2 class="text-2xl font-bold mb-4">Tech Stack</h2>
+        <div class="flex flex-wrap gap-3">
+          {["WordPress", "WooCommerce", "AJAX Product Filter", "Custom Attributes", "Yoast SEO", "Stripe", "Royal Mail Shipping"].map(tech => (
+            <span class="text-sm px-3 py-1.5 rounded-lg border border-white/15 text-gray-300">{tech}</span>
+          ))}
+        </div>
+      </section>
+
+      <!-- Results -->
+      <section class="bg-white/5 border border-white/10 rounded-2xl p-8">
+        <h2 class="text-2xl font-bold mb-4">Results</h2>
+        <p class="text-gray-300 leading-relaxed">
+          The vehicle compatibility filter became the primary entry point to the store — most visitors now use it rather than browsing the general catalog. Wrong-fit returns dropped significantly as buyers could self-verify compatibility before checkout.
+        </p>
+        <p class="text-gray-300 leading-relaxed mt-4">
+          Vehicle-specific landing pages began ranking organically for brand+model queries within 2 months, driving targeted traffic from buyers who already know exactly what they need — the highest-intent visitors in any eCommerce category.
+        </p>
+      </section>
+
+      <!-- CTA -->
+      <section class="text-center pt-4">
+        <p class="text-gray-400 mb-6">Selling vehicle parts or accessories online? We know how to solve the compatibility problem.</p>
+        <a href="/#contact" class="inline-flex items-center gap-2 bg-brand-accent text-white font-semibold px-6 py-3 rounded-full hover:bg-brand-accent/90 transition-colors">
+          Get a Free Consultation
+        </a>
+      </section>
+
+    </article>
+  </main>
+</BaseLayout>

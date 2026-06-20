@@ -12,6 +12,7 @@ export interface Project {
   category: string;
   url: string;
   stats?: ProjectStat[];
+  caseStudySlug?: string;
 }
 
 export interface FilterCategory {
@@ -34,7 +35,7 @@ export const projects: Project[] = [
   {
     name: "Ori Beleza",
     slug: "ori-beleza",
-    description: "A modern, elegant, and visually engaging eCommerce website for a beauty brand.",
+    description: "Brazilian-inspired beauty eCommerce store with a curated product catalog and mobile-first checkout flow. Built on WooCommerce with a focus on visual storytelling and reducing cart abandonment.",
     thumbnail: "/images/projects/ori-beleza.webp",
     techTags: ["WordPress", "WooCommerce", "eCommerce"],
     category: "ecommerce",
@@ -43,7 +44,7 @@ export const projects: Project[] = [
   {
     name: "TEDxNuremberg",
     slug: "tedxnuremberg",
-    description: "A modern, visually engaging, and event-focused website for TEDx Nuremberg.",
+    description: "Official site for a licensed TEDx event in Nuremberg, Germany — built to handle speaker profiles, schedule publishing, and event registrations. Custom theme aligned with the bold TEDx visual identity.",
     thumbnail: "/images/projects/tedxnuremberg.webp",
     techTags: ["WordPress", "Events", "Custom Design"],
     category: "business",
@@ -52,7 +53,7 @@ export const projects: Project[] = [
   {
     name: "Hardens",
     slug: "hardens",
-    description: "A modern, content-rich, and user-focused website for Hardens restaurant guides.",
+    description: "UK's longest-running restaurant guide platform, with thousands of indexed listings and SEO-structured review pages. Custom WordPress architecture with schema markup for rich Google search results.",
     thumbnail: "/images/projects/hardens.webp",
     techTags: ["WordPress", "Content Platform", "SEO"],
     category: "hospitality",
@@ -61,7 +62,7 @@ export const projects: Project[] = [
   {
     name: "Speciality",
     slug: "speciality",
-    description: "A modern, professional, and business-focused website for Speciality.",
+    description: "B2B business website with a product catalog, enquiry management system, and service-area landing pages optimized for organic search. Replaced an outdated site with a fully responsive platform.",
     thumbnail: "/images/projects/speciality.webp",
     techTags: ["WordPress", "Business", "Custom Theme"],
     category: "business",
@@ -70,7 +71,7 @@ export const projects: Project[] = [
   {
     name: "The Palm",
     slug: "the-palm",
-    description: "A modern, elegant, and hospitality-focused website for The Palm.",
+    description: "Digital presence for an iconic US steakhouse chain, with location-specific pages, OpenTable reservation integration, and a CMS-powered menu system for seamless staff updates.",
     thumbnail: "/images/projects/the-palm.webp",
     techTags: ["WordPress", "Hospitality", "Luxury"],
     category: "hospitality",
@@ -79,7 +80,7 @@ export const projects: Project[] = [
   {
     name: "Zum Wildbach",
     slug: "zum-wildbach",
-    description: "A modern, elegant, and hospitality-focused website for Zum Wildbach restaurant.",
+    description: "Bilingual (German/English) restaurant website for a traditional Bavarian eatery, with a custom table reservation form and a seasonal menu that staff update without developer support.",
     thumbnail: "/images/projects/zum-wildbach.webp",
     techTags: ["WordPress", "Hospitality", "Multilingual"],
     category: "hospitality",
@@ -88,7 +89,7 @@ export const projects: Project[] = [
   {
     name: "Sushiya",
     slug: "sushiya",
-    description: "A modern, visually engaging, and customer-focused website for Sushiya restaurant.",
+    description: "Sushi restaurant site built for online ordering, with an interactive menu gallery, delivery zone map, and WhatsApp order integration that converted in-person customers to repeat online orders.",
     thumbnail: "/images/projects/sushiya.webp",
     techTags: ["WordPress", "Restaurant", "Online Ordering"],
     category: "hospitality",
@@ -97,25 +98,30 @@ export const projects: Project[] = [
   {
     name: "Van Seat Covers UK",
     slug: "van-seat-covers",
-    description: "A modern, user-friendly, and conversion-focused eCommerce website for Van Seat Covers UK.",
+    description: "UK automotive eCommerce store with vehicle-compatibility filtering so buyers instantly find the right seat cover for their specific van make and model — reducing support queries significantly.",
     thumbnail: "/images/projects/van-seat-covers.webp",
     techTags: ["WordPress", "WooCommerce", "eCommerce"],
     category: "ecommerce",
     url: "https://www.vanseatcoversuk.co.uk/",
+    caseStudySlug: "van-seat-covers",
   },
   {
     name: "Truck Wreckers SA",
     slug: "truck-wreckers-sa",
-    description: "A modern, responsive, and lead-generation-focused website for Truck Wreckers SA.",
+    description: "Lead-generation site for a South Australian truck dismantler, with a prominent click-to-call CTA and parts enquiry form that became the primary channel for new inbound business.",
     thumbnail: "/images/projects/truck-wreckers.webp",
     techTags: ["WordPress", "Lead Gen", "SEO"],
     category: "automotive",
     url: "https://www.truckwreckerssa.com.au/",
+    stats: [
+      { value: "#1", label: "Google rank (SA)" },
+      { value: "60%+", label: "leads via website" },
+    ],
   },
   {
     name: "Tobe Jewelry",
     slug: "tobe-jewelry",
-    description: "A modern, elegant, and luxury-focused eCommerce website for Tobe Jewelry.",
+    description: "Luxury jewelry eCommerce site with high-resolution product galleries, zoom-on-hover imagery, and a streamlined checkout flow designed to match the premium feel of the brand.",
     thumbnail: "/images/projects/tobe-jewelry.webp",
     techTags: ["WordPress", "WooCommerce", "Luxury"],
     category: "ecommerce",
@@ -124,7 +130,7 @@ export const projects: Project[] = [
   {
     name: "VaporFi",
     slug: "vaporfi",
-    description: "A modern, high-performance, and visually engaging eCommerce website for VaporFi.",
+    description: "High-traffic WooCommerce store for a leading US vaping brand, handling thousands of daily visitors with performance-optimized product pages, compliance-ready age-gating, and a loyalty rewards system.",
     thumbnail: "/images/projects/vaporfi.webp",
     techTags: ["WordPress", "WooCommerce", "High-Traffic"],
     category: "ecommerce",
@@ -133,7 +139,7 @@ export const projects: Project[] = [
   {
     name: "Varma Steels",
     slug: "varma-steels",
-    description: "A modern, industrial-focused, and professionally structured website for Varma Steels.",
+    description: "B2B web presence for a steel distributor, with a structured product catalog, downloadable spec sheets, and a quotation request form that replaced a previously phone-only sales process.",
     thumbnail: "/images/projects/varma-steels.webp",
     techTags: ["WordPress", "Industrial", "Business"],
     category: "business",
@@ -142,16 +148,20 @@ export const projects: Project[] = [
   {
     name: "VIC Recyclers",
     slug: "vic-recyclers",
-    description: "A modern, professional, and lead-focused website for VIC Recyclers.",
+    description: "Auto recycler lead-gen site targeting 'car wreckers Melbourne' and surrounding suburbs, with an instant cash-for-cars quote form driving consistent inbound enquiries from Google search.",
     thumbnail: "/images/projects/vic-recyclers.webp",
     techTags: ["WordPress", "Lead Gen", "Automotive"],
     category: "automotive",
     url: "https://www.vicrecyclers.com.au/",
+    stats: [
+      { value: "Top 3", label: "local search rank" },
+      { value: "Daily", label: "inbound leads" },
+    ],
   },
   {
     name: "Nailashes",
     slug: "nailashes",
-    description: "A stylish, modern, and visually engaging website for Nailashes beauty brand.",
+    description: "Beauty salon website with a full service menu, gallery, and online booking integration — replacing a manual phone-based scheduling process with an automated appointment system.",
     thumbnail: "/images/projects/nailashes.webp",
     techTags: ["WordPress", "Beauty", "Custom Design"],
     category: "ecommerce",
@@ -160,16 +170,21 @@ export const projects: Project[] = [
   {
     name: "Eco Car Wreckers",
     slug: "ecocar-wreckers",
-    description: "A modern, high-performance, and conversion-focused website for Eco Car Wreckers.",
+    description: "Conversion-focused site for a Sydney car wrecking service, with an instant vehicle valuation tool and SEO targeting 'cash for cars NSW' keywords to capture high-intent buyers.",
     thumbnail: "/images/projects/ecocar-wreckers.webp",
     techTags: ["WordPress", "Lead Gen", "Automotive"],
     category: "automotive",
     url: "https://ecocarwreckers.com.au/",
+    caseStudySlug: "eco-car-wreckers",
+    stats: [
+      { value: "3x", label: "more enquiries" },
+      { value: "Top 5", label: "NSW search rank" },
+    ],
   },
   {
     name: "MAP Dental Center",
     slug: "map-dental",
-    description: "A professional, modern, and patient-focused website for MAP Dental Center.",
+    description: "Dental clinic website with online appointment booking, individual treatment pages (implants, whitening, orthodontics), and before/after galleries to convert research-stage visitors into booked patients.",
     thumbnail: "/images/projects/map-dental.webp",
     techTags: ["WordPress", "Healthcare", "Appointment"],
     category: "healthcare",
@@ -178,16 +193,17 @@ export const projects: Project[] = [
   {
     name: "One Aesthetics",
     slug: "one-aesthetics",
-    description: "A modern, elegant, and user-centric website for One Aesthetics clinic.",
+    description: "Canadian medical aesthetics clinic with an online consultation booking flow, dedicated landing pages for each treatment, and a results gallery built for trust with prospective patients.",
     thumbnail: "/images/projects/one-aesthetics.webp",
     techTags: ["WordPress", "Healthcare", "Booking"],
     category: "healthcare",
     url: "https://oneaesthetics.ca/",
+    caseStudySlug: "one-aesthetics",
   },
   {
     name: "Dr. Granoth",
     slug: "dr-granoth",
-    description: "A specialized medical platform focused on advanced hand surgery and microsurgical treatments.",
+    description: "Bilingual (Hebrew/English) medical website for an Israeli hand surgery specialist, with detailed procedure pages, a patient referral system, and academic credentials presented for international audiences.",
     thumbnail: "/images/projects/dr-granoth.webp",
     techTags: ["WordPress", "Medical", "Multilingual"],
     category: "healthcare",
@@ -196,7 +212,7 @@ export const projects: Project[] = [
   {
     name: "Diamond Labs",
     slug: "diamond-labs",
-    description: "An innovative platform combining luxury jewelry with blockchain integration and digital solutions.",
+    description: "Luxury jewelry platform integrating blockchain certificate verification — buyers can trace the origin and GIA certification of every lab-grown diamond before purchase.",
     thumbnail: "/images/projects/diamond-labs.webp",
     techTags: ["WordPress", "Blockchain", "eCommerce"],
     category: "saas-tech",
@@ -205,7 +221,7 @@ export const projects: Project[] = [
   {
     name: "CollabDiary",
     slug: "collabdiary",
-    description: "A modern influencer marketing platform connecting content creators with brands.",
+    description: "SaaS influencer marketing platform connecting content creators with brand campaigns, featuring profile matching, campaign dashboards, and collaboration tracking built for the creator economy.",
     thumbnail: "/images/projects/collabdiary.webp",
     techTags: ["WordPress", "SaaS", "Marketing Platform"],
     category: "saas-tech",
@@ -214,7 +230,7 @@ export const projects: Project[] = [
   {
     name: "HT Business Group",
     slug: "ht-business-group",
-    description: "A global digital solutions company specializing in web development and cloud-based applications.",
+    description: "Corporate website for a multinational digital services firm, with service-area pages targeting multiple international markets and a CRM-connected lead form for sales pipeline management.",
     thumbnail: "/images/projects/ht-business.webp",
     techTags: ["WordPress", "SaaS", "Business"],
     category: "saas-tech",
@@ -223,7 +239,7 @@ export const projects: Project[] = [
   {
     name: "Faber Israel",
     slug: "faber-israel",
-    description: "A premium eCommerce platform specializing in Italian coffee machines and high-quality pods.",
+    description: "Premium WooCommerce store for Italian espresso machines and coffee pods in the Israeli market, with Hebrew/English language support and a subscription model for recurring pod deliveries.",
     thumbnail: "/images/projects/faber.webp",
     techTags: ["WordPress", "WooCommerce", "Premium"],
     category: "ecommerce",
@@ -232,7 +248,7 @@ export const projects: Project[] = [
   {
     name: "Vouge Flix",
     slug: "vouge-flix",
-    description: "A modern, visually engaging, and high-performance website for Vouge Flix.",
+    description: "Fashion editorial platform featuring lookbooks, brand spotlights, and trend coverage, built for high visual impact and designed specifically to drive engagement from Instagram-first audiences.",
     thumbnail: "/images/projects/vouge-flix.webp",
     techTags: ["WordPress", "Media", "Custom Design"],
     category: "saas-tech",
@@ -241,7 +257,7 @@ export const projects: Project[] = [
   {
     name: "Ernest Sturm",
     slug: "ernest-sturm",
-    description: "A personal brand platform showcasing expertise in luxury hospitality and influencer marketing.",
+    description: "Personal brand platform for a luxury hospitality influencer, with an editorial layout showcasing hotel reviews, brand partnerships, and press features designed to attract high-end sponsorship deals.",
     thumbnail: "/images/projects/ernest-sturm.webp",
     techTags: ["WordPress", "Personal Brand", "Luxury"],
     category: "business",
@@ -250,7 +266,7 @@ export const projects: Project[] = [
   {
     name: "Pacific Connect",
     slug: "pacific-connect",
-    description: "A mobile app for seamless community connectivity, communication, and resource sharing.",
+    description: "Android community app for Pacific Islanders, enabling group messaging, event announcements, and resource sharing across diaspora communities in multiple countries.",
     thumbnail: "/images/projects/pacific-connect.webp",
     techTags: ["Mobile App", "Android", "Connectivity"],
     category: "mobile-apps",
@@ -259,16 +275,19 @@ export const projects: Project[] = [
   {
     name: "Auto Reply Bot",
     slug: "auto-reply-bot",
-    description: "An intelligent automation tool for auto-replying to messages across messaging platforms.",
+    description: "Android automation app with 50,000+ downloads that sets custom auto-replies across WhatsApp, SMS, and messaging apps based on user-defined trigger rules — ideal for small business owners.",
     thumbnail: "/images/projects/auto-reply-bot.webp",
     techTags: ["Mobile App", "AI", "Automation"],
     category: "mobile-apps",
     url: "https://play.google.com/store/apps/details?id=com.tools.autoreplybot.app&hl=en",
+    stats: [
+      { value: "50K+", label: "downloads" },
+    ],
   },
   {
     name: "iRestore PDM",
     slug: "irestore-pdm",
-    description: "A property restoration management app for streamlining jobs, CRM, and reporting.",
+    description: "Field management app for property restoration contractors, replacing paper-based job sheets with digital tracking, client CRM, photo documentation, and on-site invoice generation.",
     thumbnail: "/images/projects/irestore-pdm.webp",
     techTags: ["Mobile App", "Management", "CRM"],
     category: "mobile-apps",
@@ -277,7 +296,7 @@ export const projects: Project[] = [
   {
     name: "Whitelms Public School",
     slug: "whitelms-school",
-    description: "A school management app enhancing communication between schools, teachers, and parents.",
+    description: "School management app linking parents, teachers, and administrators with real-time attendance tracking, homework assignments, and push notification alerts for daily school communication.",
     thumbnail: "/images/projects/whitelms-school.webp",
     techTags: ["Mobile App", "Education", "LMS"],
     category: "mobile-apps",
@@ -286,7 +305,7 @@ export const projects: Project[] = [
   {
     name: "Benaka Stores",
     slug: "benaka-stores",
-    description: "A modern, fully-featured eCommerce store delivering a seamless online shopping experience.",
+    description: "Full-featured WooCommerce grocery store with category browsing, a search-first product discovery UX, and a checkout flow optimized for repeat buyers and bulk orders.",
     thumbnail: "/images/projects/benaka-stores.webp",
     techTags: ["WordPress", "WooCommerce", "eCommerce"],
     category: "ecommerce",
