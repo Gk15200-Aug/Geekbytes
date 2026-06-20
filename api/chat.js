@@ -1,5 +1,5 @@
 // Vercel Serverless Edge Function — /api/chat
-// Proxies requests to OpenAI so the API key never reaches the browser.
+// Proxies requests to Gemini so the API key never reaches the browser.
 export const config = { runtime: 'edge' };
 
 const SYSTEM_PROMPT = `You are GeekBytes AI — a friendly, knowledgeable assistant for GeekBytes, a remote-first IT solutions company founded in 2020. Your role is to help website visitors understand services, pricing, timelines, and how to get started. Always be concise, professional, and helpful.
@@ -65,7 +65,7 @@ export default async function handler(request) {
     });
   }
 
-  const apiKey = process.env.OPENAI_API_KEY;
+  const apiKey = process.env.GEMINI_API_KEY;
   if (!apiKey) {
     return new Response(
       JSON.stringify({ error: 'AI service not configured. Please contact us directly.' }),
@@ -86,30 +86,41 @@ export default async function handler(request) {
   }
 
   try {
-    const openaiRes = await fetch('https://api.openai.com/v1/chat/completions', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${apiKey}`,
-      },
-      body: JSON.stringify({
-        model: 'gpt-4o-mini',
-        messages: [{ role: 'system', content: SYSTEM_PROMPT }, ...messages.slice(-12)],
-        max_tokens: 350,
-        temperature: 0.65,
-      }),
-    });
+    // Convert OpenAI-style messages to Gemini format
+    // Gemini uses "user"/"model" roles (not "assistant")
+    const geminiContents = messages.slice(-12).map(m => ({
+      role: m.role === 'assistant' ? 'model' : 'user',
+      parts: [{ text: m.content }],
+    }));
 
-    if (!openaiRes.ok) {
-      const errData = await openaiRes.json().catch(() => ({}));
+    const geminiRes = await fetch(
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`,
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          system_instruction: {
+            parts: [{ text: SYSTEM_PROMPT }],
+          },
+          contents: geminiContents,
+          generationConfig: {
+            maxOutputTokens: 350,
+            temperature: 0.65,
+          },
+        }),
+      }
+    );
+
+    if (!geminiRes.ok) {
+      const errData = await geminiRes.json().catch(() => ({}));
       return new Response(
         JSON.stringify({ error: errData?.error?.message || 'AI service error' }),
-        { status: openaiRes.status, headers: { 'Content-Type': 'application/json' } }
+        { status: geminiRes.status, headers: { 'Content-Type': 'application/json' } }
       );
     }
 
-    const data = await openaiRes.json();
-    const content = data.choices?.[0]?.message?.content ?? '';
+    const data = await geminiRes.json();
+    const content = data.candidates?.[0]?.content?.parts?.[0]?.text ?? '';
 
     return new Response(JSON.stringify({ content }), {
       status: 200,
