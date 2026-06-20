@@ -1,0 +1,351 @@
+---
+const suggestions = [
+  "What services do you offer?",
+  "How much does a website cost?",
+  "Can you build me an AI chatbot?",
+  "How long does a project take?",
+  "How do I get started?",
+];
+---
+
+<!-- ─── Floating toggle button ─── -->
+<button
+  id="chatbot-toggle"
+  aria-label="Open GeekBytes AI Assistant"
+  title="Ask GeekBytes AI"
+  class="fixed bottom-24 left-6 z-50 w-14 h-14 rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00A3FF]"
+  style="background: linear-gradient(135deg, #00A3FF 0%, #0070cc 100%); box-shadow: 0 4px 24px rgba(0,163,255,0.4);"
+>
+  <!-- Bot icon (shown when closed) -->
+  <svg id="chatbot-icon-open" class="w-7 h-7 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <rect x="3" y="11" width="18" height="10" rx="2"/>
+    <circle cx="12" cy="5" r="2"/>
+    <line x1="12" y1="7" x2="12" y2="11"/>
+    <line x1="8" y1="15" x2="8" y2="17"/>
+    <line x1="16" y1="15" x2="16" y2="17"/>
+  </svg>
+  <!-- X icon (shown when open) -->
+  <svg id="chatbot-icon-close" class="w-6 h-6 text-white hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true">
+    <line x1="18" y1="6" x2="6" y2="18"/>
+    <line x1="6" y1="6" x2="18" y2="18"/>
+  </svg>
+</button>
+
+<!-- Pulse ring (hidden once opened) -->
+<span id="chatbot-pulse" class="fixed bottom-24 left-6 z-40 w-14 h-14 rounded-full pointer-events-none animate-ping" style="background: rgba(0,163,255,0.25);"></span>
+
+<!-- ─── Chat window ─── -->
+<div
+  id="chatbot-window"
+  role="dialog"
+  aria-label="GeekBytes AI Assistant"
+  aria-modal="true"
+  class="fixed bottom-[calc(6rem+4rem)] left-6 z-50 w-[340px] max-w-[calc(100vw-3rem)] flex flex-col rounded-2xl overflow-hidden transition-all duration-300 origin-bottom-left"
+  style="height: 500px; background: #0a0a0a; border: 1px solid rgba(255,255,255,0.08); box-shadow: 0 24px 60px rgba(0,0,0,0.7); transform: scale(0.92); opacity: 0; pointer-events: none;"
+>
+  <!-- Header -->
+  <div class="flex items-center gap-3 px-4 py-3 shrink-0" style="background: #111; border-bottom: 1px solid rgba(255,255,255,0.07);">
+    <!-- Avatar -->
+    <div class="w-9 h-9 rounded-full flex items-center justify-center shrink-0" style="background: rgba(0,163,255,0.15); border: 1px solid rgba(0,163,255,0.3);">
+      <svg class="w-5 h-5" style="color:#00A3FF;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <rect x="3" y="11" width="18" height="10" rx="2"/>
+        <circle cx="12" cy="5" r="2"/>
+        <line x1="12" y1="7" x2="12" y2="11"/>
+        <line x1="8" y1="15" x2="8" y2="17"/>
+        <line x1="16" y1="15" x2="16" y2="17"/>
+      </svg>
+    </div>
+    <!-- Name & status -->
+    <div class="flex-1 min-w-0">
+      <div class="text-sm font-semibold text-white leading-tight">GeekBytes AI</div>
+      <div class="flex items-center gap-1.5 mt-0.5">
+        <span class="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse shrink-0"></span>
+        <span class="text-xs text-gray-400 truncate">Online · Powered by GPT-4o</span>
+      </div>
+    </div>
+    <!-- Close button -->
+    <button id="chatbot-close-btn" aria-label="Close chat" class="p-1.5 rounded-lg hover:bg-white/5 text-gray-400 hover:text-white transition-colors shrink-0">
+      <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true">
+        <line x1="18" y1="6" x2="6" y2="18"/>
+        <line x1="6" y1="6" x2="18" y2="18"/>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Messages area -->
+  <div id="chatbot-messages" class="flex-1 overflow-y-auto px-4 py-4 space-y-4" style="scroll-behavior: smooth;">
+    <!-- Populated by JS -->
+  </div>
+
+  <!-- Input area -->
+  <div class="shrink-0 px-3 pb-3 pt-2" style="background: #111; border-top: 1px solid rgba(255,255,255,0.07);">
+    <div class="flex gap-2 items-end">
+      <textarea
+        id="chatbot-input"
+        rows="1"
+        placeholder="Ask about our services, pricing…"
+        maxlength="600"
+        class="flex-1 resize-none rounded-xl px-3 py-2 text-sm text-white placeholder-gray-500 focus:outline-none transition-colors"
+        style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); max-height: 96px; line-height: 1.5;"
+        aria-label="Your message"
+      ></textarea>
+      <button
+        id="chatbot-send"
+        aria-label="Send message"
+        class="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 transition-all duration-200 hover:opacity-80 disabled:opacity-40"
+        style="background: #00A3FF;"
+      >
+        <svg class="w-4 h-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="22" y1="2" x2="11" y2="13"/>
+          <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+        </svg>
+      </button>
+    </div>
+    <div class="mt-2 text-center">
+      <span class="text-[10px] text-gray-600">GeekBytes AI · </span>
+      <a href="/#contact" class="text-[10px]" style="color:#00A3FF;">Talk to a human →</a>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  // ─── Elements ───
+  const toggle = document.getElementById('chatbot-toggle');
+  const win    = document.getElementById('chatbot-window');
+  const closeBtn = document.getElementById('chatbot-close-btn');
+  const iconOpen  = document.getElementById('chatbot-icon-open');
+  const iconClose = document.getElementById('chatbot-icon-close');
+  const pulse  = document.getElementById('chatbot-pulse');
+  const msgBox = document.getElementById('chatbot-messages');
+  const input  = document.getElementById('chatbot-input');
+  const sendBtn = document.getElementById('chatbot-send');
+
+  let isOpen = false;
+  let isBusy = false;
+  let chatHistory = [];
+  let greeted = false;
+
+  const SUGGESTIONS = [
+    "What services do you offer?",
+    "How much does a website cost?",
+    "Can you build me an AI chatbot?",
+    "How long does a project take?",
+    "How do I get started?",
+  ];
+
+  // ─── Helpers ───
+  function esc(s) {
+    return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  function md(text) {
+    return esc(text)
+      .replace(/\*\*(.*?)\*\*/g, '<strong class="text-white font-semibold">$1</strong>')
+      .replace(/\*(.*?)\*/g, '<em>$1</em>')
+      .replace(/`(.*?)`/g, '<code class="bg-white/10 px-1 rounded text-xs font-mono">$1</code>')
+      .replace(/^•\s(.+)$/gm, '<span class="flex gap-1.5 mt-0.5"><span style="color:#00A3FF;margin-top:3px;">•</span><span>$1</span></span>')
+      .replace(/\n/g, '<br>');
+  }
+
+  function scrollBottom() {
+    msgBox.scrollTop = msgBox.scrollHeight;
+  }
+
+  // ─── Bot avatar ───
+  function botAvatar() {
+    return `<div class="w-7 h-7 rounded-full flex items-center justify-center shrink-0 mt-0.5" style="background:rgba(0,163,255,0.15);border:1px solid rgba(0,163,255,0.3);">
+      <svg class="w-4 h-4" style="color:#00A3FF;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="11" width="18" height="10" rx="2"/>
+        <circle cx="12" cy="5" r="2"/>
+        <line x1="12" y1="7" x2="12" y2="11"/>
+        <line x1="8" y1="15" x2="8" y2="17"/>
+        <line x1="16" y1="15" x2="16" y2="17"/>
+      </svg>
+    </div>`;
+  }
+
+  // ─── Welcome message ───
+  function showWelcome() {
+    const el = document.createElement('div');
+    el.innerHTML = `
+      <div class="flex gap-2 items-start">
+        ${botAvatar()}
+        <div class="flex-1 min-w-0">
+          <div class="rounded-2xl rounded-tl-none px-3.5 py-3 text-sm leading-relaxed" style="background:rgba(255,255,255,0.05); color:#d1d5db;">
+            👋 Hi! I'm <strong class="text-white">GeekBytes AI</strong>. I can answer questions about our services, pricing, timelines, and more.<br><br>What would you like to know?
+          </div>
+          <div class="mt-2.5 flex flex-wrap gap-1.5">
+            ${SUGGESTIONS.map(s => `<button class="chatbot-suggestion text-xs px-3 py-1.5 rounded-full transition-all duration-200 hover:opacity-80" style="border:1px solid rgba(0,163,255,0.35);color:#00A3FF;background:rgba(0,163,255,0.06);" data-q="${esc(s)}">${esc(s)}</button>`).join('')}
+          </div>
+        </div>
+      </div>`;
+    msgBox.appendChild(el);
+    el.querySelectorAll('.chatbot-suggestion').forEach(btn => {
+      btn.addEventListener('click', () => sendMessage(btn.dataset.q));
+    });
+    scrollBottom();
+  }
+
+  // ─── User bubble ───
+  function addUserMsg(text) {
+    const el = document.createElement('div');
+    el.innerHTML = `
+      <div class="flex justify-end">
+        <div class="max-w-[82%] rounded-2xl rounded-tr-none px-3.5 py-2.5 text-sm leading-relaxed text-white" style="background:#00A3FF;">
+          ${esc(text)}
+        </div>
+      </div>`;
+    msgBox.appendChild(el);
+    scrollBottom();
+  }
+
+  // ─── Bot bubble ───
+  function addBotMsg(text) {
+    const el = document.createElement('div');
+    el.innerHTML = `
+      <div class="flex gap-2 items-start">
+        ${botAvatar()}
+        <div class="max-w-[82%] rounded-2xl rounded-tl-none px-3.5 py-3 text-sm leading-relaxed" style="background:rgba(255,255,255,0.05);color:#d1d5db;">
+          ${md(text)}
+        </div>
+      </div>`;
+    msgBox.appendChild(el);
+    scrollBottom();
+  }
+
+  // ─── Error bubble ───
+  function addErrorMsg() {
+    addBotMsg("I'm having trouble connecting right now. Please email us at **geekbytessolutions@gmail.com** or book a call at **calendly.com/geekbytessolutions** — we respond within 24 hours!");
+  }
+
+  // ─── Typing indicator ───
+  function showTyping() {
+    const el = document.createElement('div');
+    el.id = 'chatbot-typing';
+    el.innerHTML = `
+      <div class="flex gap-2 items-start">
+        ${botAvatar()}
+        <div class="rounded-2xl rounded-tl-none px-4 py-3.5" style="background:rgba(255,255,255,0.05);">
+          <div class="flex gap-1 items-center">
+            <span class="w-2 h-2 rounded-full bg-gray-400 animate-bounce" style="animation-delay:0ms"></span>
+            <span class="w-2 h-2 rounded-full bg-gray-400 animate-bounce" style="animation-delay:130ms"></span>
+            <span class="w-2 h-2 rounded-full bg-gray-400 animate-bounce" style="animation-delay:260ms"></span>
+          </div>
+        </div>
+      </div>`;
+    msgBox.appendChild(el);
+    scrollBottom();
+  }
+
+  function removeTyping() {
+    document.getElementById('chatbot-typing')?.remove();
+  }
+
+  // ─── Send message ───
+  async function sendMessage(text) {
+    text = (text || '').trim();
+    if (!text || isBusy) return;
+
+    isBusy = true;
+    sendBtn.disabled = true;
+    input.value = '';
+    autoResize();
+
+    addUserMsg(text);
+    chatHistory.push({ role: 'user', content: text });
+
+    showTyping();
+
+    try {
+      const res = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ messages: chatHistory }),
+      });
+
+      removeTyping();
+
+      if (!res.ok) {
+        addErrorMsg();
+        return;
+      }
+
+      const data = await res.json();
+      const reply = data.content || '';
+      if (reply) {
+        addBotMsg(reply);
+        chatHistory.push({ role: 'assistant', content: reply });
+      } else {
+        addErrorMsg();
+      }
+    } catch {
+      removeTyping();
+      addErrorMsg();
+    } finally {
+      isBusy = false;
+      sendBtn.disabled = false;
+      input.focus();
+    }
+  }
+
+  // ─── Auto-resize textarea ───
+  function autoResize() {
+    input.style.height = 'auto';
+    input.style.height = Math.min(input.scrollHeight, 96) + 'px';
+  }
+
+  // ─── Open / close ───
+  function openChat() {
+    isOpen = true;
+    win.style.transform = 'scale(1)';
+    win.style.opacity = '1';
+    win.style.pointerEvents = 'auto';
+    iconOpen.classList.add('hidden');
+    iconClose.classList.remove('hidden');
+    pulse.style.display = 'none';
+
+    if (!greeted) {
+      greeted = true;
+      showWelcome();
+    }
+    setTimeout(() => input.focus(), 200);
+  }
+
+  function closeChat() {
+    isOpen = false;
+    win.style.transform = 'scale(0.92)';
+    win.style.opacity = '0';
+    win.style.pointerEvents = 'none';
+    iconOpen.classList.remove('hidden');
+    iconClose.classList.add('hidden');
+  }
+
+  // ─── Event listeners ───
+  toggle.addEventListener('click', () => (isOpen ? closeChat() : openChat()));
+  closeBtn.addEventListener('click', closeChat);
+
+  sendBtn.addEventListener('click', () => sendMessage(input.value));
+
+  input.addEventListener('input', autoResize);
+  input.addEventListener('keydown', e => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      sendMessage(input.value);
+    }
+  });
+
+  // Focus ring on input
+  input.addEventListener('focus', () => {
+    input.style.borderColor = 'rgba(0,163,255,0.5)';
+  });
+  input.addEventListener('blur', () => {
+    input.style.borderColor = 'rgba(255,255,255,0.1)';
+  });
+
+  // Close on Escape
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && isOpen) closeChat();
+  });
+})();
+</script>
