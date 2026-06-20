@@ -1,5 +1,5 @@
 ---
-// Services Section — 3x2 grid of service cards with bullet points
+// Services Section — 3x2 grid of service cards with bullet points, pricing, and CTA
 import { services } from '../data/services';
 
 // SVG icons for each service type
@@ -15,12 +15,15 @@ const serviceIcons: Record<string, string> = {
   design: `<svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg>`,
 };
 
-// Blue checkmark SVG
 const checkmarkSvg = `<svg class="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>`;
+
+const coreServices = services.filter(s => !s.additional);
+const additionalServices = services.filter(s => s.additional);
 ---
 
 <section id="services" aria-labelledby="services-heading" class="bg-brand-black py-20 lg:py-24">
   <div class="max-w-container mx-auto px-4">
+
     <!-- Section header -->
     <div class="text-center mb-14">
       <span data-i18n="services.label" class="section-label">WHAT WE DO</span>
@@ -30,13 +33,18 @@ const checkmarkSvg = `<svg class="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24" fil
       </p>
     </div>
 
-    <!-- Services grid -->
+    <!-- Core services grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {services.map((service) => (
-        <div class="animate-on-scroll opacity-0 translate-y-4 transition-all duration-700 bg-white/5 rounded-2xl border border-white/10 p-6 hover:-translate-y-1 hover:border-brand-accent/30">
-          <!-- Service icon -->
-          <div class="w-12 h-12 rounded-lg bg-brand-accent/10 flex items-center justify-center text-brand-accent mb-4">
-            <Fragment set:html={serviceIcons[service.icon] || ''} />
+      {coreServices.map((service) => (
+        <div class="animate-on-scroll opacity-0 translate-y-4 transition-all duration-700 flex flex-col bg-white/5 rounded-2xl border border-white/10 p-6 hover:-translate-y-1 hover:border-brand-accent/30">
+          <!-- Icon + pricing row -->
+          <div class="flex items-start justify-between mb-4">
+            <div class="w-12 h-12 rounded-lg bg-brand-accent/10 flex items-center justify-center text-brand-accent">
+              <Fragment set:html={serviceIcons[service.icon] || ''} />
+            </div>
+            <span class="text-xs font-semibold text-brand-accent bg-brand-accent/10 border border-brand-accent/20 px-2.5 py-1 rounded-full whitespace-nowrap">
+              {service.pricing}
+            </span>
           </div>
 
           <!-- Title -->
@@ -45,8 +53,8 @@ const checkmarkSvg = `<svg class="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24" fil
           <!-- Description -->
           <p data-i18n={`service.${service.icon}.description`} class="text-sm text-brand-white/60 leading-relaxed mb-4">{service.description}</p>
 
-          <!-- Bullet points with blue checkmarks -->
-          <ul class="space-y-2">
+          <!-- Bullet points -->
+          <ul class="space-y-2 mb-6 flex-1">
             {service.bulletPoints.map((point, idx) => (
               <li class="flex items-center gap-2">
                 <span class="text-brand-accent">
@@ -56,8 +64,51 @@ const checkmarkSvg = `<svg class="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24" fil
               </li>
             ))}
           </ul>
+
+          <!-- CTA button -->
+          <a
+            href="/#contact"
+            class="mt-auto inline-flex items-center justify-center gap-2 w-full py-2.5 rounded-xl border border-brand-accent/40 text-brand-accent text-sm font-semibold hover:bg-brand-accent hover:text-white transition-all duration-200"
+          >
+            Get a Quote
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
         </div>
       ))}
     </div>
+
+    <!-- Additional services -->
+    {additionalServices.length > 0 && (
+      <div class="mt-10">
+        <p class="text-xs text-gray-500 uppercase tracking-widest font-semibold mb-5 text-center">Additional Services</p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-2xl mx-auto">
+          {additionalServices.map((service) => (
+            <div class="animate-on-scroll opacity-0 translate-y-4 transition-all duration-700 flex flex-col bg-white/3 rounded-xl border border-white/8 p-5 hover:border-white/20">
+              <!-- Icon + pricing -->
+              <div class="flex items-start justify-between mb-3">
+                <div class="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center text-gray-400">
+                  <Fragment set:html={serviceIcons[service.icon] || ''} />
+                </div>
+                <span class="text-xs text-gray-500 bg-white/5 border border-white/10 px-2.5 py-1 rounded-full whitespace-nowrap">
+                  {service.pricing}
+                </span>
+              </div>
+
+              <p class="text-base font-bold text-brand-white/80 mb-1">{service.title}</p>
+              <p class="text-sm text-gray-500 leading-relaxed mb-4">{service.description}</p>
+
+              <a
+                href="/#contact"
+                class="mt-auto inline-flex items-center gap-1.5 text-gray-400 hover:text-brand-accent text-xs font-semibold transition-colors"
+              >
+                Get a Quote
+                <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </a>
+            </div>
+          ))}
+        </div>
+      </div>
+    )}
+
   </div>
 </section>

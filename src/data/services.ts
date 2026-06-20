@@ -3,6 +3,8 @@ export interface Service {
   title: string;
   description: string;
   bulletPoints: string[];
+  pricing: string;
+  additional?: boolean;
 }
 
 export const services: Service[] = [
@@ -15,6 +17,7 @@ export const services: Service[] = [
       "Business & Portfolio Websites",
       "Landing Pages & Lead Gen",
     ],
+    pricing: "From $499 / project",
   },
   {
     icon: "wordpress",
@@ -25,6 +28,7 @@ export const services: Service[] = [
       "WooCommerce Stores",
       "LMS & Membership Sites",
     ],
+    pricing: "From $399 / project",
   },
   {
     icon: "ai-bot",
@@ -35,6 +39,7 @@ export const services: Service[] = [
       "WhatsApp Business API",
       "Workflow Automation",
     ],
+    pricing: "From $999 / bot",
   },
   {
     icon: "crm",
@@ -45,6 +50,7 @@ export const services: Service[] = [
       "SMS/Email Sequences",
       "White-Label Agency Setup",
     ],
+    pricing: "From $299 / setup",
   },
   {
     icon: "mobile",
@@ -55,6 +61,7 @@ export const services: Service[] = [
       "React Native / Flutter",
       "App Store Optimization",
     ],
+    pricing: "From $2,999 / app",
   },
   {
     icon: "software",
@@ -65,6 +72,7 @@ export const services: Service[] = [
       "ERP / Internal Dashboards",
       "API Design & Integration",
     ],
+    pricing: "From $2,499 / project",
   },
   {
     icon: "cloud",
@@ -75,16 +83,19 @@ export const services: Service[] = [
       "Microservices & Serverless",
       "CI/CD & DevOps Pipelines",
     ],
+    pricing: "From $599 / project",
   },
   {
     icon: "video",
     title: "Video Editing",
-    description: "Professional video editing services for promotional content, social media reels, explainer videos, and brand storytelling that captivates your audience.",
+    description: "Professional video editing for promotional content, social media reels, explainer videos, and brand storytelling that captivates your audience.",
     bulletPoints: [
       "Promotional & Ad Videos",
       "Social Media Reels & Shorts",
       "Motion Graphics & Intros",
     ],
+    pricing: "From $99 / video",
+    additional: true,
   },
   {
     icon: "design",
@@ -95,5 +106,7 @@ export const services: Service[] = [
       "Marketing Collaterals",
       "UI/UX Design",
     ],
+    pricing: "From $149 / project",
+    additional: true,
   },
 ];
