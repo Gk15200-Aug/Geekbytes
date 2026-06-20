@@ -7,6 +7,8 @@ import SkillsSection from '../components/SkillsSection.astro';
 import ServicesSection from '../components/ServicesSection.astro';
 import ProjectsSection from '../components/ProjectsSection.astro';
 import TestimonialsSection from '../components/TestimonialsSection.astro';
+import CtaBanner from '../components/CtaBanner.astro';
+import FloatingChat from '../components/FloatingChat.astro';
 import FaqSection from '../components/FaqSection.astro';
 import ContactSection from '../components/ContactSection.astro';
 import Footer from '../components/Footer.astro';
@@ -136,12 +138,30 @@ const jsonLd = {
   <AboutSection />
   <SkillsSection />
   <ServicesSection />
+  <CtaBanner
+    heading="Not sure which service you need?"
+    subtext="Book a free 30-minute call — we'll assess your project and recommend the right approach."
+    primaryLabel="Book a Free Call"
+    primaryHref="https://calendly.com/geekbytessolutions"
+    primaryExternal={true}
+    secondaryLabel="Send a Message"
+    secondaryHref="/#contact"
+  />
   <ProjectsSection />
+  <CtaBanner
+    heading="Like what you see? Let's build yours."
+    subtext="50+ projects delivered. Your business could be next."
+    primaryLabel="Start Your Project"
+    primaryHref="/#contact"
+    secondaryLabel="View Case Studies"
+    secondaryHref="/case-studies"
+  />
   <TestimonialsSection />
   <FaqSection />
   <ContactSection />
 
   <Fragment slot="footer">
+    <FloatingChat />
     <Footer />
   </Fragment>
 </BaseLayout>

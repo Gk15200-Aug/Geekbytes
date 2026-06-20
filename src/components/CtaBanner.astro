@@ -1,0 +1,49 @@
+---
+interface Props {
+  heading: string;
+  subtext: string;
+  primaryLabel: string;
+  primaryHref: string;
+  primaryExternal?: boolean;
+  secondaryLabel?: string;
+  secondaryHref?: string;
+}
+
+const {
+  heading,
+  subtext,
+  primaryLabel,
+  primaryHref,
+  primaryExternal = false,
+  secondaryLabel,
+  secondaryHref,
+} = Astro.props;
+---
+
+<section class="py-14 px-4 border-y border-white/8 bg-gradient-to-r from-brand-accent/5 via-transparent to-brand-accent/5">
+  <div class="max-w-container mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+    <div>
+      <h2 class="text-2xl font-bold text-brand-white">{heading}</h2>
+      <p class="text-gray-400 mt-1 text-sm">{subtext}</p>
+    </div>
+    <div class="flex items-center gap-3 shrink-0">
+      {secondaryLabel && secondaryHref && (
+        <a
+          href={secondaryHref}
+          class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-white/20 text-brand-white/80 text-sm font-semibold hover:border-brand-accent/40 hover:text-brand-white transition-colors"
+        >
+          {secondaryLabel}
+        </a>
+      )}
+      <a
+        href={primaryHref}
+        target={primaryExternal ? "_blank" : undefined}
+        rel={primaryExternal ? "noopener noreferrer" : undefined}
+        class="inline-flex items-center gap-2 bg-brand-accent text-white font-semibold px-6 py-2.5 rounded-full text-sm hover:bg-brand-accent/90 transition-colors"
+      >
+        {primaryLabel}
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
