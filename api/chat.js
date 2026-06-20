@@ -1,6 +1,5 @@
-// Vercel Serverless Edge Function — /api/chat
+// Vercel Node.js Serverless Function — /api/chat
 // Proxies requests to Gemini so the API key never reaches the browser.
-export const config = { runtime: 'edge' };
 
 const SYSTEM_PROMPT = `You are GeekBytes AI — a friendly, knowledgeable assistant for GeekBytes, a remote-first IT solutions company founded in 2020. Your role is to help website visitors understand services, pricing, timelines, and how to get started. Always be concise, professional, and helpful.
 
@@ -46,47 +45,31 @@ Database: PostgreSQL, MongoDB, MySQL, Redis
 - Never make up information not listed above
 - Be warm and encouraging — this is a sales-assist bot`;
 
-export default async function handler(request) {
-  if (request.method === 'OPTIONS') {
-    return new Response(null, {
-      status: 204,
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'POST, OPTIONS',
-        'Access-Control-Allow-Headers': 'Content-Type',
-      },
-    });
+export default async function handler(req, res) {
+  // CORS preflight
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+
+  if (req.method === 'OPTIONS') {
+    return res.status(204).end();
   }
 
-  if (request.method !== 'POST') {
-    return new Response(JSON.stringify({ error: 'Method not allowed' }), {
-      status: 405,
-      headers: { 'Content-Type': 'application/json' },
-    });
+  if (req.method !== 'POST') {
+    return res.status(405).json({ error: 'Method not allowed' });
   }
 
   const apiKey = process.env.GEMINI_API_KEY;
   if (!apiKey) {
-    return new Response(
-      JSON.stringify({ error: 'AI service not configured. Please contact us directly.' }),
-      { status: 503, headers: { 'Content-Type': 'application/json' } }
-    );
+    return res.status(503).json({ error: 'AI service not configured. Please contact us directly.' });
   }
 
-  let messages;
-  try {
-    const body = await request.json();
-    messages = body.messages;
-    if (!Array.isArray(messages) || messages.length === 0) throw new Error('invalid');
-  } catch {
-    return new Response(JSON.stringify({ error: 'Invalid request body' }), {
-      status: 400,
-      headers: { 'Content-Type': 'application/json' },
-    });
+  const { messages } = req.body || {};
+  if (!Array.isArray(messages) || messages.length === 0) {
+    return res.status(400).json({ error: 'Invalid request body' });
   }
 
   try {
-    // Convert OpenAI-style messages to Gemini format
     // Gemini uses "user"/"model" roles (not "assistant")
     const geminiContents = messages.slice(-12).map(m => ({
       role: m.role === 'assistant' ? 'model' : 'user',
@@ -99,40 +82,25 @@ export default async function handler(request) {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          system_instruction: {
-            parts: [{ text: SYSTEM_PROMPT }],
-          },
+          system_instruction: { parts: [{ text: SYSTEM_PROMPT }] },
           contents: geminiContents,
-          generationConfig: {
-            maxOutputTokens: 350,
-            temperature: 0.65,
-          },
+          generationConfig: { maxOutputTokens: 350, temperature: 0.65 },
         }),
       }
     );
 
     if (!geminiRes.ok) {
       const errData = await geminiRes.json().catch(() => ({}));
-      return new Response(
-        JSON.stringify({ error: errData?.error?.message || 'AI service error' }),
-        { status: geminiRes.status, headers: { 'Content-Type': 'application/json' } }
-      );
+      return res.status(geminiRes.status).json({
+        error: errData?.error?.message || 'AI service error',
+      });
     }
 
     const data = await geminiRes.json();
     const content = data.candidates?.[0]?.content?.parts?.[0]?.text ?? '';
-
-    return new Response(JSON.stringify({ content }), {
-      status: 200,
-      headers: {
-        'Content-Type': 'application/json',
-        'Cache-Control': 'no-store',
-      },
-    });
-  } catch {
-    return new Response(JSON.stringify({ error: 'Internal server error' }), {
-      status: 500,
-      headers: { 'Content-Type': 'application/json' },
-    });
+    return res.status(200).json({ content });
+  } catch (err) {
+    console.error('Gemini API error:', err);
+    return res.status(500).json({ error: 'Internal server error' });
   }
 }
