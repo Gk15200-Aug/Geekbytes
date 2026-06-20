@@ -43,10 +43,21 @@
       <span data-i18n="hero.heading2" class="hero-gradient-text">Digital Future</span><span class="typing-cursor">|</span>
     </h1>
 
-    <!-- Subtext -->
-    <p data-i18n="hero.subtext" class="mt-6 text-lg md:text-xl text-brand-white/50 max-w-2xl leading-relaxed font-light">
-      We build scalable, secure, and modern technology solutions that empower businesses to grow — shaping your digital future, one innovation at a time.
+    <!-- UVP Subtext -->
+    <p data-i18n="hero.subtext" class="mt-6 text-lg md:text-xl text-brand-white/70 max-w-2xl leading-relaxed font-light">
+      Expert web, AI & mobile development for US, UK & Australian businesses —
+      <span class="text-brand-accent font-semibold">starting from $12/hr</span>,
+      with the quality you'd expect at $80+/hr.
     </p>
+
+    <!-- Industry specialization tags -->
+    <div class="flex flex-wrap justify-center gap-2 mt-5">
+      {["Healthcare", "Hospitality", "eCommerce", "SaaS", "Automotive"].map((ind) => (
+        <span class="text-xs px-3 py-1 rounded-full border border-white/15 text-gray-400 bg-white/3">
+          {ind}
+        </span>
+      ))}
+    </div>
 
     <!-- CTA Buttons -->
     <div class="mt-10 flex flex-col sm:flex-row items-center gap-4">
@@ -78,8 +89,8 @@
           <span data-i18n="hero.stats.clients" class="mt-1 text-sm text-brand-white/40 font-light">Happy Clients</span>
         </div>
         <div class="flex flex-col items-center px-4 py-3">
-          <span class="text-3xl md:text-4xl font-bold text-brand-accent">6+</span>
-          <span data-i18n="hero.stats.domains" class="mt-1 text-sm text-brand-white/40 font-light">Service Domains</span>
+          <span class="text-3xl md:text-4xl font-bold text-brand-accent">$12</span>
+          <span class="mt-1 text-sm text-brand-white/40 font-light">Per Hour Rate</span>
         </div>
         <div class="flex flex-col items-center px-4 py-3">
           <span class="text-3xl md:text-4xl font-bold text-brand-accent">99%</span>
