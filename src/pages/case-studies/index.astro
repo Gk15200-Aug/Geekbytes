@@ -1,0 +1,111 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const caseStudies = [
+  {
+    slug: "eco-car-wreckers",
+    title: "Eco Car Wreckers",
+    category: "Automotive · SEO · Lead Gen",
+    summary: "From zero digital presence to page-1 Google rankings — how we built a lead machine for a Sydney car wrecking business.",
+    stats: [
+      { value: "Top 5", label: "NSW Google rank" },
+      { value: "3×", label: "more enquiries" },
+    ],
+    tags: ["WordPress", "SEO", "Lead Gen"],
+  },
+  {
+    slug: "one-aesthetics",
+    title: "One Aesthetics",
+    category: "Healthcare · Booking · Canada",
+    summary: "A Canadian medical aesthetics clinic that replaced phone-only bookings with a 24/7 automated online consultation system.",
+    stats: [
+      { value: "24/7", label: "online booking" },
+      { value: "8", label: "treatment pages" },
+    ],
+    tags: ["WordPress", "Booking System", "Healthcare"],
+  },
+  {
+    slug: "van-seat-covers",
+    title: "Van Seat Covers UK",
+    category: "eCommerce · Automotive · UK",
+    summary: "A UK automotive accessories store that solved the #1 friction for vehicle parts buyers: vehicle compatibility filtering.",
+    stats: [
+      { value: "60+", label: "van models covered" },
+      { value: "↓ Returns", label: "wrong-fit orders" },
+    ],
+    tags: ["WooCommerce", "eCommerce", "UK"],
+  },
+];
+---
+
+<BaseLayout
+  title="Case Studies — GeekBytes Web Development & IT Solutions"
+  description="Real project case studies from GeekBytes. See how we helped automotive, healthcare, and eCommerce businesses grow with better websites and digital systems."
+>
+  <main class="bg-brand-black text-brand-white min-h-screen">
+
+    <!-- Hero -->
+    <section class="pt-32 pb-16 px-4">
+      <div class="max-w-container mx-auto">
+        <p class="section-label mb-4">CLIENT WORK</p>
+        <h1 class="text-4xl lg:text-5xl font-bold mb-4">Case Studies</h1>
+        <p class="text-gray-400 text-lg max-w-2xl leading-relaxed">
+          A closer look at three projects — the challenge, what we built, and the results. Every project in our portfolio has a story; these are the ones we can share in detail.
+        </p>
+      </div>
+    </section>
+
+    <!-- Case Study Cards -->
+    <section class="pb-24 px-4">
+      <div class="max-w-container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {caseStudies.map((cs) => (
+          <a
+            href={`/case-studies/${cs.slug}`}
+            class="group block bg-white/5 border border-white/10 hover:border-brand-accent/40 rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1"
+          >
+            <!-- Category -->
+            <p class="text-xs text-gray-500 mb-3">{cs.category}</p>
+
+            <!-- Title -->
+            <h2 class="text-xl font-bold text-brand-white mb-3 group-hover:text-brand-accent transition-colors">{cs.title}</h2>
+
+            <!-- Summary -->
+            <p class="text-gray-400 text-sm leading-relaxed mb-5">{cs.summary}</p>
+
+            <!-- Stats -->
+            <div class="flex gap-6 mb-5 pt-4 border-t border-white/10">
+              {cs.stats.map((stat) => (
+                <div>
+                  <p class="text-xl font-bold text-brand-accent">{stat.value}</p>
+                  <p class="text-xs text-gray-500">{stat.label}</p>
+                </div>
+              ))}
+            </div>
+
+            <!-- Tags -->
+            <div class="flex flex-wrap gap-2">
+              {cs.tags.map((tag) => (
+                <span class="text-xs px-2 py-1 rounded-full border border-white/15 text-gray-400">{tag}</span>
+              ))}
+            </div>
+
+            <!-- Read more -->
+            <p class="mt-5 text-brand-accent text-sm font-semibold flex items-center gap-1.5">
+              Read Case Study
+              <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </p>
+          </a>
+        ))}
+      </div>
+
+      <!-- CTA -->
+      <div class="max-w-container mx-auto mt-16 text-center">
+        <p class="text-gray-400 mb-6">Want results like these for your business?</p>
+        <a href="/#contact" class="inline-flex items-center gap-2 bg-brand-accent text-white font-semibold px-6 py-3 rounded-full hover:bg-brand-accent/90 transition-colors">
+          Get a Free Consultation
+        </a>
+      </div>
+    </section>
+
+  </main>
+</BaseLayout>
