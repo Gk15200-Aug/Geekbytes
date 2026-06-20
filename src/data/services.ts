@@ -4,6 +4,7 @@ export interface Service {
   description: string;
   bulletPoints: string[];
   pricing: string;
+  detailSlug: string;
   additional?: boolean;
 }
 
@@ -18,6 +19,7 @@ export const services: Service[] = [
       "Landing Pages & Lead Gen",
     ],
     pricing: "From $499 / project",
+    detailSlug: "web-development",
   },
   {
     icon: "wordpress",
@@ -29,6 +31,7 @@ export const services: Service[] = [
       "LMS & Membership Sites",
     ],
     pricing: "From $399 / project",
+    detailSlug: "wordpress-development",
   },
   {
     icon: "ai-bot",
@@ -40,6 +43,7 @@ export const services: Service[] = [
       "Workflow Automation",
     ],
     pricing: "From $999 / bot",
+    detailSlug: "ai-chatbots",
   },
   {
     icon: "crm",
@@ -51,6 +55,7 @@ export const services: Service[] = [
       "White-Label Agency Setup",
     ],
     pricing: "From $299 / setup",
+    detailSlug: "gohighlevel-crm",
   },
   {
     icon: "mobile",
@@ -62,6 +67,7 @@ export const services: Service[] = [
       "App Store Optimization",
     ],
     pricing: "From $2,999 / app",
+    detailSlug: "mobile-app-development",
   },
   {
     icon: "software",
@@ -73,6 +79,7 @@ export const services: Service[] = [
       "API Design & Integration",
     ],
     pricing: "From $2,499 / project",
+    detailSlug: "custom-software",
   },
   {
     icon: "cloud",
@@ -84,6 +91,7 @@ export const services: Service[] = [
       "CI/CD & DevOps Pipelines",
     ],
     pricing: "From $599 / project",
+    detailSlug: "cloud-architecture",
   },
   {
     icon: "video",
@@ -95,6 +103,7 @@ export const services: Service[] = [
       "Motion Graphics & Intros",
     ],
     pricing: "From $99 / video",
+    detailSlug: "video-editing",
     additional: true,
   },
   {
@@ -107,6 +116,7 @@ export const services: Service[] = [
       "UI/UX Design",
     ],
     pricing: "From $149 / project",
+    detailSlug: "graphic-design",
     additional: true,
   },
 ];

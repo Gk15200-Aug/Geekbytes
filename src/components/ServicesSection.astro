@@ -65,14 +65,21 @@ const additionalServices = services.filter(s => s.additional);
             ))}
           </ul>
 
-          <!-- CTA button -->
-          <a
-            href="/#contact"
-            class="mt-auto inline-flex items-center justify-center gap-2 w-full py-2.5 rounded-xl border border-brand-accent/40 text-brand-accent text-sm font-semibold hover:bg-brand-accent hover:text-white transition-all duration-200"
-          >
-            Get a Quote
-            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-          </a>
+          <!-- CTA buttons -->
+          <div class="mt-auto flex gap-2">
+            <a
+              href="/#contact"
+              class="flex-1 inline-flex items-center justify-center gap-1.5 py-2.5 rounded-xl bg-brand-accent text-white text-sm font-semibold hover:bg-brand-accent/90 transition-all duration-200"
+            >
+              Get a Quote
+            </a>
+            <a
+              href={`/services/${service.detailSlug}`}
+              class="flex-1 inline-flex items-center justify-center gap-1.5 py-2.5 rounded-xl border border-white/20 text-brand-white/70 text-sm font-semibold hover:border-brand-accent/40 hover:text-brand-white transition-all duration-200"
+            >
+              Learn More
+            </a>
+          </div>
         </div>
       ))}
     </div>
@@ -97,13 +104,14 @@ const additionalServices = services.filter(s => s.additional);
               <p class="text-base font-bold text-brand-white/80 mb-1">{service.title}</p>
               <p class="text-sm text-gray-500 leading-relaxed mb-4">{service.description}</p>
 
-              <a
-                href="/#contact"
-                class="mt-auto inline-flex items-center gap-1.5 text-gray-400 hover:text-brand-accent text-xs font-semibold transition-colors"
-              >
-                Get a Quote
-                <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-              </a>
+              <div class="mt-auto flex gap-3">
+                <a href="/#contact" class="text-gray-400 hover:text-brand-accent text-xs font-semibold transition-colors">
+                  Get a Quote →
+                </a>
+                <a href={`/services/${service.detailSlug}`} class="text-gray-500 hover:text-gray-300 text-xs font-semibold transition-colors">
+                  Learn More →
+                </a>
+              </div>
             </div>
           ))}
         </div>
