@@ -19,7 +19,7 @@ export interface SiteConfig {
 export const siteConfig: SiteConfig = {
   name: "GeekBytes",
   tagline: "Empowering businesses with modern, scalable, and secure technology solutions. Your trusted IT partner.",
-  email: "geekbytessolutions@gmail.com",
+  email: "kiran@geekbytestech.com",
   phone: "8217720086",
   location: "Remote Worldwide",
   social: {

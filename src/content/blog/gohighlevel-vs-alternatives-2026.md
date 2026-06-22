@@ -124,7 +124,7 @@ GeekBytes specialises in GoHighLevel setup and customisation, including:
 - White-label agency setup
 - GoHighLevel A2P 10DLC compliance
 
-We also support HubSpot onboarding and ActiveCampaign automation builds. [Book a free consultation](https://geekbytes.vercel.app/#contact) to discuss your CRM needs.
+We also support HubSpot onboarding and ActiveCampaign automation builds. [Book a free consultation](https://geekbytestech.com/#contact) to discuss your CRM needs.
 
 ## Final Verdict
 

@@ -82,7 +82,7 @@ GeekBytes builds custom AI chatbots for businesses starting at **$12/hour**. A t
 
 **Typical project cost range**: $2,000–$8,000 for a fully custom business chatbot.
 
-[Get a free quote from GeekBytes](https://geekbytes.vercel.app/#contact) — we'll estimate your specific requirements within 24 hours.
+[Get a free quote from GeekBytes](https://geekbytestech.com/#contact) — we'll estimate your specific requirements within 24 hours.
 
 ## Ongoing Costs to Plan For
 

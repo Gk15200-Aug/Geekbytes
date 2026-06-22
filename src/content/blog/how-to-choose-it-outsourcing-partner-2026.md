@@ -88,7 +88,7 @@ GeekBytes is a remote-first IT solutions company founded in 2020. We offer web d
 
 We've delivered 50+ projects to clients across the US, UK, Germany, Australia, and beyond. Our team of specialist developers handles everything from simple WordPress sites to complex AI-powered platforms.
 
-[Contact GeekBytes](https://geekbytes.vercel.app/#contact) for a free consultation — no commitment required.
+[Contact GeekBytes](https://geekbytestech.com/#contact) for a free consultation — no commitment required.
 
 ## Summary
 

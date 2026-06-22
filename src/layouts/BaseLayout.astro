@@ -15,7 +15,7 @@ const {
   ogType = 'website',
 } = Astro.props;
 
-const siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? 'https://geekbytes.vercel.app';
+const siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? 'https://geekbytestech.com';
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
 // Always resolve OG image to an absolute URL so social crawlers can fetch it

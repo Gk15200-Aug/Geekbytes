@@ -115,7 +115,7 @@ For most business apps in 2026, we recommend **Flutter** as the primary choice â
 
 For teams with strong JavaScript/React expertise, **React Native** is equally valid and often faster to get to market.
 
-GeekBytes builds mobile apps with both Flutter and React Native. [Contact us](https://geekbytes.vercel.app/#contact) to discuss which is right for your project.
+GeekBytes builds mobile apps with both Flutter and React Native. [Contact us](https://geekbytestech.com/#contact) to discuss which is right for your project.
 
 ## Summary
 
