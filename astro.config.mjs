@@ -10,7 +10,7 @@ export default defineConfig({
     sitemap({
       serialize(item) {
         const url = item.url.replace(/\/$/, '');
-        const siteRoot = 'https://geekbytes.vercel.app';
+        const siteRoot = 'https://www.geekbytestech.com';
 
         if (url === siteRoot || url === `${siteRoot}/`) {
           return { ...item, changefreq: 'weekly', priority: 1.0, lastmod: new Date().toISOString() };
@@ -29,5 +29,5 @@ export default defineConfig({
       },
     }),
   ],
-  site: 'https://geekbytes.vercel.app',
+  site: 'https://www.geekbytestech.com',
 });
