@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import SpeedInsights from '@vercel/speed-insights/astro';
 
 interface Props {
   title: string;
@@ -104,7 +105,7 @@ const ogImageAbsolute = ogImage.startsWith('http')
     </footer>
 
     <script is:inline src="https://va.vercel-scripts.com/v1/script.js" defer></script>
-    <script is:inline src="https://va.vercel-scripts.com/v1/speed-insights.js" defer></script>
+    <SpeedInsights />
 
     <script>
     import '../scripts/mobile-menu.js';
