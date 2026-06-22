@@ -1,0 +1,85 @@
+---
+const reasons = [
+  {
+    icon: `<svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>`,
+    title: "One Team. No Hand-offs.",
+    description: "Most businesses hire a web agency, then a separate mobile dev, then an AI consultant, then a CRM specialist. With GeekBytes, one team handles everything end-to-end — no briefing four different vendors, no version conflicts, no finger-pointing.",
+    highlight: "Save 60% on coordination overhead",
+  },
+  {
+    icon: `<svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg>`,
+    title: "Deep Expertise, Not Surface Coverage",
+    description: "We don't list every tool we've ever installed. Our stack is what we use daily on real client projects — React, Node.js, Flutter, WordPress, AWS, GoHighLevel. Each service is backed by 10+ delivered projects, not a weekend tutorial.",
+    highlight: "50+ delivered projects as proof",
+  },
+  {
+    icon: `<svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>`,
+    title: "Agency Quality at Freelancer Rates",
+    description: "US and UK agencies charge $80–$150/hour for the same stack we deliver at $12/hour — because our team is remote-first and lean. You get a structured agency process (specs, milestones, QA, handover docs) without the inflated hourly rate.",
+    highlight: "Starting from $12/hr — no compromise on quality",
+  },
+  {
+    icon: `<svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>`,
+    title: "Built to Scale With You",
+    description: "We don't just build and disappear. Starting with a website? We can add a booking system, WhatsApp automation, mobile app, and CRM — all integrated, all maintained by the same team who built your foundation from day one.",
+    highlight: "Long-term partner, not a one-off vendor",
+  },
+];
+---
+
+<section id="why-us" class="py-20 lg:py-24 border-t border-white/10">
+  <div class="max-w-container mx-auto px-4">
+
+    <!-- Header -->
+    <div class="animate-on-scroll opacity-0 translate-y-4 transition-all duration-700 mb-14">
+      <p class="section-label mb-4">WHY GEEKBYTES</p>
+      <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4">
+        <h2 class="section-heading max-w-xl">
+          One Partner.<br/>Every Layer of Your Tech.
+        </h2>
+        <p class="text-gray-400 max-w-md text-sm leading-relaxed">
+          Yes, we do a lot. Here's why that's a strength — not a red flag.
+        </p>
+      </div>
+    </div>
+
+    <!-- Reasons grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {reasons.map((r, i) => (
+        <div class="animate-on-scroll opacity-0 translate-y-4 transition-all duration-700 group bg-white/5 border border-white/10 hover:border-brand-accent/30 rounded-2xl p-7 transition-colors">
+          <!-- Icon -->
+          <div class="w-12 h-12 rounded-xl bg-brand-accent/10 border border-brand-accent/20 flex items-center justify-center text-brand-accent mb-5">
+            <Fragment set:html={r.icon} />
+          </div>
+
+          <!-- Title -->
+          <h3 class="text-brand-white font-bold text-lg mb-3">{r.title}</h3>
+
+          <!-- Description -->
+          <p class="text-gray-400 text-sm leading-relaxed mb-4">{r.description}</p>
+
+          <!-- Highlight pill -->
+          <span class="inline-flex items-center gap-1.5 text-xs text-brand-accent font-semibold">
+            <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            {r.highlight}
+          </span>
+        </div>
+      ))}
+    </div>
+
+    <!-- Bottom CTA -->
+    <div class="mt-12 text-center">
+      <p class="text-gray-400 text-sm mb-5">Still not sure? Let's get on a call — no pitch, just a conversation.</p>
+      <a
+        href="https://calendly.com/geekbytessolutions"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 bg-brand-accent text-white font-semibold px-6 py-3 rounded-full hover:bg-brand-accent/90 transition-colors"
+      >
+        Book a Free 30-Min Call
+        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
+
+  </div>
+</section>
