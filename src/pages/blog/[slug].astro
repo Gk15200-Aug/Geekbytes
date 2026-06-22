@@ -15,7 +15,7 @@ export async function getStaticPaths() {
 const { post } = Astro.props;
 const { Content } = await post.render();
 
-const siteUrl = 'https://geekbytestech.com';
+const siteUrl = 'https://www.geekbytestech.com';
 const postUrl = `${siteUrl}/blog/${post.slug}`;
 
 const jsonLd = {
