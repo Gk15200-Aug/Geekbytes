@@ -17,12 +17,12 @@ export const translations = {
     'lang.es': 'ES',
 
     // Hero
-    'hero.badge': 'Innovative IT Solutions',
-    'hero.heading1': 'Empowering Your',
-    'hero.heading2': 'Digital Future',
-    'hero.subtext': 'We build scalable, secure, and modern technology solutions that drive business growth and transform ideas into reality.',
-    'hero.cta.primary': 'Get in Touch',
-    'hero.cta.secondary': 'View Our Work →',
+    'hero.badge': 'Web · AI · Mobile · Cloud — Starting at $12/hr',
+    'hero.heading1': 'We Build Websites, Apps',
+    'hero.heading2': '& AI That Grow Your Business',
+    'hero.subtext': 'GeekBytes helps growing businesses in the US, UK & Australia get agency-quality development — <span class="text-brand-accent font-semibold">at a fraction of the cost</span>. Fast delivery. No hand-offs. Real results.',
+    'hero.cta.primary': 'Book a Free Call',
+    'hero.cta.secondary': 'See Case Studies →',
     'hero.stats.projects': 'Projects Delivered',
     'hero.stats.clients': 'Happy Clients',
     'hero.stats.domains': 'Service Domains',

@@ -123,8 +123,8 @@ function initSwitcher(currentLang) {
 }
 
 // ─── Bootstrap ────────────────────────────────────────────────────────────────
-
-resolveInitialLang().then((lang) => {
-  applyTranslations(lang);
-  initSwitcher(lang);
-});
+// Site is English-only for now (DE/ES toggle removed; 0% non-English traffic).
+// Lock to English so IP-based detection never strands a visitor in a language
+// they can't switch out of. Re-enable resolveInitialLang() when localisation returns.
+applyTranslations('en');
+initSwitcher('en');
