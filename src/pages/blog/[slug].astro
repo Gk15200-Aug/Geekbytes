@@ -66,9 +66,41 @@ const tagColors = [
   "bg-pink-500/10 text-pink-400 border-pink-500/20",
 ];
 
-// Get related posts (other posts, up to 2)
+// Get related posts — prefer posts sharing a tag with current post
 const allPosts = await getCollection('blog');
-const related = allPosts.filter(p => p.slug !== post.slug).slice(0, 2);
+const postTagSet = new Set(post.data.tags.map(t => t.toLowerCase()));
+const related = allPosts
+  .filter(p => p.slug !== post.slug)
+  .sort((a, b) => {
+    const aScore = a.data.tags.filter(t => postTagSet.has(t.toLowerCase())).length;
+    const bScore = b.data.tags.filter(t => postTagSet.has(t.toLowerCase())).length;
+    return bScore - aScore;
+  })
+  .slice(0, 2);
+
+// Derive the most relevant service from the post's tags
+const tagToService: Record<string, { slug: string; label: string }> = {
+  'ai chatbots':          { slug: 'ai-chatbots', label: 'AI Chatbot Development' },
+  'gpt-4':                { slug: 'ai-chatbots', label: 'AI Chatbot Development' },
+  'business automation':  { slug: 'ai-chatbots', label: 'AI Chatbot Development' },
+  'whatsapp':             { slug: 'ai-chatbots', label: 'AI Chatbot Development' },
+  'gohighlevel':          { slug: 'gohighlevel-crm', label: 'GoHighLevel CRM Setup' },
+  'crm':                  { slug: 'gohighlevel-crm', label: 'GoHighLevel CRM Setup' },
+  'wordpress':            { slug: 'wordpress-development', label: 'WordPress Development' },
+  'woocommerce':          { slug: 'wordpress-development', label: 'WordPress Development' },
+  'mobile app':           { slug: 'mobile-app-development', label: 'Mobile App Development' },
+  'flutter':              { slug: 'mobile-app-development', label: 'Mobile App Development' },
+  'react native':         { slug: 'mobile-app-development', label: 'Mobile App Development' },
+  'aws':                  { slug: 'cloud-architecture', label: 'Cloud Architecture & DevOps' },
+  'cloud':                { slug: 'cloud-architecture', label: 'Cloud Architecture & DevOps' },
+  'seo':                  { slug: 'web-development', label: 'Web Development' },
+  'web development':      { slug: 'web-development', label: 'Web Development' },
+  'custom software':      { slug: 'custom-software', label: 'Custom Software Development' },
+  'saas':                 { slug: 'custom-software', label: 'Custom Software Development' },
+};
+const relatedService = post.data.tags
+  .map(t => tagToService[t.toLowerCase()])
+  .find(Boolean) ?? { slug: 'web-development', label: 'Web Development' };
 ---
 
 <BaseLayout title={`${post.data.title} — GeekBytes Blog`} description={post.data.description}>
@@ -219,6 +251,24 @@ const related = allPosts.filter(p => p.slug !== post.slug).slice(0, 2);
     </div>
   </section>
 
+  <!-- After-intro CTA strip -->
+  <section class="pt-4 pb-0">
+    <div class="max-w-3xl mx-auto px-4">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4 rounded-2xl border border-brand-accent/20 bg-gradient-to-r from-brand-accent/8 to-transparent px-6 py-4">
+        <p class="text-sm text-brand-white/70">
+          <span class="text-brand-white font-semibold">Need help with {relatedService.label.toLowerCase()}?</span>
+          {" "}GeekBytes builds this for businesses worldwide. Free 15-min consultation.
+        </p>
+        <a
+          href={`/services/${relatedService.slug}`}
+          class="shrink-0 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-accent hover:text-brand-white border border-brand-accent/30 hover:border-brand-accent px-4 py-2 rounded-full transition-colors whitespace-nowrap"
+        >
+          See the Service →
+        </a>
+      </div>
+    </div>
+  </section>
+
   <!-- Article Content -->
   <section class="py-12">
     <div class="max-w-3xl mx-auto px-4">
@@ -274,6 +324,40 @@ const related = allPosts.filter(p => p.slug !== post.slug).slice(0, 2);
     </div>
   </section>
 
+  <!-- How We Help section — service bridge before closing CTA -->
+  <section class="py-10 border-t border-white/8">
+    <div class="max-w-3xl mx-auto px-4">
+      <div class="relative bg-white/[0.03] border border-white/10 rounded-2xl p-7 overflow-hidden">
+        <div class="absolute top-0 right-0 w-64 h-64 bg-brand-accent/5 rounded-full blur-[80px]"></div>
+        <div class="relative">
+          <p class="text-xs text-brand-accent font-bold uppercase tracking-widest mb-3">How GeekBytes Helps</p>
+          <h3 class="text-xl font-bold text-brand-white mb-3">
+            Looking for a team to build this for you?
+          </h3>
+          <p class="text-brand-white/55 text-sm leading-relaxed mb-5">
+            We've implemented {relatedService.label.toLowerCase()} solutions for startups, SMBs, and enterprises across the US, UK, and Australia. Our team handles everything — strategy, design, build, and launch.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-3">
+            <a
+              href={`/services/${relatedService.slug}`}
+              class="btn-primary text-sm px-6 py-3 inline-flex items-center justify-center gap-2"
+            >
+              See Our {relatedService.label} Service →
+            </a>
+            <a
+              href="https://calendly.com/geekbytessolutions"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="px-6 py-3 rounded-full border border-white/15 text-brand-white/60 hover:border-brand-accent/40 hover:text-brand-white transition-all text-sm font-medium inline-flex items-center justify-center gap-2"
+            >
+              Book a Free 15-min Call
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Author CTA -->
   <section class="py-12 border-t border-white/8">
     <div class="max-w-3xl mx-auto px-4">
@@ -305,35 +389,55 @@ const related = allPosts.filter(p => p.slug !== post.slug).slice(0, 2);
     </div>
   </section>
 
-  <!-- Related Posts -->
-  {related.length > 0 && (
-    <section class="py-16 border-t border-white/5">
-      <div class="max-w-3xl mx-auto px-4">
-        <h2 class="text-xl font-bold text-brand-white mb-8">More from the blog</h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
-          {related.map((p) => (
-            <a href={`/blog/${p.slug}`} class="group bg-white/[0.03] border border-white/8 rounded-2xl p-6 hover:border-brand-accent/30 hover:bg-white/[0.05] transition-all duration-300">
-              <div class="flex flex-wrap gap-2 mb-3">
-                {p.data.tags.slice(0, 1).map((tag) => (
-                  <span class="text-xs px-2.5 py-1 rounded-full bg-brand-accent/10 text-brand-accent border border-brand-accent/20 font-medium">
-                    {tag}
-                  </span>
-                ))}
-              </div>
-              <h3 class="text-sm font-bold text-brand-white group-hover:text-brand-accent transition-colors leading-snug mb-2">
-                {p.data.title}
-              </h3>
-              <p class="text-xs text-brand-white/35 flex items-center gap-2">
-                <span>{formatDate(p.data.pubDate)}</span>
-                <span>·</span>
-                <span>{p.data.readingTime} min</span>
-              </p>
-            </a>
-          ))}
+  <!-- Related Posts + final next-step CTA -->
+  <section class="py-16 border-t border-white/5">
+    <div class="max-w-3xl mx-auto px-4">
+      {related.length > 0 && (
+        <>
+          <h2 class="text-xl font-bold text-brand-white mb-8">More from the blog</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-10">
+            {related.map((p) => (
+              <a href={`/blog/${p.slug}`} class="group bg-white/[0.03] border border-white/8 rounded-2xl p-6 hover:border-brand-accent/30 hover:bg-white/[0.05] transition-all duration-300">
+                <div class="flex flex-wrap gap-2 mb-3">
+                  {p.data.tags.slice(0, 1).map((tag) => (
+                    <span class="text-xs px-2.5 py-1 rounded-full bg-brand-accent/10 text-brand-accent border border-brand-accent/20 font-medium">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+                <h3 class="text-sm font-bold text-brand-white group-hover:text-brand-accent transition-colors leading-snug mb-2">
+                  {p.data.title}
+                </h3>
+                <p class="text-xs text-brand-white/35 flex items-center gap-2">
+                  <span>{formatDate(p.data.pubDate)}</span>
+                  <span>·</span>
+                  <span>{p.data.readingTime} min</span>
+                </p>
+              </a>
+            ))}
+          </div>
+        </>
+      )}
+      <!-- Final next-step CTA — never end on just blog links -->
+      <div class="text-center border-t border-white/8 pt-10">
+        <p class="text-brand-white/50 text-sm mb-4">Ready to put this into practice for your business?</p>
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
+          <a
+            href="https://calendly.com/geekbytessolutions"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-primary text-sm px-7 py-3 inline-flex items-center gap-2"
+          >
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            Book a Free Strategy Call
+          </a>
+          <a href={`/case-studies`} class="text-sm text-brand-white/50 hover:text-brand-accent transition-colors font-medium">
+            See our work →
+          </a>
         </div>
       </div>
-    </section>
-  )}
+    </div>
+  </section>
 
   <!-- Navigation bar -->
   <section class="py-8 border-t border-white/5">
