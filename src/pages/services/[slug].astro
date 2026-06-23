@@ -4,6 +4,7 @@ import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
 import { servicesDetail } from '../../data/services-detail.ts';
 import { projects } from '../../data/projects';
+import { projectScreenshotUrl } from '../../utils/project-screenshot';
 
 export async function getStaticPaths() {
   return servicesDetail.map((service) => ({
@@ -342,10 +343,12 @@ const relatedWork = projects
             >
               <div class="aspect-[16/9] bg-white/5 overflow-hidden">
                 <img
-                  src={p.thumbnail}
-                  alt={p.name}
+                  src={projectScreenshotUrl(p.url)}
+                  alt={`${p.name} website preview`}
+                  width="600"
+                  height="400"
                   loading="lazy"
-                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80 group-hover:opacity-100"
+                  class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500 opacity-80 group-hover:opacity-100"
                 />
               </div>
               <div class="p-5">
