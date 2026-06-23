@@ -169,6 +169,11 @@
   .stat-hl:hover .stat-num {
     filter: drop-shadow(0 0 14px rgba(0, 163, 255, 0.7));
   }
+
+  /* Scroll-down hint (services / landing pages) */
+  .scroll-hint {
+    animation: scroll-bounce 2s ease-in-out infinite;
+  }
 }
 
 /* Animations */
@@ -189,9 +194,15 @@
 }
 
 /* Respect reduced-motion preferences */
+@keyframes scroll-bounce {
+  0%, 100% { transform: translateY(0); opacity: 0.5; }
+  50% { transform: translateY(8px); opacity: 1; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .hero-reveal { opacity: 1; animation: none; }
   .hero-gradient-text { animation: none; }
+  .scroll-hint { animation: none; opacity: 0.7; }
 }
 
 @keyframes float-1 {

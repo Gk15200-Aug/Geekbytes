@@ -60,11 +60,14 @@ const whyUs = [
   </Fragment>
 
   <!-- Hero -->
-  <section class="relative pt-32 pb-24 overflow-hidden bg-brand-black">
+  <section class="relative pt-32 pb-28 overflow-hidden bg-brand-black min-h-[88vh] flex flex-col">
     <div class="absolute inset-0 hero-grid opacity-20"></div>
     <div class="absolute -top-40 left-1/2 -translate-x-1/2 w-[900px] h-[500px] bg-brand-accent/8 rounded-full blur-[140px]"></div>
     <div class="absolute top-20 right-0 w-[400px] h-[400px] bg-blue-500/5 rounded-full blur-[100px]"></div>
-    <div class="relative max-w-container mx-auto px-4 text-center">
+    <!-- Bottom fade — hints that content continues below -->
+    <div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-brand-black via-brand-black/80 to-transparent pointer-events-none"></div>
+
+    <div class="relative flex-1 flex flex-col justify-center max-w-container mx-auto px-4 text-center w-full">
       <nav aria-label="Breadcrumb" class="mb-10 flex justify-center">
         <ol class="flex items-center gap-2 text-xs text-brand-white/30 bg-white/5 px-4 py-2 rounded-full border border-white/10">
           <li><a href="/" class="hover:text-brand-accent transition-colors">Home</a></li>
@@ -73,7 +76,7 @@ const whyUs = [
         </ol>
       </nav>
 
-      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-accent/10 border border-brand-accent/20 text-brand-accent text-xs font-semibold tracking-wider uppercase mb-6">
+      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-accent/10 border border-brand-accent/20 text-brand-accent text-xs font-semibold tracking-wider uppercase mb-6 mx-auto">
         <span class="w-1.5 h-1.5 rounded-full bg-brand-accent animate-pulse"></span>
         What We Build
       </div>
@@ -86,7 +89,7 @@ const whyUs = [
       </p>
 
       <!-- Stats bar -->
-      <div class="inline-flex flex-wrap justify-center gap-8 bg-white/5 border border-white/10 rounded-2xl px-10 py-5">
+      <div class="inline-flex flex-wrap justify-center gap-8 bg-white/5 border border-white/10 rounded-2xl px-10 py-5 mx-auto">
         {[["50+","Projects"], ["99%","Satisfaction"], ["$12/hr","Transparent"], ["24h","Response"]].map(([val, label]) => (
           <div class="text-center">
             <div class="text-2xl font-bold text-brand-accent">{val}</div>
@@ -94,12 +97,45 @@ const whyUs = [
           </div>
         ))}
       </div>
+
+      <!-- Service preview chips — shows what's below the fold -->
+      <div class="mt-10 max-w-3xl mx-auto">
+        <p class="text-xs text-brand-white/30 uppercase tracking-widest mb-4">{servicesDetail.length} services below</p>
+        <div class="flex flex-wrap justify-center gap-2">
+          {servicesDetail.map((service) => (
+            <a
+              href={`/services/${service.slug}`}
+              class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-white/10 bg-white/[0.04] text-xs text-brand-white/50 hover:text-brand-white hover:border-brand-accent/40 hover:bg-brand-accent/10 transition-all duration-200"
+            >
+              <span class="w-1.5 h-1.5 rounded-full bg-brand-accent/60 shrink-0"></span>
+              {service.title.replace(' Services', '')}
+            </a>
+          ))}
+        </div>
+      </div>
     </div>
+
+    <!-- Scroll hint -->
+    <a
+      href="#services-grid"
+      class="scroll-hint relative z-10 flex flex-col items-center gap-1.5 pb-6 text-brand-white/40 hover:text-brand-accent transition-colors"
+      aria-label="Scroll to explore all services"
+    >
+      <span class="text-xs font-medium tracking-wide">Explore all services</span>
+      <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+      </svg>
+    </a>
   </section>
 
   <!-- Services Grid -->
-  <section class="py-24 border-t border-white/5">
+  <section id="services-grid" class="py-20 border-t border-white/5 scroll-mt-24">
     <div class="max-w-container mx-auto px-4">
+      <div class="text-center mb-12">
+        <span class="section-label">ALL SERVICES</span>
+        <h2 class="text-2xl md:text-3xl font-bold text-brand-white mt-3">Pick the service that fits your project</h2>
+        <p class="text-brand-white/45 text-sm mt-2 max-w-lg mx-auto">Click any card for full details, pricing, process, and FAQs.</p>
+      </div>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
         {servicesDetail.map((service, i) => (
           <a
