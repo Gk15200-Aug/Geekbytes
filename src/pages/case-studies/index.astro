@@ -65,7 +65,7 @@ const categoryLabel: Record<string, string> = {
           <a
             href={`/case-studies/${project.slug}`}
             data-category={project.category}
-            class="case-card group block bg-white/5 border border-white/10 hover:border-brand-accent/40 rounded-2xl p-5 transition-all duration-300 hover:-translate-y-1"
+            class="case-card group flex flex-col h-full bg-white/5 border border-white/10 hover:border-brand-accent/40 rounded-2xl p-5 transition-all duration-300 hover:-translate-y-1"
           >
             <!-- Category pill -->
             <p class="text-xs text-gray-500 mb-3">{categoryLabel[project.category] ?? project.category}</p>
@@ -95,8 +95,8 @@ const categoryLabel: Record<string, string> = {
               ))}
             </div>
 
-            <!-- Read more + start project -->
-            <div class="flex items-center justify-between gap-2">
+            <!-- Read more + start project (pinned to bottom) -->
+            <div class="mt-auto pt-4 border-t border-white/5 flex items-center justify-between gap-2">
               <p class="text-brand-accent text-xs font-semibold flex items-center gap-1">
                 Read Case Study
                 <svg class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
