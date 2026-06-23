@@ -44,20 +44,20 @@ const stats = [
 
 const timeline = [
   { year: "2020", event: "Founded GeekBytes while working in enterprise IT. First 5 clients in 3 months." },
-  { year: "2021", event: "Launched Auto Reply Bot — reached 50,000+ downloads on Google Play." },
+  { year: "2021", event: "Launched first mobile automation product — adopted by small business owners across multiple countries." },
   { year: "2022", event: "Delivered first international projects: US, UK & Australia. Team grows to 5." },
-  { year: "2023", event: "Auto Reply Bot surpasses 1,000,000+ installs. Expanded into AI chatbot services." },
+  { year: "2023", event: "Expanded into AI chatbot & CRM automation services for agencies and service businesses." },
   { year: "2024", event: "50+ projects delivered. Added GoHighLevel, Cloud Architecture & Custom SaaS to offerings." },
   { year: "2025", event: "Launched geekbytestech.com. Serving clients in 10+ countries across 7 industries." },
 ];
 
 const clients = [
-  { name: "The Palm", logo: "/images/projects/the-palm.webp" },
-  { name: "TEDxNuremberg", logo: "/images/projects/tedxnuremberg.webp" },
-  { name: "Hardens", logo: "/images/projects/hardens.webp" },
-  { name: "VaporFi", logo: "/images/projects/vaporfi.webp" },
-  { name: "One Aesthetics", logo: "/images/projects/one-aesthetics.webp" },
-  { name: "CollabDiary", logo: "/images/projects/collabdiary.webp" },
+  { name: "The Palm", industry: "Hospitality" },
+  { name: "TEDxNuremberg", industry: "Events" },
+  { name: "Hardens", industry: "Publishing" },
+  { name: "VaporFi", industry: "eCommerce" },
+  { name: "One Aesthetics", industry: "Healthcare" },
+  { name: "CollabDiary", industry: "SaaS" },
 ];
 
 const techStack = [
@@ -129,7 +129,7 @@ const techStack = [
             Before starting GeekBytes, I spent years in enterprise software at companies including <strong class="text-brand-white">IBM</strong> and <strong class="text-brand-white">Oracle</strong>, working on large-scale systems that millions of people rely on daily. In 2020, I founded GeekBytes with a simple idea: small and mid-size businesses deserve the same quality of engineering that Fortune 500 companies get — without the Fortune 500 price tag.
           </p>
           <p class="text-brand-white/65 leading-relaxed mb-6">
-            Outside client work, I build consumer apps. My Android apps have been downloaded by over <strong class="text-brand-white">1.5 million users</strong> on Google Play. That background — shipping real products to real users — is what separates GeekBytes from an agency that just runs through templates.
+            Outside client work, I ship consumer and business software used by real users at scale. That background — building products end-to-end, not just client deliverables — is what separates GeekBytes from an agency that just runs through templates.
           </p>
           <div class="flex flex-wrap gap-3">
             <a
@@ -153,7 +153,7 @@ const techStack = [
 
           <!-- Credential chips -->
           <div class="flex flex-wrap gap-2 mt-5">
-            {["Ex-IBM", "Ex-Oracle", "1.5M+ Play Store Downloads", "50+ Projects Delivered", "10+ Countries"].map(chip => (
+            {["Ex-IBM", "Ex-Oracle", "Mobile & Web Products", "50+ Projects Delivered", "10+ Countries"].map(chip => (
               <span class="text-xs px-3 py-1 rounded-full border border-white/10 text-brand-white/50 bg-white/[0.03]">{chip}</span>
             ))}
           </div>
@@ -195,15 +195,11 @@ const techStack = [
   <section class="bg-brand-black py-14 border-b border-white/5">
     <div class="max-w-4xl mx-auto px-4">
       <p class="text-xs text-gray-500 uppercase tracking-widest text-center mb-8">Clients We've Worked With</p>
-      <div class="grid grid-cols-3 md:grid-cols-6 gap-6 items-center">
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4">
         {clients.map(client => (
-          <div class="flex items-center justify-center p-3 rounded-xl bg-white/[0.03] border border-white/8 hover:border-white/15 transition-colors aspect-[3/2]">
-            <img
-              src={client.logo}
-              alt={client.name}
-              loading="lazy"
-              class="w-full h-full object-cover rounded-lg opacity-50 grayscale hover:opacity-70 hover:grayscale-0 transition-all duration-300"
-            />
+          <div class="flex flex-col items-center justify-center p-4 rounded-xl bg-white/[0.03] border border-white/8 hover:border-brand-accent/30 hover:bg-white/[0.05] transition-all duration-300 text-center min-h-[88px]">
+            <p class="text-sm font-semibold text-brand-white/70 leading-tight">{client.name}</p>
+            <p class="text-[10px] text-gray-500 mt-1 uppercase tracking-wide">{client.industry}</p>
           </div>
         ))}
       </div>
