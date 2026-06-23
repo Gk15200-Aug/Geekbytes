@@ -26,6 +26,26 @@ const categoryLabel: Record<string, string> = {
   "mobile-apps": "Mobile App",
   "saas-tech": "SaaS & Tech",
 };
+
+// Map category to the most relevant service page
+const serviceMap: Record<string, { label: string; slug: string }> = {
+  ecommerce:    { label: "eCommerce Store Development", slug: "web-development" },
+  business:     { label: "Web Development", slug: "web-development" },
+  hospitality:  { label: "Web Development", slug: "web-development" },
+  healthcare:   { label: "Web Development", slug: "web-development" },
+  automotive:   { label: "Web Development", slug: "web-development" },
+  "mobile-apps":{ label: "Mobile App Development", slug: "mobile-app-development" },
+  "saas-tech":  { label: "Custom Software Solutions", slug: "custom-software" },
+};
+const relatedService = serviceMap[project.category] ?? { label: "Our Services", slug: "" };
+
+// Build short summary for the at-a-glance box
+const challengeShort = caseStudy?.challenge
+  ? caseStudy.challenge.slice(0, 120).trimEnd() + "…"
+  : project.description.slice(0, 120) + "…";
+const resultShort = caseStudy?.outcomes
+  ? caseStudy.outcomes.slice(0, 110).trimEnd() + "…"
+  : "See results below.";
 ---
 
 <BaseLayout
@@ -58,7 +78,7 @@ const categoryLabel: Record<string, string> = {
         <h1 class="text-4xl lg:text-5xl font-bold mb-4">{project.name}</h1>
         <p class="text-xl text-gray-400 leading-relaxed">{project.description}</p>
 
-        <div class="mt-8">
+        <div class="mt-8 flex flex-wrap gap-3">
           <a
             href={project.url}
             target="_blank"
@@ -68,6 +88,36 @@ const categoryLabel: Record<string, string> = {
             Visit Live Site
             <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
           </a>
+          <a
+            href="https://calendly.com/geekbytessolutions"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 border border-white/20 text-brand-white/80 font-semibold px-5 py-2.5 rounded-full text-sm hover:border-brand-accent/50 hover:text-brand-white transition-colors"
+          >
+            Get Something Similar →
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- At-a-glance summary box -->
+    <section class="max-w-3xl mx-auto px-4 pb-4">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-px bg-white/10 rounded-2xl overflow-hidden border border-white/10">
+        <div class="bg-brand-black p-5">
+          <p class="text-xs text-gray-500 uppercase tracking-widest mb-1.5">Client Type</p>
+          <p class="text-brand-white font-semibold text-sm">{categoryLabel[project.category] ?? project.category}</p>
+        </div>
+        <div class="bg-brand-black p-5">
+          <p class="text-xs text-gray-500 uppercase tracking-widest mb-1.5">Tech Used</p>
+          <p class="text-brand-white font-semibold text-sm">{project.techTags.slice(0, 2).join(", ")}</p>
+        </div>
+        <div class="bg-brand-black p-5 col-span-2 md:col-span-1">
+          <p class="text-xs text-gray-500 uppercase tracking-widest mb-1.5">Challenge</p>
+          <p class="text-gray-400 text-sm leading-relaxed">{challengeShort}</p>
+        </div>
+        <div class="bg-brand-black p-5 col-span-2 md:col-span-1">
+          <p class="text-xs text-gray-500 uppercase tracking-widest mb-1.5">Result</p>
+          <p class="text-gray-400 text-sm leading-relaxed">{resultShort}</p>
         </div>
       </div>
     </section>
@@ -160,11 +210,36 @@ const categoryLabel: Record<string, string> = {
           <p class="text-gray-300 leading-relaxed">{caseStudy.outcomes}</p>
         </section>
 
+        <!-- Related Service block -->
+        <section class="border border-white/10 rounded-2xl p-7 bg-white/3">
+          <p class="text-xs text-gray-500 uppercase tracking-widest mb-4">Related Service</p>
+          <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5">
+            <div>
+              <p class="text-brand-white font-bold text-lg mb-1">{relatedService.label}</p>
+              <p class="text-gray-400 text-sm">This project was built using our {relatedService.label} service. See full details, pricing, and deliverables.</p>
+            </div>
+            <div class="flex flex-col gap-3 shrink-0">
+              <a
+                href={`/services/${relatedService.slug}`}
+                class="inline-flex items-center justify-center gap-2 bg-brand-accent text-white font-semibold px-5 py-2.5 rounded-full text-sm hover:bg-brand-accent/90 transition-colors whitespace-nowrap"
+              >
+                View Service Details →
+              </a>
+              <a
+                href="/#contact"
+                class="inline-flex items-center justify-center gap-2 border border-white/20 text-brand-white/70 font-semibold px-5 py-2.5 rounded-full text-sm hover:border-white/40 hover:text-brand-white transition-colors whitespace-nowrap"
+              >
+                Get a Quote
+              </a>
+            </div>
+          </div>
+        </section>
+
         <!-- CTA -->
         <section class="text-center pt-4">
           <p class="text-gray-400 mb-6">Want results like these for your business?</p>
-          <a href="/#contact" class="inline-flex items-center gap-2 bg-brand-accent text-white font-semibold px-6 py-3 rounded-full hover:bg-brand-accent/90 transition-colors">
-            Get a Free Consultation
+          <a href="https://calendly.com/geekbytessolutions" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-brand-accent text-white font-semibold px-6 py-3 rounded-full hover:bg-brand-accent/90 transition-colors">
+            Book a Free Strategy Call →
           </a>
         </section>
 
