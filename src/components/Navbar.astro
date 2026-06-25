@@ -6,10 +6,11 @@ const navI18nKeys = ['nav.home', 'nav.about', 'nav.skills', 'nav.services', 'nav
 ---
 
 <nav
-  class="fixed top-0 left-0 right-0 z-50 bg-brand-black/80 backdrop-blur-md border-b border-white/10"
+  id="site-nav"
+  class="site-nav fixed top-0 left-0 right-0 z-50"
   aria-label="Main navigation"
 >
-  <div class="max-w-container mx-auto px-4 flex items-center justify-between h-16">
+  <div class="site-nav-inner max-w-container mx-auto px-4 flex items-center justify-between h-16">
     <!-- Logo -->
     <a href="/#hero" class="flex items-center gap-2 min-w-[44px] min-h-[44px]" aria-label="GeekBytes Home">
       <Logo />

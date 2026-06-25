@@ -47,6 +47,56 @@
     @apply border border-brand-accent text-brand-accent px-6 py-3 rounded-full font-medium transition-all hover:bg-brand-accent hover:text-brand-white;
   }
 
+  /* ── Navbar: full-width at top → floating pill on scroll ─────────── */
+  .site-nav {
+    padding: 0;
+    transition: padding 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .site-nav-inner {
+    @apply bg-brand-black/80 backdrop-blur-md border-b border-white/10;
+    border-radius: 0;
+    transition:
+      border-radius 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+      border-color 0.35s ease,
+      box-shadow 0.35s ease,
+      background-color 0.35s ease,
+      height 0.35s ease,
+      max-width 0.35s ease,
+      margin 0.35s ease;
+  }
+
+  .site-nav.is-scrolled {
+    padding: 0.625rem 0.875rem 0;
+  }
+
+  .site-nav.is-scrolled .site-nav-inner {
+    @apply h-14 border border-white/15 bg-brand-black/95;
+    border-radius: 1rem;
+    box-shadow:
+      0 4px 24px rgba(0, 0, 0, 0.45),
+      0 0 0 1px rgba(0, 163, 255, 0.12),
+      0 8px 32px -8px rgba(0, 163, 255, 0.15);
+    border-bottom-color: rgba(255, 255, 255, 0.15);
+  }
+
+  @media (min-width: 1024px) {
+    .site-nav.is-scrolled {
+      padding: 0.75rem 1.25rem 0;
+    }
+
+    .site-nav.is-scrolled .site-nav-inner {
+      border-radius: 1.25rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .site-nav,
+    .site-nav-inner {
+      transition: none;
+    }
+  }
+
   /* Hero heading display font */
   .hero-heading {
     font-family: var(--font-sans);
