@@ -3,7 +3,7 @@ window.addEventListener('load', () => {
   setTimeout(() => {
     import('./active-nav.js');
     import('./project-filter.js');
-    import('./scroll-animations.js');
+    import('./project-thumbnails.js');
     import('./form-validation.js');
   }, 0);
 });
