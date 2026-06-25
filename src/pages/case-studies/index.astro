@@ -15,6 +15,7 @@ const categoryLabel: Record<string, string> = {
   "mobile-apps": "Mobile App",
   "saas-tech": "SaaS & Tech",
 };
+const cardGlow = ['accent', 'violet', 'emerald', 'amber', 'cyan', 'rose'];
 ---
 
 <BaseLayout
@@ -61,10 +62,10 @@ const categoryLabel: Record<string, string> = {
     <!-- Project grid -->
     <section class="pb-24 px-4">
       <div class="max-w-container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5" id="case-grid">
-        {projects.map((project) => (
+        {projects.map((project, i) => (
           <article
             data-category={project.category}
-            class="case-card group relative flex flex-col h-full bg-white/5 border border-white/10 hover:border-brand-accent/40 rounded-2xl p-5 transition-all duration-300 hover:-translate-y-1"
+            class={`case-card card-glow card-glow-${cardGlow[i % cardGlow.length]} group relative flex flex-col h-full bg-white/5 border border-white/10 rounded-2xl p-5`}
           >
             <!-- Category pill -->
             <p class="text-xs text-gray-500 mb-3">{categoryLabel[project.category] ?? project.category}</p>

@@ -27,6 +27,7 @@ const techLabel: Record<string, string> = {
   git: 'Gt', github: 'Gh', figma: 'Fi', premiere: 'Pr',
   aftereffects: 'Ae', photoshop: 'Ps', illustrator: 'Ai', canva: 'Ca',
 };
+const skillGlow = ['accent', 'cyan', 'violet', 'emerald', 'amber', 'rose'];
 ---
 
 <section id="skills" aria-labelledby="skills-heading" class="bg-brand-black py-20 lg:py-24">
@@ -42,8 +43,8 @@ const techLabel: Record<string, string> = {
 
     <!-- Skills grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {skillCategories.map((category) => (
-        <div class="card-hover bg-white/5 rounded-2xl border border-white/10 p-6">
+      {skillCategories.map((category, i) => (
+        <div class={`card-glow card-glow-${skillGlow[i % skillGlow.length]} bg-white/5 rounded-2xl border border-white/10 p-6`}>
           <!-- Category header -->
           <div class="flex items-center gap-3 mb-6">
             <div class="w-10 h-10 rounded-lg bg-brand-accent/10 flex items-center justify-center text-brand-accent">

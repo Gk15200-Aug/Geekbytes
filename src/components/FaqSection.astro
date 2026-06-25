@@ -42,6 +42,7 @@ const faqs = [
     a: "You can contact GeekBytes by emailing info@geekbytestech.com or by filling out the contact form on the GeekBytes website at geekbytestech.com. A team member typically responds within 24 hours."
   }
 ];
+const faqGlow = ['accent', 'cyan', 'violet', 'emerald', 'amber', 'rose', 'accent', 'cyan', 'violet', 'emerald'];
 ---
 
 <section id="faq" aria-labelledby="faq-heading" class="bg-brand-black py-20 lg:py-24">
@@ -58,7 +59,7 @@ const faqs = [
     <!-- FAQ Grid -->
     <div class="max-w-3xl mx-auto space-y-3">
       {faqs.map((faq, i) => (
-        <details class="group bg-white/5 border border-white/10 rounded-2xl overflow-hidden hover:border-brand-accent/30 transition-colors">
+        <details class={`card-glow card-glow-${faqGlow[i % faqGlow.length]} group bg-white/5 border border-white/10 rounded-2xl overflow-hidden`}>
           <summary class="flex items-center justify-between gap-4 px-6 py-5 cursor-pointer list-none select-none">
             <span class="font-semibold text-brand-white text-sm md:text-base leading-snug">{faq.q}</span>
             <span class="shrink-0 w-6 h-6 rounded-full border border-white/20 flex items-center justify-center text-brand-accent transition-transform duration-300 group-open:rotate-45">

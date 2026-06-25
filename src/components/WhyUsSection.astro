@@ -25,6 +25,7 @@ const reasons = [
     highlight: "Long-term partner, not a one-off vendor",
   },
 ];
+const whyUsGlow = ['accent', 'violet', 'emerald', 'amber'];
 ---
 
 <section id="why-us" class="py-20 lg:py-24 border-t border-white/10">
@@ -46,7 +47,7 @@ const reasons = [
     <!-- Reasons grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
       {reasons.map((r, i) => (
-        <div class="card-hover group bg-white/5 border border-white/10 rounded-2xl p-7">
+        <div class={`card-glow card-glow-${whyUsGlow[i % whyUsGlow.length]} group bg-white/5 border border-white/10 rounded-2xl p-7`}>
           <!-- Icon -->
           <div class="w-12 h-12 rounded-xl bg-brand-accent/10 border border-brand-accent/20 flex items-center justify-center text-brand-accent mb-5">
             <Fragment set:html={r.icon} />

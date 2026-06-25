@@ -305,14 +305,30 @@
     animation: scroll-bounce 2s ease-in-out infinite;
   }
 
-  /* Scroll-reveal entry neutralised for CLS — hover handled by .card-hover */
+  /* Scroll-reveal entry neutralised for CLS — hover handled by .card-glow */
   .animate-on-scroll {
     opacity: 1 !important;
   }
 
-  /* Card lift + image zoom on hover (desktop only — no CLS on touch) */
-  .card-hover {
+  /* Glass glow cards — navbar-style shine on hover, per-section accent colors */
+  .card-glow {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    --glow-rgb: 0, 163, 255;
     @apply transition-all duration-300 ease-out;
+  }
+
+  .card-glow-accent { --glow-rgb: 0, 163, 255; }
+  .card-glow-violet { --glow-rgb: 139, 92, 246; }
+  .card-glow-emerald { --glow-rgb: 16, 185, 129; }
+  .card-glow-amber { --glow-rgb: 245, 158, 11; }
+  .card-glow-rose { --glow-rgb: 244, 63, 94; }
+  .card-glow-cyan { --glow-rgb: 34, 211, 238; }
+
+  .card-glow > * {
+    position: relative;
+    z-index: 1;
   }
 
   .card-zoom {
@@ -320,14 +336,85 @@
   }
 
   @media (hover: hover) {
-    .card-hover:hover {
-      transform: translateY(-4px);
-      border-color: rgba(0, 163, 255, 0.35);
-      box-shadow: 0 20px 50px -20px rgba(0, 163, 255, 0.35);
+    .card-glow::before {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      border-radius: inherit;
+      padding: 1px;
+      background: linear-gradient(
+        120deg,
+        rgba(var(--glow-rgb), 0.95) 0%,
+        rgba(255, 255, 255, 0.5) 40%,
+        rgba(var(--glow-rgb), 0.75) 60%,
+        rgba(var(--glow-rgb), 0.35) 100%
+      );
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0;
+      transition: opacity 0.35s ease;
     }
 
-    .card-hover:hover .card-zoom {
+    .card-glow::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: linear-gradient(
+        105deg,
+        transparent 0%,
+        transparent 42%,
+        rgba(255, 255, 255, 0.12) 50%,
+        transparent 58%,
+        transparent 100%
+      );
+      background-size: 220% 100%;
+      animation: card-shine 5s ease-in-out infinite;
+      animation-play-state: paused;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0;
+      transition: opacity 0.35s ease;
+    }
+
+    .card-glow:hover {
+      transform: translateY(-4px);
+      border-color: rgba(var(--glow-rgb), 0.55) !important;
+      background: linear-gradient(
+        135deg,
+        rgba(var(--glow-rgb), 0.14) 0%,
+        rgba(8, 12, 18, 0.94) 42%,
+        rgba(6, 8, 14, 0.96) 100%
+      ) !important;
+      box-shadow:
+        0 0 0 1px rgba(var(--glow-rgb), 0.3),
+        0 0 36px rgba(var(--glow-rgb), 0.32),
+        0 0 72px -20px rgba(var(--glow-rgb), 0.4),
+        0 20px 50px -16px rgba(0, 0, 0, 0.8),
+        inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    }
+
+    .card-glow:hover::before,
+    .card-glow:hover::after {
+      opacity: 1;
+    }
+
+    .card-glow:hover::after {
+      animation-play-state: running;
+    }
+
+    .card-glow:hover .card-zoom {
       transform: scale(1.06);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .card-glow::after {
+      animation: none !important;
     }
   }
 
@@ -352,6 +439,11 @@
 .project-card-lazy {
   content-visibility: auto;
   contain-intrinsic-size: auto 420px;
+}
+
+@keyframes card-shine {
+  0%, 100% { background-position: 180% 0; }
+  50% { background-position: -80% 0; }
 }
 
 @keyframes nav-shine {

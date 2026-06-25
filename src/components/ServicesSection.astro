@@ -36,7 +36,7 @@ const additionalServices = services.filter(s => s.additional);
     <!-- Core services grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {coreServices.map((service) => (
-        <div class="card-hover flex flex-col bg-white/5 rounded-2xl border border-white/10 p-6">
+        <div class="card-glow card-glow-accent flex flex-col bg-white/5 rounded-2xl border border-white/10 p-6">
           <!-- Icon + pricing row -->
           <div class="flex items-start justify-between mb-4">
             <div class="w-12 h-12 rounded-lg bg-brand-accent/10 flex items-center justify-center text-brand-accent">
@@ -90,7 +90,7 @@ const additionalServices = services.filter(s => s.additional);
         <p class="text-xs text-gray-500 uppercase tracking-widest font-semibold mb-5 text-center">Additional Services</p>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-2xl mx-auto">
           {additionalServices.map((service) => (
-            <div class="card-hover flex flex-col bg-white/3 rounded-xl border border-white/8 p-5">
+            <div class="card-glow card-glow-cyan flex flex-col bg-white/3 rounded-xl border border-white/8 p-5">
               <!-- Icon + pricing -->
               <div class="flex items-start justify-between mb-3">
                 <div class="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center text-gray-400">
