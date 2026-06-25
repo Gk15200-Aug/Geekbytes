@@ -21,7 +21,7 @@ const thumbPlaceholder =
 ---
 
 <div
-  class="project-card-lazy group bg-white/5 rounded-2xl border border-white/10 overflow-hidden hover:-translate-y-1 hover:border-brand-accent/30"
+  class="project-card-lazy card-hover group bg-white/5 rounded-2xl border border-white/10 overflow-hidden"
   data-category={category}
 >
   <!-- Thumbnail area -->
@@ -32,7 +32,7 @@ const thumbPlaceholder =
       alt={`${name} website preview`}
       width="480"
       height="270"
-      class="w-full h-full object-cover object-top"
+      class="w-full h-full object-cover object-top card-zoom"
       decoding="async"
       fetchpriority="low"
     />

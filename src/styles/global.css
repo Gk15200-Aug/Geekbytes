@@ -176,10 +176,30 @@
     animation: scroll-bounce 2s ease-in-out infinite;
   }
 
-  /* Scroll-reveal disabled — opacity/transform shifts were hurting CLS */
+  /* Scroll-reveal entry neutralised for CLS — hover handled by .card-hover */
   .animate-on-scroll {
     opacity: 1 !important;
-    transform: none !important;
+  }
+
+  /* Card lift + image zoom on hover (desktop only — no CLS on touch) */
+  .card-hover {
+    @apply transition-all duration-300 ease-out;
+  }
+
+  .card-zoom {
+    @apply transition-transform duration-500 ease-out;
+  }
+
+  @media (hover: hover) {
+    .card-hover:hover {
+      transform: translateY(-4px);
+      border-color: rgba(0, 163, 255, 0.35);
+      box-shadow: 0 20px 50px -20px rgba(0, 163, 255, 0.35);
+    }
+
+    .card-hover:hover .card-zoom {
+      transform: scale(1.06);
+    }
   }
 
   /* Opacity-only pulse — avoids animate-ping layout shifts */
