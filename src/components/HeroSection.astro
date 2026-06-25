@@ -5,6 +5,10 @@
 <section id="hero" aria-label="Hero" class="relative min-h-screen flex items-center justify-center bg-brand-black pt-16 overflow-hidden">
   <!-- Animated Background -->
   <div class="absolute inset-0 z-0">
+    <!-- Center spotlight + edge vignette -->
+    <div class="absolute inset-0 hero-spotlight" aria-hidden="true"></div>
+    <div class="absolute inset-0 hero-vignette" aria-hidden="true"></div>
+
     <!-- Grid pattern overlay -->
     <div class="absolute inset-0 hero-grid"></div>
 
@@ -12,11 +16,11 @@
     <div class="scan-line"></div>
 
     <!-- Top blue glow -->
-    <div class="hero-glow absolute -top-20 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] bg-brand-accent/15 rounded-full blur-[150px] animate-pulse-slow"></div>
+    <div class="hero-glow absolute -top-32 left-1/2 -translate-x-1/2 w-[1100px] h-[550px] bg-brand-accent/25 rounded-full blur-[140px] animate-pulse-slow"></div>
 
     <!-- Corner glow accents -->
-    <div class="hero-glow absolute top-0 right-0 w-[400px] h-[400px] bg-brand-accent/8 rounded-full blur-[120px] animate-float-2"></div>
-    <div class="hero-glow absolute bottom-0 left-0 w-[350px] h-[350px] bg-blue-600/8 rounded-full blur-[100px] animate-float-3"></div>
+    <div class="hero-glow absolute -top-10 right-[-5%] w-[480px] h-[480px] bg-brand-accent/20 rounded-full blur-[100px] animate-float-2"></div>
+    <div class="hero-glow absolute bottom-[-10%] left-[-5%] w-[420px] h-[420px] bg-blue-500/15 rounded-full blur-[90px] animate-float-3"></div>
 
     <!-- Vertical falling lines (CSS-only) -->
     <div class="falling-line" style="left: 10%; animation-delay: 0s; animation-duration: 7s;"></div>
