@@ -1,6 +1,5 @@
 ---
 import '../styles/global.css';
-import SpeedInsights from '@vercel/speed-insights/astro';
 
 interface Props {
   title: string;
@@ -105,11 +104,26 @@ const ogImageAbsolute = ogImage.startsWith('http')
     </footer>
 
     <script is:inline src="https://va.vercel-scripts.com/v1/script.js" defer></script>
-    <SpeedInsights />
 
     <script>
     import '../scripts/mobile-menu.js';
-    import '../scripts/smooth-scroll.js';
+    window.addEventListener('load', () => {
+      import('../scripts/smooth-scroll.js');
+    });
     </script>
+
+    {import.meta.env.PROD && (
+      <script is:inline>
+        window.addEventListener('load', function () {
+          setTimeout(function () {
+            if (document.querySelector('script[src*="speed-insights"]')) return;
+            var s = document.createElement('script');
+            s.src = '/_vercel/speed-insights/script.js';
+            s.defer = true;
+            document.head.appendChild(s);
+          }, 5000);
+        });
+      </script>
+    )}
   </body>
 </html>
