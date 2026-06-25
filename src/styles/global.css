@@ -9,7 +9,7 @@
   --color-text-muted: #9CA3AF;
   --color-surface: #111111;
   --color-border: #1F2937;
-  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-sans: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
 }
 
 @layer base {
@@ -19,6 +19,10 @@
 
   body {
     @apply bg-brand-black text-brand-white font-sans antialiased;
+  }
+
+  html.fonts-loaded body {
+    font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
   }
 
   * {
@@ -49,7 +53,7 @@
 
   /* Hero heading display font */
   .hero-heading {
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: var(--font-sans);
     letter-spacing: -0.02em;
   }
 
@@ -122,10 +126,11 @@
     animation: badge-slide 3s ease-in-out infinite;
   }
 
-  /* ── Hero entrance reveal (staggered) ───────────────────────────── */
+  /* Hero entrance — transform only so LCP text is visible immediately */
   .hero-reveal {
-    opacity: 0;
-    animation: hero-reveal 0.75s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    opacity: 1;
+    transform: translateY(20px);
+    animation: hero-reveal 0.65s cubic-bezier(0.22, 1, 0.36, 1) forwards;
   }
   .hero-d1 { animation-delay: 0.05s; }
   .hero-d2 { animation-delay: 0.18s; }
@@ -183,8 +188,14 @@
 }
 
 @keyframes hero-reveal {
-  0% { opacity: 0; transform: translateY(24px); }
-  100% { opacity: 1; transform: translateY(0); }
+  0% { transform: translateY(20px); }
+  100% { transform: translateY(0); }
+}
+
+/* Off-screen sections skip layout/paint until near viewport */
+.project-card-lazy {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 420px;
 }
 
 @keyframes gradient-shift {
@@ -200,9 +211,32 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero-reveal { opacity: 1; animation: none; }
+  .hero-reveal { animation: none; transform: none; }
   .hero-gradient-text { animation: none; }
   .scroll-hint { animation: none; opacity: 0.7; }
+  .scan-line, .falling-line { display: none; }
+}
+
+/* Mobile: drop expensive hero effects that block compositing */
+@media (max-width: 768px) {
+  .scan-line,
+  .falling-line {
+    display: none;
+  }
+
+  .hero-glow {
+    animation: none !important;
+    opacity: 0.35;
+  }
+
+  .hero-gradient-text {
+    animation: none;
+    background-size: 100% 100%;
+  }
+
+  .badge-shine::after {
+    animation: none;
+  }
 }
 
 @keyframes float-1 {

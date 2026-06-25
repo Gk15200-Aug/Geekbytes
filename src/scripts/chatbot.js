@@ -1,0 +1,305 @@
+export default function initChatbot() {
+  // ─── Knowledge Base ───────────────────────────────────────────────────────
+  // Each entry has keyword arrays (scored by match count) and an answer string.
+  // Supports **bold**, • bullets, and \n line breaks.
+  const KB = [
+    {
+      keys: ['hello', 'hi', 'hey', 'howdy', 'good morning', 'good afternoon', 'good evening', 'sup', 'greetings'],
+      answer: `👋 Hi there! I'm the **GeekBytes Assistant**.\n\nI can help you with:\n• Our services & pricing\n• Project timelines\n• Technologies we use\n• How to get started\n\nWhat would you like to know?`
+    },
+    {
+      keys: ['services', 'offer', 'provide', 'what do you do', 'what can you do', 'all services', 'list'],
+      answer: `We offer **9 services**:\n\n• 🌐 **Web Development** — from $499\n• 🔧 **WordPress Development** — from $399\n• 🤖 **AI Chatbots & Automation** — from $999\n• 📊 **GoHighLevel CRM** — from $299\n• 📱 **Mobile App Development** — from $2,999\n• 💻 **Custom Software** — from $2,499\n• ☁️ **Cloud Architecture** — from $599\n• 🎬 **Video Editing** — from $99/video\n• 🎨 **Graphic Design & Branding** — from $149\n\nAsk me about any specific service for more details!`
+    },
+    {
+      keys: ['web', 'website', 'web app', 'web application', 'landing page', 'ecommerce', 'e-commerce', 'online store', 'shopify', 'business site', 'corporate'],
+      answer: `🌐 **Web Development** — starting from **$499/project**\n\nWe build:\n• eCommerce & Online Stores\n• Business & Portfolio Websites\n• Landing Pages & Lead Gen Sites\n• Custom Web Applications\n\n**Timeline:** 1–3 weeks for standard sites; 4–8 weeks for complex eCommerce.\n\n**Stack:** React, Next.js, Astro, Tailwind, Node.js, WordPress, WooCommerce, Shopify.\n\nReady to start? 👉 calendly.com/geekbytessolutions`
+    },
+    {
+      keys: ['wordpress', 'wp', 'woocommerce', 'plugin', 'theme', 'cms', 'elementor', 'lms', 'membership', 'blog'],
+      answer: `🔧 **WordPress Development** — starting from **$399/project**\n\nWe specialise in:\n• Custom Theme & Plugin Development\n• WooCommerce Stores\n• LMS & Membership Sites\n• Speed optimisation & SEO setup\n\n**Timeline:** 1–2 weeks for standard WordPress sites.\n\nBook a free consultation → calendly.com/geekbytessolutions`
+    },
+    {
+      keys: ['chatbot', 'bot', 'ai bot', 'automation', 'whatsapp bot', 'gpt', 'openai', 'dialogue', 'automate', 'intelligent', 'conversational'],
+      answer: `🤖 **AI Chatbots & Automation** — starting from **$999/bot**\n\nWe build:\n• GPT-4 powered chatbots\n• WhatsApp Business API bots\n• Lead generation & booking bots\n• Workflow & process automation\n\nThis very assistant was built by us! 😄\n\n**Timeline:** 1–3 weeks depending on complexity.\n\nInterested? → info@geekbytestech.com`
+    },
+    {
+      keys: ['gohighlevel', 'ghl', 'highlevel', 'crm', 'funnel', 'pipeline', 'email sequence', 'sms', 'marketing automation', 'white label', 'agency setup'],
+      answer: `📊 **GoHighLevel CRM** — starting from **$299/setup**\n\nWe handle:\n• Pipeline & Funnel Setup\n• SMS/Email Automation Sequences\n• Sub-account & White-Label Agency Setup\n• Lead nurturing workflows\n\n**Timeline:** 3–7 days for a standard setup.\n\nBook a call → calendly.com/geekbytessolutions`
+    },
+    {
+      keys: ['mobile', 'app', 'ios', 'android', 'flutter', 'react native', 'smartphone', 'play store', 'app store', 'swift', 'kotlin', 'native'],
+      answer: `📱 **Mobile App Development** — starting from **$2,999/app**\n\nWe develop:\n• iOS (Swift) & Android (Kotlin) native apps\n• Cross-platform apps with React Native & Flutter\n• App Store & Google Play Store publishing\n• Backend APIs & push notifications\n\n**Timeline:** 6–14 weeks depending on features.\n\nReady to build? → calendly.com/geekbytessolutions`
+    },
+    {
+      keys: ['custom software', 'saas', 'erp', 'dashboard', 'enterprise', 'platform', 'b2b', 'internal tool', 'admin panel', 'api integration'],
+      answer: `💻 **Custom Software Solutions** — starting from **$2,499/project**\n\nWe engineer:\n• SaaS Product Development\n• ERP & Internal Dashboards\n• API Design & Third-party Integrations\n• Multi-tenant platforms\n\n**Timeline:** 8–16 weeks for full SaaS products.\n\nTell us your idea → info@geekbytestech.com`
+    },
+    {
+      keys: ['cloud', 'aws', 'azure', 'gcp', 'google cloud', 'devops', 'ci/cd', 'serverless', 'docker', 'kubernetes', 'hosting', 'deployment', 'infrastructure', 'microservices'],
+      answer: `☁️ **Cloud Architecture** — starting from **$599/project**\n\nWe set up:\n• AWS, Azure & GCP infrastructure\n• Microservices & Serverless architectures\n• CI/CD & DevOps Pipelines\n• Containerisation with Docker & Kubernetes\n\n**Timeline:** 1–4 weeks depending on scale.\n\nBook a technical consultation → calendly.com/geekbytessolutions`
+    },
+    {
+      keys: ['video', 'editing', 'reel', 'shorts', 'youtube', 'promo video', 'motion graphic', 'animation', 'ad video', 'explainer'],
+      answer: `🎬 **Video Editing** — starting from **$99/video**\n\nWe produce:\n• Promotional & Ad Videos\n• Social Media Reels & Shorts\n• Motion Graphics & Intros\n• YouTube & explainer videos\n\n**Turnaround:** 2–5 business days per video.\n\nSend your footage → info@geekbytestech.com`
+    },
+    {
+      keys: ['design', 'logo', 'brand', 'branding', 'graphic', 'ui', 'ux', 'figma', 'marketing material', 'flyer', 'poster', 'identity'],
+      answer: `🎨 **Graphic Design & Branding** — starting from **$149/project**\n\nWe create:\n• Logos & Brand Identity Systems\n• Marketing Collaterals (flyers, banners)\n• UI/UX Design (Figma)\n• Social media kits\n\n**Timeline:** 3–7 days for logo + brand kit.\n\nLet's design something great → info@geekbytestech.com`
+    },
+    {
+      keys: ['price', 'cost', 'how much', 'pricing', 'rate', 'charge', 'fee', 'budget', 'affordable', 'expensive', 'cheap', 'dollar', 'usd', 'per hour', 'hourly'],
+      answer: `💰 **Our Pricing**\n\nWe bill two ways:\n\n**Hourly:** from **$12/hr** — the quality you'd expect at $80+/hr agencies.\n\n**Project-based pricing:**\n• Websites from $399\n• AI Chatbots from $999\n• Mobile Apps from $2,999\n• Custom Software from $2,499\n\nAll pricing depends on scope. For a custom quote, book a free 30-min call → calendly.com/geekbytessolutions`
+    },
+    {
+      keys: ['how long', 'timeline', 'duration', 'time', 'weeks', 'days', 'deadline', 'fast', 'quick', 'turnaround', 'delivery'],
+      answer: `⏱️ **Project Timelines**\n\n• Standard website: **1–3 weeks**\n• WordPress site: **1–2 weeks**\n• eCommerce / complex web app: **4–8 weeks**\n• Mobile app: **6–14 weeks**\n• AI Chatbot: **1–3 weeks**\n• GoHighLevel setup: **3–7 days**\n• Cloud infrastructure: **1–4 weeks**\n• Logo & branding: **3–7 days**\n• Video editing: **2–5 days per video**\n\nTimelines depend on scope and revision cycles.`
+    },
+    {
+      keys: ['start', 'begin', 'get started', 'contact', 'hire', 'work with', 'quote', 'proposal', 'enquire', 'inquiry', 'reach out', 'talk'],
+      answer: `🚀 **Getting Started is Easy!**\n\n**Step 1:** Book a free 30-min discovery call\n👉 calendly.com/geekbytessolutions\n\n**Step 2:** We discuss your requirements and send a detailed proposal within 24 hrs.\n\n**Step 3:** We kick off the project!\n\nOr drop us an email directly:\n📧 info@geekbytestech.com\n\nWe respond within **24 hours**.`
+    },
+    {
+      keys: ['about', 'who are you', 'who is geekbytes', 'founded', 'company', 'team', 'located', 'remote', 'where', 'origin', 'background', 'history', '2020'],
+      answer: `🏢 **About GeekBytes**\n\n• Founded: **2020**\n• Model: **Remote-first** — no physical office needed!\n• Serving clients across the **US, UK, Australia, Europe & Middle East**\n• Rate: From **$12/hr** (same quality as $80+/hr agencies)\n\nWe're a tight-knit team of developers, designers, and AI specialists who deliver enterprise-grade work at startup-friendly prices.\n\nLearn more → geekbytestech.com/about`
+    },
+    {
+      keys: ['technology', 'tech', 'stack', 'tools', 'language', 'framework', 'react', 'next', 'node', 'python', 'which technology', 'what tech'],
+      answer: `🛠️ **Our Core Tech Stack**\n\n• **Frontend:** React, Next.js, Astro, Vue.js, Tailwind CSS\n• **Backend:** Node.js, Python, FastAPI, Django, Express\n• **Mobile:** React Native, Flutter, Swift, Kotlin\n• **Cloud:** AWS, Azure, GCP, Docker, Kubernetes\n• **CMS/eCommerce:** WordPress, WooCommerce, Shopify, Sanity\n• **Database:** PostgreSQL, MongoDB, MySQL, Redis\n\nWe go deep on fewer tools rather than being shallow on many.`
+    },
+    {
+      keys: ['industry', 'healthcare', 'hospitality', 'automotive', 'real estate', 'education', 'finance', 'niche', 'sector', 'specialise'],
+      answer: `🏭 **Industries We Serve**\n\n• 🏥 Healthcare\n• 🏨 Hospitality & Restaurants\n• 🛒 eCommerce & Retail\n• 💼 SaaS & Tech Startups\n• 🚗 Automotive\n• 🏠 Real Estate\n• 🎓 Education & eLearning\n• 💰 Finance & Fintech\n\nWhatever your industry — if you need software, we can build it.`
+    },
+    {
+      keys: ['whatsapp', 'chat on whatsapp', 'message', 'group'],
+      answer: `💬 **WhatsApp**\n\nJoin our WhatsApp group to chat with the team directly:\n👉 chat.whatsapp.com/JidNzrYtjeOCVIa8r1o6t3\n\nOr email us at info@geekbytestech.com\n\nWe respond within **24 hours**!`
+    },
+    {
+      keys: ['book', 'schedule', 'call', 'calendly', 'meeting', 'appointment', 'consultation', 'free call', 'discovery'],
+      answer: `📅 **Book a Free Call**\n\nSchedule a free 30-minute discovery call with our team:\n👉 **calendly.com/geekbytessolutions**\n\nWe'll discuss your project, timeline, and budget — no commitment needed!\n\nAlternatively, email us at info@geekbytestech.com`
+    },
+    {
+      keys: ['portfolio', 'case study', 'case studies', 'work', 'projects', 'examples', 'previous', 'past', 'clients'],
+      answer: `📂 **Our Portfolio**\n\nWe've built 29+ projects across multiple industries. View our case studies at:\n👉 **geekbytestech.com/case-studies**\n\nSome highlights:\n• Hospitality platforms\n• AI automation bots\n• eCommerce stores\n• Healthcare portals\n• Mobile apps\n\nEach case study shows the challenge, solution, and real results.`
+    },
+    {
+      keys: ['refund', 'money back', 'guarantee', 'satisfaction', 'revision', 'revision policy'],
+      answer: `✅ **Our Quality Promise**\n\nWe offer **unlimited revisions** until you're happy with the final product.\n\nFor refund & cancellation policy details:\n👉 geekbytestech.com/refund-policy\n\nHave concerns? Email us directly → info@geekbytestech.com`
+    },
+    {
+      keys: ['payment', 'pay', 'invoice', 'paypal', 'stripe', 'bank', 'transfer', 'how do i pay', 'payment method'],
+      answer: `💳 **Payment Methods**\n\nWe accept:\n• PayPal\n• Bank Transfer\n• Stripe (card payments)\n• Wise (international)\n\nTypically we take **50% upfront** and **50% on delivery**. For smaller projects, full payment upfront may apply.\n\nQuestions? → info@geekbytestech.com`
+    },
+  ];
+
+  // Fallback when nothing matches
+  const FALLBACK = `I'm not sure I have the exact answer for that! 🤔\n\nHere's how to reach our team directly:\n\n• 📧 **Email:** info@geekbytestech.com\n• 📅 **Book a free call:** calendly.com/geekbytessolutions\n• 💬 **WhatsApp:** chat.whatsapp.com/JidNzrYtjeOCVIa8r1o6t3\n\nWe respond within **24 hours**!`;
+
+  // ─── Matching engine ──────────────────────────────────────────────────────
+  function findAnswer(text) {
+    const q = text.toLowerCase().trim();
+    let best = null;
+    let bestScore = 0;
+
+    for (const entry of KB) {
+      let score = 0;
+      for (const kw of entry.keys) {
+        if (q.includes(kw)) score += kw.split(' ').length; // longer matches score higher
+      }
+      if (score > bestScore) {
+        bestScore = score;
+        best = entry;
+      }
+    }
+
+    return bestScore > 0 ? best.answer : FALLBACK;
+  }
+
+  // ─── DOM references ───────────────────────────────────────────────────────
+  const toggle   = document.getElementById('chatbot-toggle');
+  const win      = document.getElementById('chatbot-window');
+  const closeBtn = document.getElementById('chatbot-close-btn');
+  const iconOpen  = document.getElementById('chatbot-icon-open');
+  const iconClose = document.getElementById('chatbot-icon-close');
+  const pulse    = document.getElementById('chatbot-pulse');
+  const msgBox   = document.getElementById('chatbot-messages');
+  const input    = document.getElementById('chatbot-input');
+  const sendBtn  = document.getElementById('chatbot-send');
+
+  let isOpen  = false;
+  let isBusy  = false;
+  let greeted = false;
+
+  const SUGGESTIONS = [
+    "What services do you offer?",
+    "How much does a website cost?",
+    "Can you build me an AI chatbot?",
+    "How long does a project take?",
+    "How do I get started?",
+  ];
+
+  // ─── Helpers ──────────────────────────────────────────────────────────────
+  function esc(s) {
+    return String(s)
+      .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  function md(text) {
+    return esc(text)
+      .replace(/\*\*(.*?)\*\*/g, '<strong class="text-white font-semibold">$1</strong>')
+      .replace(/\*(.*?)\*/g, '<em>$1</em>')
+      .replace(/•\s(.+)/g, '<span class="flex gap-1.5 mt-0.5"><span style="color:#00A3FF;margin-top:2px;flex-shrink:0;">•</span><span>$1</span></span>')
+      .replace(/\n/g, '<br>');
+  }
+
+  function scrollBottom() {
+    msgBox.scrollTop = msgBox.scrollHeight;
+  }
+
+  function botAvatar() {
+    return `<div class="w-7 h-7 rounded-full flex items-center justify-center shrink-0 mt-0.5" style="background:rgba(0,163,255,0.15);border:1px solid rgba(0,163,255,0.3);">
+      <svg class="w-4 h-4" style="color:#00A3FF;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="11" width="18" height="10" rx="2"/><circle cx="12" cy="5" r="2"/>
+        <line x1="12" y1="7" x2="12" y2="11"/><line x1="8" y1="15" x2="8" y2="17"/><line x1="16" y1="15" x2="16" y2="17"/>
+      </svg>
+    </div>`;
+  }
+
+  function addBotBubble(text) {
+    const el = document.createElement('div');
+    el.innerHTML = `
+      <div class="flex gap-2 items-start">
+        ${botAvatar()}
+        <div class="max-w-[82%] rounded-2xl rounded-tl-none px-3.5 py-3 text-sm leading-relaxed" style="background:rgba(255,255,255,0.05);color:#d1d5db;">
+          ${md(text)}
+        </div>
+      </div>`;
+    msgBox.appendChild(el);
+    scrollBottom();
+  }
+
+  function addUserBubble(text) {
+    const el = document.createElement('div');
+    el.innerHTML = `
+      <div class="flex justify-end">
+        <div class="max-w-[82%] rounded-2xl rounded-tr-none px-3.5 py-2.5 text-sm leading-relaxed text-white" style="background:#00A3FF;">
+          ${esc(text)}
+        </div>
+      </div>`;
+    msgBox.appendChild(el);
+    scrollBottom();
+  }
+
+  function showTyping() {
+    const el = document.createElement('div');
+    el.id = 'chatbot-typing';
+    el.innerHTML = `
+      <div class="flex gap-2 items-start">
+        ${botAvatar()}
+        <div class="rounded-2xl rounded-tl-none px-4 py-3.5" style="background:rgba(255,255,255,0.05);">
+          <div class="flex gap-1 items-center">
+            <span class="w-2 h-2 rounded-full bg-gray-400 animate-bounce" style="animation-delay:0ms"></span>
+            <span class="w-2 h-2 rounded-full bg-gray-400 animate-bounce" style="animation-delay:130ms"></span>
+            <span class="w-2 h-2 rounded-full bg-gray-400 animate-bounce" style="animation-delay:260ms"></span>
+          </div>
+        </div>
+      </div>`;
+    msgBox.appendChild(el);
+    scrollBottom();
+  }
+
+  function removeTyping() {
+    document.getElementById('chatbot-typing')?.remove();
+  }
+
+  // ─── Welcome ──────────────────────────────────────────────────────────────
+  function showWelcome() {
+    const el = document.createElement('div');
+    el.innerHTML = `
+      <div class="flex gap-2 items-start">
+        ${botAvatar()}
+        <div class="flex-1 min-w-0">
+          <div class="rounded-2xl rounded-tl-none px-3.5 py-3 text-sm leading-relaxed" style="background:rgba(255,255,255,0.05);color:#d1d5db;">
+            👋 Hi! I'm the <strong class="text-white">GeekBytes Assistant</strong>.<br><br>
+            Ask me about our <strong class="text-white">services, pricing, timelines</strong> — I'll answer instantly!
+          </div>
+          <div class="mt-2.5 flex flex-wrap gap-1.5">
+            ${SUGGESTIONS.map(s => `<button class="chatbot-chip text-xs px-3 py-1.5 rounded-full transition-all duration-200 hover:opacity-80" style="border:1px solid rgba(0,163,255,0.35);color:#00A3FF;background:rgba(0,163,255,0.06);">${esc(s)}</button>`).join('')}
+          </div>
+        </div>
+      </div>`;
+    msgBox.appendChild(el);
+    el.querySelectorAll('.chatbot-chip').forEach(btn => {
+      btn.addEventListener('click', () => reply(btn.textContent.trim()));
+    });
+    scrollBottom();
+  }
+
+  // ─── Core reply logic ─────────────────────────────────────────────────────
+  function reply(text) {
+    text = text.trim();
+    if (!text || isBusy) return;
+
+    isBusy = true;
+    sendBtn.disabled = true;
+    input.value = '';
+    autoResize();
+
+    addUserBubble(text);
+    showTyping();
+
+    // Simulate a short "thinking" delay for natural feel
+    setTimeout(() => {
+      removeTyping();
+      addBotBubble(findAnswer(text));
+      isBusy = false;
+      sendBtn.disabled = false;
+      input.focus();
+    }, 600 + Math.random() * 400);
+  }
+
+  // ─── Open / close ─────────────────────────────────────────────────────────
+  function openChat() {
+    isOpen = true;
+    win.style.transform = 'scale(1)';
+    win.style.opacity   = '1';
+    win.style.pointerEvents = 'auto';
+    iconOpen.classList.add('hidden');
+    iconClose.classList.remove('hidden');
+    pulse.style.display = 'none';
+    if (!greeted) { greeted = true; showWelcome(); }
+    setTimeout(() => input.focus(), 200);
+  }
+
+  function closeChat() {
+    isOpen = false;
+    win.style.transform = 'scale(0.92)';
+    win.style.opacity   = '0';
+    win.style.pointerEvents = 'none';
+    iconOpen.classList.remove('hidden');
+    iconClose.classList.add('hidden');
+  }
+
+  // ─── Auto-resize textarea ─────────────────────────────────────────────────
+  function autoResize() {
+    input.style.height = 'auto';
+    input.style.height = Math.min(input.scrollHeight, 80) + 'px';
+  }
+
+  // ─── Event listeners ──────────────────────────────────────────────────────
+  if (!toggle || !win || !closeBtn || !msgBox || !input || !sendBtn) return;
+
+  toggle.addEventListener('click',  () => isOpen ? closeChat() : openChat());
+  closeBtn.addEventListener('click', closeChat);
+  sendBtn.addEventListener('click',  () => reply(input.value));
+  input.addEventListener('input',    autoResize);
+  input.addEventListener('keydown', e => {
+    if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); reply(input.value); }
+  });
+  input.addEventListener('focus', () => { input.style.borderColor = 'rgba(0,163,255,0.5)'; });
+  input.addEventListener('blur',  () => { input.style.borderColor = 'rgba(255,255,255,0.1)'; });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && isOpen) closeChat(); });
+}
+
+initChatbot();

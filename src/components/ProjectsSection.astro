@@ -2,6 +2,8 @@
 // Projects Section — Filter tabs + 3-column grid of project cards
 import { projects, filterCategories } from '../data/projects';
 import ProjectCard from './ProjectCard.astro';
+
+const featuredProjects = projects.slice(0, 6);
 ---
 
 <section id="projects" aria-labelledby="projects-heading" class="bg-brand-black py-20 lg:py-24">
@@ -14,7 +16,7 @@ import ProjectCard from './ProjectCard.astro';
     <!-- Heading row: title left, link right -->
     <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-4">
       <h2 id="projects-heading" data-i18n="projects.heading" class="section-heading">Featured Projects</h2>
-      <a href="#projects" data-i18n="projects.viewall" class="text-brand-accent text-sm font-medium hover:underline hidden sm:inline-block">
+      <a href="/case-studies" data-i18n="projects.viewall" class="text-brand-accent text-sm font-medium hover:underline hidden sm:inline-block">
         View All Projects &rarr;
       </a>
     </div>
@@ -44,9 +46,9 @@ import ProjectCard from './ProjectCard.astro';
       ))}
     </div>
 
-    <!-- Project grid -->
+    <!-- Project grid — 6 featured; full portfolio on /case-studies -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {projects.map((project) => (
+      {featuredProjects.map((project) => (
         <ProjectCard
           name={project.name}
           description={project.description}
@@ -58,6 +60,15 @@ import ProjectCard from './ProjectCard.astro';
           caseStudySlug={project.slug}
         />
       ))}
+    </div>
+
+    <div class="mt-10 text-center">
+      <a
+        href="/case-studies"
+        class="btn-outline inline-flex items-center gap-2 text-sm px-6 py-3"
+      >
+        View all {projects.length} projects &rarr;
+      </a>
     </div>
   </div>
 </section>
