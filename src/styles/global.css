@@ -315,8 +315,9 @@
     position: relative;
     overflow: hidden;
     isolation: isolate;
+    transform-origin: center center;
     --glow-rgb: 0, 163, 255;
-    @apply transition-all duration-300 ease-out;
+    @apply transition-all duration-500 ease-out;
   }
 
   .card-glow-accent { --glow-rgb: 0, 163, 255; }
@@ -382,7 +383,7 @@
     }
 
     .card-glow:hover {
-      transform: translateY(-4px);
+      transform: translateY(-8px) scale(1.05);
       border-color: rgba(var(--glow-rgb), 0.55) !important;
       background: linear-gradient(
         135deg,
@@ -408,7 +409,7 @@
     }
 
     .card-glow:hover .card-zoom {
-      transform: scale(1.06);
+      transform: scale(1.14);
     }
   }
 
@@ -424,6 +425,7 @@
 
     .card-glow:active,
     .card-glow:has(:active) {
+      transform: scale(1.03);
       border-color: rgba(var(--glow-rgb), 0.5) !important;
       background: linear-gradient(
         135deg,
