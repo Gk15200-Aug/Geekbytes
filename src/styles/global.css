@@ -412,6 +412,32 @@
     }
   }
 
+  /* Touch tap feedback — accent flash on press, no shine animation */
+  @media (hover: none) {
+    .card-glow {
+      -webkit-tap-highlight-color: transparent;
+      transition:
+        border-color 0.15s ease,
+        background 0.15s ease,
+        box-shadow 0.15s ease;
+    }
+
+    .card-glow:active,
+    .card-glow:has(:active) {
+      border-color: rgba(var(--glow-rgb), 0.5) !important;
+      background: linear-gradient(
+        135deg,
+        rgba(var(--glow-rgb), 0.12) 0%,
+        rgba(8, 12, 18, 0.94) 42%,
+        rgba(6, 8, 14, 0.96) 100%
+      ) !important;
+      box-shadow:
+        0 0 0 1px rgba(var(--glow-rgb), 0.25),
+        0 0 24px rgba(var(--glow-rgb), 0.22),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    }
+  }
+
   @media (prefers-reduced-motion: reduce) {
     .card-glow::after {
       animation: none !important;
