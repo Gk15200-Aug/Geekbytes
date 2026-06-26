@@ -301,9 +301,13 @@ const relatedService = post.data.tags
   </section>
 
   <!-- Article Content -->
-  <section class="py-12">
+  <article class="py-12" itemscope itemtype="https://schema.org/BlogPosting">
+    <meta itemprop="headline" content={post.data.title} />
+    <meta itemprop="author" content={post.data.author} />
+    <meta itemprop="datePublished" content={post.data.pubDate.toISOString()} />
+    <meta itemprop="dateModified" content={(post.data.updatedDate || post.data.pubDate).toISOString()} />
     <div class="max-w-3xl mx-auto px-4">
-      <div id="article-content" class="
+      <div id="article-content" itemprop="articleBody" class="
         prose prose-invert prose-lg max-w-none
 
         [&_h2]:text-2xl [&_h2]:font-extrabold [&_h2]:text-white [&_h2]:mt-14 [&_h2]:mb-5
@@ -353,7 +357,7 @@ const relatedService = post.data.tags
         <Content />
       </div>
     </div>
-  </section>
+  </article>
 
   <!-- How We Help section — service bridge before closing CTA -->
   <section class="py-10 border-t border-white/8">

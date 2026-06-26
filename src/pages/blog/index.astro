@@ -118,7 +118,7 @@ const tagColors = [
                     {featured.data.description}
                   </p>
                   <div class="flex items-center gap-6 text-xs text-brand-white/30">
-                    <span>{formatDate(featured.data.pubDate)}</span>
+                    <time datetime={featured.data.pubDate.toISOString()}>{formatDate(featured.data.pubDate)}</time>
                     <span class="flex items-center gap-1">
                       <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                       {featured.data.readingTime} min read

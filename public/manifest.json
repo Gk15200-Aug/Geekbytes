@@ -1,0 +1,21 @@
+{
+  "name": "GeekBytes — Modern IT Solutions & Software Development",
+  "short_name": "GeekBytes",
+  "description": "Web development, AI chatbots, mobile apps & cloud solutions for businesses worldwide.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#00A3FF",
+  "icons": [
+    {
+      "src": "/images/logo.jpeg",
+      "sizes": "192x192",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "/images/logo.jpeg",
+      "sizes": "512x512",
+      "type": "image/jpeg"
+    }
+  ]
+}
