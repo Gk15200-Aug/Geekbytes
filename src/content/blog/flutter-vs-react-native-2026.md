@@ -12,6 +12,8 @@ readingTime: 8
 
 If you're building a mobile app in 2026, you'll almost certainly face the Flutter vs React Native decision. Both are excellent cross-platform frameworks that let you build iOS and Android apps from a single codebase — but they take fundamentally different approaches.
 
+> **Our hands-on experience:** GeekBytes has shipped production apps in both Flutter and React Native — including consumer apps with 50K+ downloads and enterprise field management tools. This comparison is based on real build experience, not theoretical benchmarks.
+
 This guide gives you an honest, up-to-date comparison so you can make the right choice for your project and budget.
 
 ## What is Flutter?

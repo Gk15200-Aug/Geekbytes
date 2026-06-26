@@ -10,6 +10,8 @@ readingTime: 8
 
 The cloud market is dominated by three giants: Amazon Web Services (AWS), Microsoft Azure, and Google Cloud Platform (GCP). Combined, they account for over 65% of global cloud infrastructure spending. The question every growing business faces is: which one should we use?
 
+> **Our hands-on experience:** GeekBytes has deployed production infrastructure on all three platforms — AWS for eCommerce backends, GCP for AI/ML workloads, and Azure for enterprise clients in regulated industries. This comparison draws from real architecture decisions across 50+ projects.
+
 The honest answer is that for most workloads, all three are more than capable. The *wrong* reasons to choose include "because we've heard of it" or "because our investor uses it." The *right* reasons involve your existing tech stack, your team's skills, your specific workload characteristics, and your cost profile.
 
 This guide gives you a framework to make that decision intelligently.

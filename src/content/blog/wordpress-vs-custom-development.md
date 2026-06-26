@@ -10,6 +10,8 @@ readingTime: 7
 
 "Should we use WordPress or build something custom?" It's one of the most common questions we get, and the honest answer is: it depends. But not on what most agencies will tell you.
 
+> **Our hands-on experience:** GeekBytes has built 30+ WordPress sites (including high-traffic platforms like Hardens and VaporFi) *and* custom web applications using React, Next.js, and Astro. We recommend both depending on the situation — this comparison comes from building with both stacks, not loyalty to either.
+
 Too many developers push clients towards custom builds because it means more billable hours. Too many WordPress shops shoehorn every project into WordPress even when it's the wrong tool. This guide gives you the unbiased breakdown.
 
 ## What WordPress Actually Is (And Isn't)

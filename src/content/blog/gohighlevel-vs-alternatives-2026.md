@@ -12,6 +12,8 @@ readingTime: 9
 
 Choosing a CRM and marketing automation platform is one of the most consequential tech decisions a business makes. In 2026, the three platforms that dominate small business and agency conversations are **GoHighLevel**, **HubSpot**, and **ActiveCampaign**.
 
+> **Our hands-on experience:** At GeekBytes, we've set up and managed GoHighLevel for 15+ agency clients, migrated businesses from HubSpot to GHL, and built ActiveCampaign automations for eCommerce brands. This comparison is based on real implementation work — not just feature lists from marketing pages.
+
 This guide compares all three across pricing, features, ease of use, and ideal use cases — so you can make the right call for your business.
 
 ## Quick Comparison Table
