@@ -1,0 +1,52 @@
+# GeekBytes — Modern IT Solutions & Software Development
+# https://www.geekbytestech.com
+
+## About
+GeekBytes is a remote-first IT solutions company founded in 2020 by Ethan Walker (ex-IBM, ex-Oracle). We deliver web development, AI chatbots, mobile apps, WordPress sites, GoHighLevel CRM setup, cloud architecture, video editing, and graphic design services to clients worldwide. Pricing starts at $12/hour.
+
+## Key Pages
+- Homepage: https://www.geekbytestech.com
+- About: https://www.geekbytestech.com/about
+- Services: https://www.geekbytestech.com/services
+- Blog: https://www.geekbytestech.com/blog
+- Case Studies: https://www.geekbytestech.com/case-studies
+- Contact: https://www.geekbytestech.com/#contact
+
+## Services
+- Web Development: https://www.geekbytestech.com/services/web-development
+- WordPress Development: https://www.geekbytestech.com/services/wordpress-development
+- AI Chatbots & Automation: https://www.geekbytestech.com/services/ai-chatbots
+- GoHighLevel CRM: https://www.geekbytestech.com/services/gohighlevel-crm
+- Mobile App Development: https://www.geekbytestech.com/services/mobile-app-development
+- Custom Software: https://www.geekbytestech.com/services/custom-software
+- Cloud Architecture: https://www.geekbytestech.com/services/cloud-architecture
+- Video Editing: https://www.geekbytestech.com/services/video-editing
+- Graphic Design & Branding: https://www.geekbytestech.com/services/graphic-design
+
+## Blog (Guides & Comparisons)
+- AI Chatbots for Business 2026: https://www.geekbytestech.com/blog/ai-chatbots-for-business-2026
+- AI Chatbot Cost Guide: https://www.geekbytestech.com/blog/ai-chatbot-cost-guide-2026
+- GoHighLevel Complete Guide: https://www.geekbytestech.com/blog/gohighlevel-complete-guide-2026
+- GoHighLevel vs HubSpot vs ActiveCampaign: https://www.geekbytestech.com/blog/gohighlevel-vs-alternatives-2026
+- Flutter vs React Native 2026: https://www.geekbytestech.com/blog/flutter-vs-react-native-2026
+- AWS vs Azure vs GCP: https://www.geekbytestech.com/blog/aws-vs-azure-vs-gcp-small-business-guide
+- WordPress vs Custom Development: https://www.geekbytestech.com/blog/wordpress-vs-custom-development
+- How to Rank Higher on Google (SEO Guide): https://www.geekbytestech.com/blog/how-to-rank-higher-google-small-business-seo
+- Why Your Business Needs a Mobile App: https://www.geekbytestech.com/blog/why-your-business-needs-a-mobile-app-2026
+- How to Choose an IT Outsourcing Partner: https://www.geekbytestech.com/blog/how-to-choose-it-outsourcing-partner-2026
+
+## Key Facts
+- Founded: 2020
+- Founder: Ethan Walker (ex-IBM, ex-Oracle)
+- Team Size: 5
+- Projects Delivered: 50+
+- Clients: 30+ worldwide
+- Starting Price: $12/hour
+- Regions Served: US, UK, Australia, Europe, Middle East
+- Industries: Healthcare, Hospitality, eCommerce, SaaS, Automotive, Education
+
+## Contact
+- Email: info@geekbytestech.com
+- Calendly: https://calendly.com/geekbytessolutions
+- LinkedIn: https://linkedin.com/company/geekbytes-solutions/
+- Instagram: https://www.instagram.com/_geekbytes

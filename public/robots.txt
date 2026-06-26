@@ -3,14 +3,22 @@ Allow: /
 Disallow: /dist/
 Disallow: /.astro/
 
-# Block AI training crawlers
+# Allow AI crawlers for citation and AI search visibility
+# GPTBot (ChatGPT), PerplexityBot, ClaudeBot, Google-Extended (Gemini)
 User-agent: GPTBot
-Disallow: /
+Allow: /
 
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+# Block only bulk scraping / dataset crawlers
 User-agent: CCBot
-Disallow: /
-
-User-agent: anthropic-ai
 Disallow: /
 
 Sitemap: https://www.geekbytestech.com/sitemap-index.xml
