@@ -103,7 +103,7 @@ const relatedService = post.data.tags
   .find(Boolean) ?? { slug: 'web-development', label: 'Web Development' };
 ---
 
-<BaseLayout title={`${post.data.title} — GeekBytes Blog`} description={post.data.description}>
+<BaseLayout title={`${post.data.title} — GeekBytes Blog`} description={post.data.description} ogImage={post.data.image || '/images/og-image.png'}>
   <Fragment slot="head">
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
     <meta property="og:type" content="article" />
