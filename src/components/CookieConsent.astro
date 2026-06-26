@@ -72,13 +72,101 @@
   }
 
   function loadAnalytics() {
-    // Load Vercel Analytics if not already loaded
-    if (!document.querySelector('script[src*="va.vercel-scripts"]')) {
-      var s = document.createElement('script');
-      s.src = 'https://va.vercel-scripts.com/v1/script.js';
-      s.defer = true;
-      document.head.appendChild(s);
+    // Load GA4 (Google Analytics 4) with custom event support
+    if (!document.querySelector('script[src*="googletagmanager"]')) {
+      var g = document.createElement('script');
+      g.async = true;
+      g.src = 'https://www.googletagmanager.com/gtag/js?id=G-WJKCVFWSWH';
+      document.head.appendChild(g);
+
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){window.dataLayer.push(arguments);}
+      window.gtag = gtag;
+      gtag('js', new Date());
+      gtag('config', 'G-WJKCVFWSWH', {
+        send_page_view: true,
+        cookie_flags: 'SameSite=Lax;Secure'
+      });
+
+      // Custom event tracking
+      setupCustomEvents();
     }
+  }
+
+  function setupCustomEvents() {
+    // Track CTA clicks (Book a Call, Contact Us)
+    document.querySelectorAll('a[href*="calendly"]').forEach(function(el) {
+      el.addEventListener('click', function() {
+        window.gtag && window.gtag('event', 'cta_click', {
+          event_category: 'engagement',
+          event_label: 'book_a_call',
+          link_url: el.getAttribute('href')
+        });
+      });
+    });
+
+    // Track contact form submissions
+    document.querySelectorAll('form[action*="formsubmit"]').forEach(function(form) {
+      form.addEventListener('submit', function() {
+        window.gtag && window.gtag('event', 'form_submit', {
+          event_category: 'conversion',
+          event_label: 'contact_form'
+        });
+      });
+    });
+
+    // Track chatbot opens
+    var chatBtn = document.getElementById('floating-chat-btn');
+    if (chatBtn) {
+      chatBtn.addEventListener('click', function() {
+        window.gtag && window.gtag('event', 'chatbot_open', {
+          event_category: 'engagement',
+          event_label: 'floating_chat'
+        });
+      });
+    }
+
+    // Track service page visits as engagement
+    if (window.location.pathname.startsWith('/services/')) {
+      window.gtag && window.gtag('event', 'view_service', {
+        event_category: 'engagement',
+        event_label: window.location.pathname.split('/').pop()
+      });
+    }
+
+    // Track blog scroll depth (50% and 100%)
+    if (window.location.pathname.startsWith('/blog/') && window.location.pathname !== '/blog/') {
+      var scrollTracked = {};
+      window.addEventListener('scroll', function() {
+        var scrollPercent = Math.round((window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100);
+        if (scrollPercent >= 50 && !scrollTracked['50']) {
+          scrollTracked['50'] = true;
+          window.gtag && window.gtag('event', 'scroll_depth', {
+            event_category: 'engagement',
+            event_label: '50_percent',
+            page_path: window.location.pathname
+          });
+        }
+        if (scrollPercent >= 90 && !scrollTracked['90']) {
+          scrollTracked['90'] = true;
+          window.gtag && window.gtag('event', 'scroll_depth', {
+            event_category: 'engagement',
+            event_label: '90_percent',
+            page_path: window.location.pathname
+          });
+        }
+      }, { passive: true });
+    }
+
+    // Track outbound link clicks
+    document.querySelectorAll('a[target="_blank"]').forEach(function(el) {
+      el.addEventListener('click', function() {
+        window.gtag && window.gtag('event', 'outbound_click', {
+          event_category: 'engagement',
+          event_label: el.getAttribute('href')
+        });
+      });
+    });
   }
 
   // Check existing consent
