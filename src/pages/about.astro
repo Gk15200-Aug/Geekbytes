@@ -7,32 +7,56 @@ const siteUrl = 'https://www.geekbytestech.com';
 
 const jsonLd = {
   "@context": "https://schema.org",
-  "@type": "AboutPage",
-  "url": `${siteUrl}/about`,
-  "name": "About GeekBytes — IT Solutions Company",
-  "description": "GeekBytes is a remote-first IT solutions company founded in 2020, providing web development, AI chatbots, mobile apps, and cloud architecture services worldwide.",
-  "mainEntity": {
-    "@type": "Organization",
-    "name": "GeekBytes",
-    "alternateName": "GeekBytes Solutions",
-    "url": siteUrl,
-    "foundingDate": "2020",
-    "description": "GeekBytes is a remote-first software development and IT solutions company. It provides web development, WordPress development, AI chatbot integration, mobile app development, GoHighLevel CRM setup, custom software, cloud architecture, video editing, and graphic design services to clients worldwide.",
-    "numberOfEmployees": { "@type": "QuantitativeValue", "value": 5 },
-    "priceRange": "$12 - $50 per hour",
-    "areaServed": "Worldwide",
-    "areaServed": "Worldwide",
-    "email": "info@geekbytestech.com",
-    "sameAs": [
-      "https://linkedin.com/company/geekbytes-solutions/",
-      "https://www.instagram.com/_geekbytes"
-    ],
-    "knowsAbout": [
-      "Web Development", "WordPress Development", "AI Chatbots", "Mobile App Development",
-      "GoHighLevel CRM", "Cloud Architecture", "Custom Software", "React", "Node.js",
-      "Flutter", "AWS", "Google Cloud", "Azure"
-    ]
-  }
+  "@graph": [
+    {
+      "@type": "AboutPage",
+      "url": `${siteUrl}/about`,
+      "name": "About GeekBytes — IT Solutions Company",
+      "description": "GeekBytes is a remote-first IT solutions company founded in 2020, providing web development, AI chatbots, mobile apps, and cloud architecture services worldwide.",
+    },
+    {
+      "@type": "Organization",
+      "@id": `${siteUrl}/#organization`,
+      "name": "GeekBytes",
+      "alternateName": "GeekBytes Solutions",
+      "url": siteUrl,
+      "foundingDate": "2020",
+      "description": "GeekBytes is a remote-first software development and IT solutions company. It provides web development, WordPress development, AI chatbot integration, mobile app development, GoHighLevel CRM setup, custom software, cloud architecture, video editing, and graphic design services to clients worldwide.",
+      "numberOfEmployees": { "@type": "QuantitativeValue", "value": 5 },
+      "priceRange": "$12 - $50 per hour",
+      "areaServed": "Worldwide",
+      "email": "info@geekbytestech.com",
+      "sameAs": [
+        "https://linkedin.com/company/geekbytes-solutions/",
+        "https://www.instagram.com/_geekbytes"
+      ],
+      "founder": { "@id": `${siteUrl}/about#ethan-walker` },
+      "knowsAbout": [
+        "Web Development", "WordPress Development", "AI Chatbots", "Mobile App Development",
+        "GoHighLevel CRM", "Cloud Architecture", "Custom Software", "React", "Node.js",
+        "Flutter", "AWS", "Google Cloud", "Azure"
+      ]
+    },
+    {
+      "@type": "Person",
+      "@id": `${siteUrl}/about#ethan-walker`,
+      "name": "Ethan Walker",
+      "url": `${siteUrl}/about#team`,
+      "jobTitle": "Founder & Lead Engineer",
+      "worksFor": { "@id": `${siteUrl}/#organization` },
+      "alumniOf": [
+        { "@type": "Organization", "name": "IBM" },
+        { "@type": "Organization", "name": "Oracle" }
+      ],
+      "knowsAbout": [
+        "Web Development", "Mobile App Development", "AI Chatbots", "Cloud Architecture",
+        "React", "Node.js", "Flutter", "AWS", "Spring Boot", "Kotlin"
+      ],
+      "sameAs": [
+        "https://linkedin.com/company/geekbytes-solutions/"
+      ]
+    }
+  ]
 };
 
 const stats = [

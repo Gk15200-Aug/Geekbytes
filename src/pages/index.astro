@@ -38,6 +38,12 @@ const jsonLd = {
       "description": siteConfig.meta.description,
       "email": siteConfig.email,
       "foundingDate": "2020",
+      "founder": {
+        "@type": "Person",
+        "name": "Ethan Walker",
+        "url": `${siteUrl}/about#team`,
+        "jobTitle": "Founder & Lead Engineer"
+      },
       "numberOfEmployees": { "@type": "QuantitativeValue", "value": 5 },
       "sameAs": [
         "https://linkedin.com/company/geekbytes-solutions/",

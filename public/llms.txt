@@ -29,9 +29,12 @@ GeekBytes is a remote-first IT solutions company founded in 2020 by Ethan Walker
 - GoHighLevel Complete Guide: https://www.geekbytestech.com/blog/gohighlevel-complete-guide-2026
 - GoHighLevel vs HubSpot vs ActiveCampaign: https://www.geekbytestech.com/blog/gohighlevel-vs-alternatives-2026
 - Flutter vs React Native 2026: https://www.geekbytestech.com/blog/flutter-vs-react-native-2026
+- KMP vs CMP (Kotlin Multiplatform vs Compose Multiplatform): https://www.geekbytestech.com/blog/kotlin-multiplatform-vs-compose-multiplatform-2026
 - AWS vs Azure vs GCP: https://www.geekbytestech.com/blog/aws-vs-azure-vs-gcp-small-business-guide
 - WordPress vs Custom Development: https://www.geekbytestech.com/blog/wordpress-vs-custom-development
 - How to Rank Higher on Google (SEO Guide): https://www.geekbytestech.com/blog/how-to-rank-higher-google-small-business-seo
+- GEO: How to Get Cited by AI in 2026: https://www.geekbytestech.com/blog/generative-engine-optimization-geo-guide-2026
+- Final Year Project Guide for Students: https://www.geekbytestech.com/blog/final-year-project-development-guide-2026
 - Why Your Business Needs a Mobile App: https://www.geekbytestech.com/blog/why-your-business-needs-a-mobile-app-2026
 - How to Choose an IT Outsourcing Partner: https://www.geekbytestech.com/blog/how-to-choose-it-outsourcing-partner-2026
 
