@@ -1,0 +1,214 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import { getCollection } from 'astro:content';
+import { servicesDetail } from '../data/services-detail';
+import { projects } from '../data/projects';
+
+const siteUrl = 'https://www.geekbytestech.com';
+
+// Get all blog posts sorted by date
+const posts = (await getCollection('blog')).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+
+// All case studies from projects
+const allCaseStudies = projects.map(p => ({ slug: p.slug, name: p.name }));
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Sitemap — GeekBytes",
+  "description": "Complete index of all pages on the GeekBytes website. Find services, blog posts, case studies, and more.",
+  "url": `${siteUrl}/sitemap`,
+  "isPartOf": { "@id": `${siteUrl}/#website` },
+};
+---
+
+<BaseLayout
+  title="Sitemap — GeekBytes"
+  description="Complete index of all pages on the GeekBytes website. Find services, blog posts, case studies, and company information."
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </Fragment>
+
+  <Fragment slot="header">
+    <Navbar />
+  </Fragment>
+
+  <section class="bg-brand-black pt-28 pb-16 border-b border-white/5">
+    <div class="max-w-4xl mx-auto px-4">
+      <nav aria-label="Breadcrumb" class="mb-8">
+        <ol class="flex items-center gap-2 text-xs text-brand-white/30 w-fit bg-white/5 px-4 py-2 rounded-full border border-white/10">
+          <li><a href="/" class="hover:text-brand-accent transition-colors">Home</a></li>
+          <li><span aria-hidden="true" class="mx-1">/</span></li>
+          <li class="text-brand-white/60" aria-current="page">Sitemap</li>
+        </ol>
+      </nav>
+
+      <h1 class="text-4xl md:text-5xl font-extrabold text-brand-white leading-tight mb-4">
+        Sitemap
+      </h1>
+      <p class="text-lg text-brand-white/55 leading-relaxed max-w-2xl">
+        A complete index of all pages on the GeekBytes website. Use this page to quickly find what you're looking for.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-brand-black py-16">
+    <div class="max-w-4xl mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+
+        <!-- Main Pages -->
+        <div>
+          <h2 class="text-xl font-bold text-brand-white mb-5 pb-3 border-b border-white/10 flex items-center gap-2">
+            <svg class="w-5 h-5 text-brand-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+            Main Pages
+          </h2>
+          <ul class="space-y-2.5">
+            <li>
+              <a href="/" class="text-brand-white/70 hover:text-brand-accent transition-colors text-sm flex items-center gap-2">
+                <span class="w-1.5 h-1.5 rounded-full bg-brand-accent/50 shrink-0"></span>
+                Home
+              </a>
+            </li>
+            <li>
+              <a href="/about" class="text-brand-white/70 hover:text-brand-accent transition-colors text-sm flex items-center gap-2">
+                <span class="w-1.5 h-1.5 rounded-full bg-brand-accent/50 shrink-0"></span>
+                About Us
+              </a>
+            </li>
+            <li>
+              <a href="/services" class="text-brand-white/70 hover:text-brand-accent transition-colors text-sm flex items-center gap-2">
+                <span class="w-1.5 h-1.5 rounded-full bg-brand-accent/50 shrink-0"></span>
+                All Services
+              </a>
+            </li>
+            <li>
+              <a href="/blog" class="text-brand-white/70 hover:text-brand-accent transition-colors text-sm flex items-center gap-2">
+                <span class="w-1.5 h-1.5 rounded-full bg-brand-accent/50 shrink-0"></span>
+                Blog
+              </a>
+            </li>
+            <li>
+              <a href="/case-studies" class="text-brand-white/70 hover:text-brand-accent transition-colors text-sm flex items-center gap-2">
+                <span class="w-1.5 h-1.5 rounded-full bg-brand-accent/50 shrink-0"></span>
+                Case Studies
+              </a>
+            </li>
+            <li>
+              <a href="/#contact" class="text-brand-white/70 hover:text-brand-accent transition-colors text-sm flex items-center gap-2">
+                <span class="w-1.5 h-1.5 rounded-full bg-brand-accent/50 shrink-0"></span>
+                Contact
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Legal Pages -->
+        <div>
+          <h2 class="text-xl font-bold text-brand-white mb-5 pb-3 border-b border-white/10 flex items-center gap-2">
+            <svg class="w-5 h-5 text-brand-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+            Legal & Policies
+          </h2>
+          <ul class="space-y-2.5">
+            <li>
+              <a href="/privacy-policy" class="text-brand-white/70 hover:text-brand-accent transition-colors text-sm flex items-center gap-2">
+                <span class="w-1.5 h-1.5 rounded-full bg-brand-accent/50 shrink-0"></span>
+                Privacy Policy
+              </a>
+            </li>
+            <li>
+              <a href="/terms-of-service" class="text-brand-white/70 hover:text-brand-accent transition-colors text-sm flex items-center gap-2">
+                <span class="w-1.5 h-1.5 rounded-full bg-brand-accent/50 shrink-0"></span>
+                Terms of Service
+              </a>
+            </li>
+            <li>
+              <a href="/refund-policy" class="text-brand-white/70 hover:text-brand-accent transition-colors text-sm flex items-center gap-2">
+                <span class="w-1.5 h-1.5 rounded-full bg-brand-accent/50 shrink-0"></span>
+                Refund Policy
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Services -->
+        <div>
+          <h2 class="text-xl font-bold text-brand-white mb-5 pb-3 border-b border-white/10 flex items-center gap-2">
+            <svg class="w-5 h-5 text-brand-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg>
+            Services ({servicesDetail.length})
+          </h2>
+          <ul class="space-y-2.5">
+            {servicesDetail.map((service) => (
+              <li>
+                <a href={`/services/${service.slug}`} class="text-brand-white/70 hover:text-brand-accent transition-colors text-sm flex items-center gap-2">
+                  <span class="w-1.5 h-1.5 rounded-full bg-brand-accent/50 shrink-0"></span>
+                  {service.title}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <!-- Blog Posts -->
+        <div>
+          <h2 class="text-xl font-bold text-brand-white mb-5 pb-3 border-b border-white/10 flex items-center gap-2">
+            <svg class="w-5 h-5 text-brand-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"/></svg>
+            Blog ({posts.length})
+          </h2>
+          <ul class="space-y-2.5">
+            {posts.map((post) => (
+              <li>
+                <a href={`/blog/${post.slug}`} class="text-brand-white/70 hover:text-brand-accent transition-colors text-sm flex items-start gap-2">
+                  <span class="w-1.5 h-1.5 rounded-full bg-brand-accent/50 shrink-0 mt-1.5"></span>
+                  <span>{post.data.title}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <!-- Case Studies -->
+        <div class="md:col-span-2">
+          <h2 class="text-xl font-bold text-brand-white mb-5 pb-3 border-b border-white/10 flex items-center gap-2">
+            <svg class="w-5 h-5 text-brand-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>
+            Case Studies ({allCaseStudies.length})
+          </h2>
+          <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-2.5">
+            {allCaseStudies.map((study) => (
+              <li>
+                <a href={`/case-studies/${study.slug}`} class="text-brand-white/70 hover:text-brand-accent transition-colors text-sm flex items-center gap-2">
+                  <span class="w-1.5 h-1.5 rounded-full bg-brand-accent/50 shrink-0"></span>
+                  {study.name}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="bg-brand-black py-12 border-t border-white/5">
+    <div class="max-w-2xl mx-auto px-4 text-center">
+      <p class="text-brand-white/50 text-sm mb-4">Can't find what you're looking for?</p>
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a href="/#contact" class="btn-primary text-sm px-7 py-3 inline-flex items-center gap-2">
+          Contact Us &rarr;
+        </a>
+        <a href="/" class="text-sm text-brand-white/50 hover:text-brand-accent transition-colors font-medium">
+          Back to Home
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <Fragment slot="footer">
+    <Footer />
+  </Fragment>
+</BaseLayout>
