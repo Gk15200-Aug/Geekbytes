@@ -12,65 +12,65 @@ const navI18nKeys = ['nav.home', 'nav.about', 'nav.skills', 'nav.services', 'nav
 >
   <div class="site-nav-inner max-w-container mx-auto px-4 flex items-center justify-between h-16 relative z-[1]">
     <!-- Logo -->
-    <a href="/#hero" class="flex items-center gap-2 min-w-[44px] min-h-[44px]" aria-label="GeekBytes Home">
+    <a href="/#hero" class="flex items-center gap-2 min-w-[44px] min-h-[44px] shrink-0" aria-label="GeekBytes Home">
       <Logo />
       <span class="text-brand-white font-bold text-lg">GeekBytes</span>
     </a>
 
     <!-- Desktop Navigation Links -->
-    <ul class="hidden lg:flex items-center gap-1">
+    <ul class="hidden xl:flex items-center gap-0.5">
       {navItems.map((item, i) => (
         <li>
           <a
             href={'/' + item.href}
             data-section={item.href.replace('#', '')}
             data-i18n={navI18nKeys[i]}
-            class="relative px-3 py-2 text-sm text-brand-white/70 hover:text-brand-white transition-colors rounded focus:outline-none focus:ring-2 focus:ring-brand-accent focus:ring-offset-2 focus:ring-offset-brand-black min-w-[44px] min-h-[44px] inline-flex items-center"
+            class="relative px-2.5 py-2 text-[13px] text-brand-white/70 hover:text-brand-white transition-colors rounded focus:outline-none focus:ring-2 focus:ring-brand-accent focus:ring-offset-2 focus:ring-offset-brand-black min-h-[44px] inline-flex items-center whitespace-nowrap"
           >
             {item.label}
-            <span class="absolute bottom-0 left-3 right-3 h-0.5 bg-brand-accent transition-transform duration-300 origin-left nav-indicator" style="transform: scaleX(0)"></span>
+            <span class="absolute bottom-0 left-2.5 right-2.5 h-0.5 bg-brand-accent transition-transform duration-300 origin-left nav-indicator" style="transform: scaleX(0)"></span>
           </a>
         </li>
       ))}
       <li>
-        <a href="/about" class="relative px-3 py-2 text-sm text-brand-white/70 hover:text-brand-white transition-colors rounded focus:outline-none focus:ring-2 focus:ring-brand-accent focus:ring-offset-2 focus:ring-offset-brand-black min-w-[44px] min-h-[44px] inline-flex items-center">
+        <a href="/about" class="relative px-2.5 py-2 text-[13px] text-brand-white/70 hover:text-brand-white transition-colors rounded focus:outline-none focus:ring-2 focus:ring-brand-accent focus:ring-offset-2 focus:ring-offset-brand-black min-h-[44px] inline-flex items-center whitespace-nowrap">
           About
         </a>
       </li>
       <li>
-        <a href="/services" class="relative px-3 py-2 text-sm text-brand-white/70 hover:text-brand-white transition-colors rounded focus:outline-none focus:ring-2 focus:ring-brand-accent focus:ring-offset-2 focus:ring-offset-brand-black min-w-[44px] min-h-[44px] inline-flex items-center">
-          All Services
+        <a href="/services" class="relative px-2.5 py-2 text-[13px] text-brand-white/70 hover:text-brand-white transition-colors rounded focus:outline-none focus:ring-2 focus:ring-brand-accent focus:ring-offset-2 focus:ring-offset-brand-black min-h-[44px] inline-flex items-center whitespace-nowrap">
+          Services
         </a>
       </li>
       <li>
-        <a href="/blog" class="relative px-3 py-2 text-sm text-brand-white/70 hover:text-brand-white transition-colors rounded focus:outline-none focus:ring-2 focus:ring-brand-accent focus:ring-offset-2 focus:ring-offset-brand-black min-w-[44px] min-h-[44px] inline-flex items-center">
+        <a href="/blog" class="relative px-2.5 py-2 text-[13px] text-brand-white/70 hover:text-brand-white transition-colors rounded focus:outline-none focus:ring-2 focus:ring-brand-accent focus:ring-offset-2 focus:ring-offset-brand-black min-h-[44px] inline-flex items-center whitespace-nowrap">
           Blog
         </a>
       </li>
       <li>
-        <a href="/case-studies" class="relative px-3 py-2 text-sm text-brand-white/70 hover:text-brand-white transition-colors rounded focus:outline-none focus:ring-2 focus:ring-brand-accent focus:ring-offset-2 focus:ring-offset-brand-black min-w-[44px] min-h-[44px] inline-flex items-center">
+        <a href="/case-studies" class="relative px-2.5 py-2 text-[13px] text-brand-white/70 hover:text-brand-white transition-colors rounded focus:outline-none focus:ring-2 focus:ring-brand-accent focus:ring-offset-2 focus:ring-offset-brand-black min-h-[44px] inline-flex items-center whitespace-nowrap">
           Case Studies
         </a>
       </li>
     </ul>
 
     <!-- Right side: Contact button + Hamburger -->
-    <div class="flex items-center gap-2">
+    <div class="flex items-center gap-2 shrink-0">
       <!-- Book a Call (Calendly) — desktop -->
       <a
         href="https://calendly.com/geekbytessolutions"
         target="_blank"
         rel="noopener noreferrer"
-        class="hidden lg:inline-flex items-center gap-1.5 text-sm font-semibold px-4 py-2 min-h-[44px] rounded-full border border-brand-accent/50 text-brand-accent hover:bg-brand-accent/10 transition-colors focus:outline-none focus:ring-2 focus:ring-brand-accent focus:ring-offset-2 focus:ring-offset-brand-black"
+        class="hidden xl:inline-flex items-center gap-1.5 text-[13px] font-semibold px-3.5 py-2 min-h-[36px] rounded-full border border-brand-accent/50 text-brand-accent hover:bg-brand-accent/10 transition-colors focus:outline-none focus:ring-2 focus:ring-brand-accent focus:ring-offset-2 focus:ring-offset-brand-black whitespace-nowrap"
       >
-        <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        <svg class="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
         Book a Call
       </a>
       <!-- Contact Us pill button (visible on desktop) -->
       <a
         href={'/' + contactButton.href}
         data-i18n="nav.contact"
-        class="hidden lg:inline-flex btn-primary text-sm px-5 py-2 min-h-[44px] items-center focus:outline-none focus:ring-2 focus:ring-brand-accent focus:ring-offset-2 focus:ring-offset-brand-black"
+        class="hidden xl:inline-flex btn-primary text-[13px] px-4 py-2 min-h-[36px] items-center focus:outline-none focus:ring-2 focus:ring-brand-accent focus:ring-offset-2 focus:ring-offset-brand-black whitespace-nowrap"
       >
         {contactButton.label}
       </a>
@@ -78,7 +78,7 @@ const navI18nKeys = ['nav.home', 'nav.about', 'nav.skills', 'nav.services', 'nav
       <!-- Hamburger Menu Button (visible on mobile/tablet) -->
       <button
         id="mobile-menu-toggle"
-        class="lg:hidden flex items-center justify-center w-11 h-11 text-brand-white rounded focus:outline-none focus:ring-2 focus:ring-brand-accent focus:ring-offset-2 focus:ring-offset-brand-black"
+        class="xl:hidden flex items-center justify-center w-11 h-11 text-brand-white rounded focus:outline-none focus:ring-2 focus:ring-brand-accent focus:ring-offset-2 focus:ring-offset-brand-black"
         aria-expanded="false"
         aria-controls="mobile-menu"
         data-i18n-aria="nav.aria.menu_open"
@@ -95,7 +95,7 @@ const navI18nKeys = ['nav.home', 'nav.about', 'nav.skills', 'nav.services', 'nav
 <!-- Mobile Menu Overlay — OUTSIDE nav to avoid stacking context issues -->
 <div
   id="mobile-menu"
-  class="hidden lg:hidden"
+  class="hidden xl:hidden"
   style="position: fixed; inset: 0; z-index: 9999; background: #000000;"
   aria-hidden="true"
 >
