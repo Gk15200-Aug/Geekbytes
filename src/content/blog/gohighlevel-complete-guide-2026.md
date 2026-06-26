@@ -2,7 +2,8 @@
 title: "GoHighLevel CRM: The Complete Guide for Agencies and Service Businesses (2026)"
 description: "GoHighLevel is the most powerful all-in-one CRM for agencies. This complete guide covers setup, automation, funnels, white-labelling, and how to get ROI within 30 days."
 pubDate: "2026-06-01"
-author: "GeekBytes Team"
+updatedDate: "2026-06-26"
+author: "Ethan Walker"
 tags: ["GoHighLevel", "CRM", "Agency Tools", "Marketing Automation", "Sales Funnels"]
 readingTime: 10
 ---

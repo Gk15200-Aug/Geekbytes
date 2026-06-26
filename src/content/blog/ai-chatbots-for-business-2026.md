@@ -2,7 +2,8 @@
 title: "AI Chatbots for Business: How to Boost Revenue and Automate Customer Support in 2026"
 description: "Discover how AI-powered chatbots are transforming customer support, lead generation, and sales automation in 2026. Learn what to build, what to avoid, and how to get ROI fast."
 pubDate: "2026-05-15"
-author: "GeekBytes Team"
+updatedDate: "2026-06-26"
+author: "Ethan Walker"
 tags: ["AI Chatbots", "Business Automation", "Customer Support", "GPT-4", "WhatsApp"]
 readingTime: 8
 ---

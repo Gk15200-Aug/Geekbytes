@@ -2,7 +2,8 @@
 title: "How to Choose the Right IT Outsourcing Partner in 2026"
 description: "A practical guide to evaluating and selecting an IT outsourcing company — covering pricing models, red flags, portfolio review, communication standards, and contract essentials."
 pubDate: 2026-06-01
-author: "GeekBytes Team"
+updatedDate: "2026-06-26"
+author: "Ethan Walker"
 tags: ["IT Outsourcing", "Software Development", "Business"]
 image: "/images/blog/it-outsourcing.jpg"
 imageAlt: "Team reviewing IT outsourcing partner options"

@@ -2,7 +2,8 @@
 title: "How to Rank Higher on Google: A Practical SEO Guide for Small Businesses in 2026"
 description: "Most small business SEO advice is either too generic or too technical. This guide covers the specific, actionable steps that actually move the needle in 2026 — no theory, just practice."
 pubDate: "2026-06-05"
-author: "GeekBytes Team"
+updatedDate: "2026-06-26"
+author: "Ethan Walker"
 tags: ["SEO", "Digital Marketing", "Google", "Small Business", "Content Marketing"]
 readingTime: 9
 ---

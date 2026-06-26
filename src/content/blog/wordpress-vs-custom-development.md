@@ -2,7 +2,8 @@
 title: "WordPress vs Custom Development: Which is Right for Your Business in 2026?"
 description: "Choosing between WordPress and custom web development? This guide breaks down the real differences in cost, flexibility, performance, and maintenance — so you can make the right call."
 pubDate: "2026-05-22"
-author: "GeekBytes Team"
+updatedDate: "2026-06-26"
+author: "Ethan Walker"
 tags: ["WordPress", "Web Development", "Custom Software", "CMS", "eCommerce"]
 readingTime: 7
 ---

@@ -2,7 +2,8 @@
 title: "How Much Does an AI Chatbot Cost to Build in 2026?"
 description: "A complete breakdown of AI chatbot development costs in 2026 — from simple FAQ bots to GPT-4 powered assistants, including build vs buy, ongoing costs, and what affects pricing."
 pubDate: 2026-06-02
-author: "GeekBytes Team"
+updatedDate: "2026-06-26"
+author: "Ethan Walker"
 tags: ["AI Chatbots", "Pricing", "Business Automation"]
 image: "/images/blog/ai-chatbot-cost.jpg"
 imageAlt: "AI chatbot cost breakdown 2026"

@@ -2,7 +2,8 @@
 title: "Why Your Business Needs a Mobile App in 2026 (And How to Build One Right)"
 description: "Mobile apps aren't just for tech giants anymore. Learn why businesses of all sizes are investing in mobile apps, what ROI looks like, and how to avoid the most expensive mistakes."
 pubDate: "2026-05-29"
-author: "GeekBytes Team"
+updatedDate: "2026-06-26"
+author: "Ethan Walker"
 tags: ["Mobile App Development", "iOS", "Android", "React Native", "Business Growth"]
 readingTime: 9
 ---

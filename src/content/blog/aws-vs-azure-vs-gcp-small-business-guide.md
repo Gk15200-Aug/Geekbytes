@@ -2,7 +2,8 @@
 title: "AWS vs Azure vs GCP: Which Cloud Platform is Right for Your Business in 2026?"
 description: "Choosing between AWS, Azure, and Google Cloud? This practical guide compares pricing, services, strengths, and weaknesses — helping small and mid-market businesses make the right infrastructure choice."
 pubDate: "2026-06-05"
-author: "GeekBytes Team"
+updatedDate: "2026-06-26"
+author: "Ethan Walker"
 tags: ["Cloud Architecture", "AWS", "Azure", "Google Cloud", "DevOps", "Infrastructure"]
 readingTime: 8
 ---

@@ -2,7 +2,8 @@
 title: "Flutter vs React Native in 2026: Which Should You Build Your App With?"
 description: "An up-to-date comparison of Flutter and React Native for mobile app development in 2026 — covering performance, developer experience, ecosystem, cost, and which is right for your project."
 pubDate: 2026-06-04
-author: "GeekBytes Team"
+updatedDate: "2026-06-26"
+author: "Ethan Walker"
 tags: ["Mobile App Development", "Flutter", "React Native", "Cross-Platform"]
 image: "/images/blog/flutter-vs-react-native.jpg"
 imageAlt: "Flutter vs React Native comparison 2026"
