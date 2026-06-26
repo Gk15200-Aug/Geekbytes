@@ -30,4 +30,5 @@ export default defineConfig({
     }),
   ],
   site: 'https://www.geekbytestech.com',
+  trailingSlash: 'never',
 });

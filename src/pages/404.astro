@@ -1,0 +1,60 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout
+  title="Page Not Found — GeekBytes"
+  description="The page you're looking for doesn't exist or has been moved. Browse our services, blog, or get in touch."
+>
+  <Fragment slot="head">
+    <meta name="robots" content="noindex, follow" />
+  </Fragment>
+
+  <Fragment slot="header">
+    <Navbar />
+  </Fragment>
+
+  <section class="relative min-h-[70vh] flex items-center justify-center bg-brand-black pt-16 overflow-hidden">
+    <div class="absolute inset-0 hero-grid opacity-20"></div>
+    <div class="absolute -top-40 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-brand-accent/8 rounded-full blur-[140px]"></div>
+
+    <div class="relative max-w-2xl mx-auto px-4 text-center py-20">
+      <div class="text-8xl md:text-9xl font-black text-brand-accent/20 mb-4 select-none">404</div>
+      <h1 class="text-3xl md:text-4xl font-extrabold text-brand-white mb-4">
+        Page Not Found
+      </h1>
+      <p class="text-lg text-brand-white/55 leading-relaxed mb-10 max-w-lg mx-auto">
+        The page you're looking for doesn't exist or has been moved. Let's get you back on track.
+      </p>
+
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
+        <a href="/" class="btn-primary text-base px-8 py-3.5 inline-flex items-center gap-2">
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+          Back to Home
+        </a>
+        <a href="/services" class="btn-outline text-base px-8 py-3.5 inline-flex items-center">
+          Browse Services
+        </a>
+      </div>
+
+      <div class="border-t border-white/10 pt-8">
+        <p class="text-sm text-brand-white/40 mb-4">Or try one of these:</p>
+        <div class="flex flex-wrap justify-center gap-3">
+          <a href="/blog" class="text-sm text-brand-accent hover:underline">Blog</a>
+          <span class="text-white/20">·</span>
+          <a href="/case-studies" class="text-sm text-brand-accent hover:underline">Case Studies</a>
+          <span class="text-white/20">·</span>
+          <a href="/about" class="text-sm text-brand-accent hover:underline">About Us</a>
+          <span class="text-white/20">·</span>
+          <a href="/#contact" class="text-sm text-brand-accent hover:underline">Contact</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Fragment slot="footer">
+    <Footer />
+  </Fragment>
+</BaseLayout>
