@@ -1,0 +1,111 @@
+---
+// Cookie Consent Banner — GDPR compliant
+// Shows on first visit, remembers choice, blocks analytics until accepted
+---
+
+<div
+  id="cookie-banner"
+  class="fixed bottom-0 left-0 right-0 z-[100] hidden"
+  role="dialog"
+  aria-label="Cookie consent"
+  aria-describedby="cookie-desc"
+>
+  <div class="max-w-4xl mx-auto px-4 pb-4">
+    <div class="bg-brand-black/95 backdrop-blur-xl border border-white/10 rounded-2xl p-5 md:p-6 shadow-2xl shadow-black/50">
+      <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+        <!-- Text -->
+        <div class="flex-1 min-w-0">
+          <p id="cookie-desc" class="text-sm text-brand-white/70 leading-relaxed">
+            We use cookies to analyze site traffic and improve your experience. No personal data is sold or shared with third parties.
+            <a href="/privacy-policy" class="text-brand-accent hover:underline underline-offset-2 ml-1">Privacy Policy</a>
+          </p>
+        </div>
+
+        <!-- Buttons -->
+        <div class="flex items-center gap-3 shrink-0">
+          <button
+            id="cookie-reject"
+            class="px-4 py-2 text-sm font-medium text-brand-white/60 border border-white/15 rounded-full hover:border-white/30 hover:text-brand-white transition-colors"
+          >
+            Reject
+          </button>
+          <button
+            id="cookie-accept"
+            class="px-5 py-2 text-sm font-semibold text-brand-black bg-brand-accent rounded-full hover:bg-brand-accent/90 transition-colors"
+          >
+            Accept
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script is:inline>
+(function() {
+  var COOKIE_NAME = 'gb_cookie_consent';
+  var banner = document.getElementById('cookie-banner');
+  var acceptBtn = document.getElementById('cookie-accept');
+  var rejectBtn = document.getElementById('cookie-reject');
+
+  function getCookie(name) {
+    var match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+    return match ? match[2] : null;
+  }
+
+  function setCookie(name, value, days) {
+    var expires = '';
+    if (days) {
+      var date = new Date();
+      date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+      expires = '; expires=' + date.toUTCString();
+    }
+    document.cookie = name + '=' + value + expires + '; path=/; SameSite=Lax; Secure';
+  }
+
+  function hideBanner() {
+    if (banner) banner.classList.add('hidden');
+  }
+
+  function showBanner() {
+    if (banner) banner.classList.remove('hidden');
+  }
+
+  function loadAnalytics() {
+    // Load Vercel Analytics if not already loaded
+    if (!document.querySelector('script[src*="va.vercel-scripts"]')) {
+      var s = document.createElement('script');
+      s.src = 'https://va.vercel-scripts.com/v1/script.js';
+      s.defer = true;
+      document.head.appendChild(s);
+    }
+  }
+
+  // Check existing consent
+  var consent = getCookie(COOKIE_NAME);
+
+  if (consent === 'accepted') {
+    loadAnalytics();
+  } else if (consent === 'rejected') {
+    // Do nothing — no analytics
+  } else {
+    // No choice made yet — show banner
+    showBanner();
+  }
+
+  if (acceptBtn) {
+    acceptBtn.addEventListener('click', function() {
+      setCookie(COOKIE_NAME, 'accepted', 365);
+      hideBanner();
+      loadAnalytics();
+    });
+  }
+
+  if (rejectBtn) {
+    rejectBtn.addEventListener('click', function() {
+      setCookie(COOKIE_NAME, 'rejected', 365);
+      hideBanner();
+    });
+  }
+})();
+</script>
